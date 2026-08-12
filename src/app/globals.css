@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+:root {
+  --color-bg: #f8fafc;
+  --color-ink: #0f172a;
+  --color-muted: #64748b;
+  --color-accent: #4338ca;
+  --color-border: #e2e8f0;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-ink);
+}
+
+/* Print styles for resume PDF export via window.print() — see
+   src/features/resume-builder/components/ExportButtons.tsx */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white;
+  }
+}

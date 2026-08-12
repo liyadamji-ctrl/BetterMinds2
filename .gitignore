@@ -1,0 +1,24 @@
+# dependencies
+node_modules
+
+# Next.js build output
+.next
+out
+
+# environment variables — never commit real secrets
+.env
+.env*.local
+
+# local dev database (SQLite, if used)
+dev.db
+
+# TypeScript incremental build info
+tsconfig.tsbuildinfo
+
+# logs
+logs
+*.log
+
+# macOS / Windows junk
+.DS_Store
+Thumbs.db

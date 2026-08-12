@@ -1,0 +1,96 @@
+// This app's tables live in Supabase Postgres. The SQL that actually creates
+// them lives in supabase/sql/*.sql (run those in the Supabase SQL Editor) —
+// this file is kept in sync by hand so the app gets a typed Prisma Client.
+// Column names are snake_case to match the raw SQL; @map bridges that to
+// camelCase in TypeScript. `role` and `status` are plain strings (not Prisma
+// enums) on purpose — see supabase/README.md for why.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Prisma 7 no longer takes a connection URL here — the CLI reads one from
+// prisma.config.ts, and the running app supplies one via the driver adapter
+// in src/lib/db.ts. This block just declares which SQL dialect to speak.
+datasource db {
+  provider = "postgresql"
+}
+
+// --- Identity -----------------------------------------------------------
+
+/// Mirrors public.profiles. id is the same UUID as the matching row in
+/// Supabase's own auth.users table. Rows are created automatically by a
+/// database trigger (supabase/sql/004_new_user_trigger.sql) whenever someone
+/// signs up — application code never inserts a Profile directly.
+model Profile {
+  id        String   @id @db.Uuid
+  email     String   @unique
+  name      String?
+  /// "CUSTOMER" | "COMPANY" | "ADMIN" — enforced by a CHECK constraint in SQL,
+  /// not a Postgres enum type, so it stays simple to read and change later.
+  role      String   @default("CUSTOMER")
+  /// True until the user finishes (or skips) the post-signup onboarding wizard.
+  /// Always FALSE for existing users — see supabase migration 005.
+  needsOnboarding Boolean @default(true) @map("needs_onboarding")
+  /// JSON blob of profile answers (name, field, location for customers;
+  /// company name, industry, size, location for companies).
+  profileJson String? @map("profile_json")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  resumes           Resume[]
+  consent           Consent?
+  sessionRecordings SessionRecording[]
+
+  @@map("profiles")
+}
+
+// --- Resume builder -------------------------------------------------------
+
+model Resume {
+  id     String  @id @default(cuid())
+  userId String  @db.Uuid @map("user_id")
+  user   Profile @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  format String // matches an id in src/features/resume-builder/formats/*.ts
+  title  String
+
+  /// Raw wizard answers, keyed by field id — the source of truth for regenerating/exporting.
+  fieldsJson String @map("fields_json")
+  /// Rendered + user-edited HTML shown in the in-browser editor.
+  htmlContent String @map("html_content")
+
+  /// "DRAFT" | "FINAL"
+  status    String   @default("DRAFT")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([userId])
+  @@map("resumes")
+}
+
+// --- Session recording (admin) --------------------------------------------
+
+model Consent {
+  id                      String   @id @default(cuid())
+  userId                  String   @unique @db.Uuid @map("user_id")
+  user                    Profile  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  sessionRecordingAllowed Boolean  @default(false) @map("session_recording_allowed")
+  respondedAt             DateTime @default(now()) @map("responded_at")
+
+  @@map("consent")
+}
+
+model SessionRecording {
+  id     String  @id @default(cuid())
+  userId String  @db.Uuid @map("user_id")
+  user   Profile @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  /// JSON-encoded array of batched rrweb events.
+  events     String
+  startedAt  DateTime  @default(now()) @map("started_at")
+  endedAt    DateTime? @map("ended_at")
+  durationMs Int?      @map("duration_ms")
+
+  @@index([userId])
+  @@map("session_recordings")
+}
