@@ -39,6 +39,8 @@ model Profile {
 
   resumes           Resume[]
   resumeAnalyses    ResumeAnalysis[]
+  jobsPosted        Job[]              @relation("CompanyJobs")
+  applications      Application[]      @relation("UserApplications")
   consent           Consent?
   sessionRecordings SessionRecording[]
 
@@ -51,6 +53,8 @@ model Resume {
   id     String  @id @default(cuid())
   userId String  @db.Uuid @map("user_id")
   user   Profile @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  applications Application[]
 
   format String // matches an id in src/features/resume-builder/formats/*.ts
   title  String
@@ -100,6 +104,74 @@ model ResumeAnalysis {
 
   @@index([userId])
   @@map("resume_analyses")
+}
+
+// --- Job postings -----------------------------------------------------
+
+/// A job/internship posting created by a COMPANY-role profile. See
+/// src/features/jobs/. Visible to customers on /jobs while status is OPEN.
+model Job {
+  id        String  @id @default(cuid())
+  companyId String  @db.Uuid @map("company_id")
+  company   Profile @relation("CompanyJobs", fields: [companyId], references: [id], onDelete: Cascade)
+
+  title       String
+  description String
+  /// Optional qualifications/requirements text, separate from description.
+  requirements String?
+
+  /// "INTERNSHIP" | "PART_TIME" | "FULL_TIME"
+  employmentType String @map("employment_type")
+  hoursPerWeek   Int?   @map("hours_per_week")
+  weeksPerYear   Int?   @map("weeks_per_year")
+  /// Free text, e.g. "$20/hr", "$60,000-$70,000/yr", "Unpaid".
+  pay            String?
+
+  location     String?
+  /// "REMOTE" | "ON_SITE" | "HYBRID"
+  locationType String @map("location_type")
+
+  /// "OPEN" | "CLOSED" — only OPEN postings show on the customer /jobs list.
+  status String @default("OPEN")
+
+  applications Application[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([companyId])
+  @@index([status])
+  @@map("jobs")
+}
+
+/// One customer's application to one Job, attaching an existing
+/// resume-builder Resume. Unique per (jobId, userId) — one application
+/// per person per posting.
+model Application {
+  id String @id @default(cuid())
+
+  jobId String @map("job_id")
+  job   Job    @relation(fields: [jobId], references: [id], onDelete: Cascade)
+
+  userId String  @db.Uuid @map("user_id")
+  user   Profile @relation("UserApplications", fields: [userId], references: [id], onDelete: Cascade)
+
+  resumeId String @map("resume_id")
+  resume   Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+
+  /// Optional short message from the applicant.
+  note String?
+
+  /// "SUBMITTED" | "REVIEWED" | "SHORTLISTED" | "REJECTED"
+  status String @default("SUBMITTED")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@unique([jobId, userId])
+  @@index([jobId])
+  @@index([userId])
+  @@map("applications")
 }
 
 // --- Session recording (admin) --------------------------------------------
