@@ -25,6 +25,9 @@ export function CustomerNav() {
           <Link href="/resume-builder" className="text-sm text-slate-600 hover:text-slate-900">
             New resume
           </Link>
+          <Link href="/resume-analyzer" className="text-sm text-slate-600 hover:text-slate-900">
+            Analyze resume
+          </Link>
         </div>
         <Button variant="ghost" onClick={logout}>
           Log out

@@ -14,9 +14,14 @@ export default async function DashboardPage() {
     <div className="flex flex-col gap-8">
       <div className="flex items-center justify-between">
         <h1 className="text-2xl font-bold text-slate-900">Your resumes</h1>
-        <Link href="/resume-builder">
-          <Button>Build a new resume</Button>
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link href="/resume-analyzer">
+            <Button variant="secondary">Analyze a resume</Button>
+          </Link>
+          <Link href="/resume-builder">
+            <Button>Build a new resume</Button>
+          </Link>
+        </div>
       </div>
 
       {resumes.length === 0 ? (

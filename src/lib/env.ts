@@ -10,10 +10,15 @@ const envSchema = z.object({
   NEXT_PUBLIC_SUPABASE_URL: z.string().min(1, "NEXT_PUBLIC_SUPABASE_URL is required"),
   NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().min(1, "NEXT_PUBLIC_SUPABASE_ANON_KEY is required"),
   DATABASE_URL: z.string().min(1, "DATABASE_URL is required"),
+  // Optional on purpose: the app must still boot for anyone who hasn't set up
+  // resume analysis yet. src/lib/groq.ts fails loudly, at call time, if a
+  // request actually needs this and it's missing.
+  GROQ_API_KEY: z.string().optional(),
 });
 
 export const env = envSchema.parse({
   NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
   NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
   DATABASE_URL: process.env.DATABASE_URL,
+  GROQ_API_KEY: process.env.GROQ_API_KEY,
 });

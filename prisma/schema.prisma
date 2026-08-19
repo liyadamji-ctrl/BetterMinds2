@@ -38,6 +38,7 @@ model Profile {
   createdAt DateTime @default(now()) @map("created_at")
 
   resumes           Resume[]
+  resumeAnalyses    ResumeAnalysis[]
   consent           Consent?
   sessionRecordings SessionRecording[]
 
@@ -66,6 +67,39 @@ model Resume {
 
   @@index([userId])
   @@map("resumes")
+}
+
+// --- Resume analyzer (Groq) ------------------------------------------------
+
+/// One row per "analyze my resume against this job" run. See
+/// src/features/resume-analyzer/. Resume text is extracted from the
+/// uploaded file in the browser (PDF/DOCX/TXT) and sent up as plain text —
+/// the server never touches the original file.
+model ResumeAnalysis {
+  id     String  @id @default(cuid())
+  userId String  @db.Uuid @map("user_id")
+  user   Profile @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  /// Original uploaded filename, kept for display only.
+  fileName String? @map("file_name")
+
+  jobTitle       String  @map("job_title")
+  /// Optional pasted job description / requirements text.
+  jobDescription String? @map("job_description")
+  /// Extracted resume text sent to Groq — kept so a past analysis can be
+  /// reviewed without re-uploading the file.
+  resumeText     String  @map("resume_text")
+
+  /// 0-100, pulled out of resultJson for cheap sorting/display in lists.
+  matchScore Int? @map("match_score")
+  /// Full structured analysis returned by Groq (see analysisResultSchema).
+  resultJson String @map("result_json")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([userId])
+  @@map("resume_analyses")
 }
 
 // --- Session recording (admin) --------------------------------------------
