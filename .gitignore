@@ -22,3 +22,6 @@ logs
 # macOS / Windows junk
 .DS_Store
 Thumbs.db
+
+# git worktrees (see docs/superpowers)
+.worktrees
