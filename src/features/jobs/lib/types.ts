@@ -34,12 +34,12 @@ export const APPLICATION_STATUS_LABELS: Record<ApplicationStatus, string> = {
 export const createJobSchema = z.object({
   title: z.string().trim().min(1, "Title is required").max(150),
   description: z.string().trim().min(1, "Description is required").max(10000),
-  requirements: z.string().trim().max(10000).optional(),
+  requirements: z.string().trim().max(10000).nullish(),
   employmentType: z.enum(EMPLOYMENT_TYPES),
-  hoursPerWeek: z.coerce.number().int().min(1).max(168).optional(),
-  weeksPerYear: z.coerce.number().int().min(1).max(52).optional(),
-  pay: z.string().trim().max(100).optional(),
-  location: z.string().trim().max(150).optional(),
+  hoursPerWeek: z.coerce.number().int().min(1).max(168).optional().nullable(),
+  weeksPerYear: z.coerce.number().int().min(1).max(52).optional().nullable(),
+  pay: z.string().trim().max(100).nullish(),
+  location: z.string().trim().max(150).nullish(),
   locationType: z.enum(LOCATION_TYPES),
 });
 export type CreateJobInput = z.infer<typeof createJobSchema>;

@@ -49,15 +49,21 @@ export function JobForm(props: Props) {
     setSubmitting(true);
     setError(null);
 
+    // In edit mode, a blank optional field means "clear this value" and must be sent
+    // as `null` (JSON.stringify drops `undefined` keys, so the API would never see the
+    // change and the old value would silently stick around). In create mode, a blank
+    // field means "not provided" and should stay `undefined` so it's omitted entirely.
+    const emptyValue = props.mode === "edit" ? null : undefined;
+
     const payload = {
       title,
       description,
-      requirements: requirements.trim() || undefined,
+      requirements: requirements.trim() || emptyValue,
       employmentType,
-      hoursPerWeek: hoursPerWeek.trim() ? Number(hoursPerWeek) : undefined,
-      weeksPerYear: weeksPerYear.trim() ? Number(weeksPerYear) : undefined,
-      pay: pay.trim() || undefined,
-      location: location.trim() || undefined,
+      hoursPerWeek: hoursPerWeek.trim() ? Number(hoursPerWeek) : emptyValue,
+      weeksPerYear: weeksPerYear.trim() ? Number(weeksPerYear) : emptyValue,
+      pay: pay.trim() || emptyValue,
+      location: location.trim() || emptyValue,
       locationType,
     };
 
