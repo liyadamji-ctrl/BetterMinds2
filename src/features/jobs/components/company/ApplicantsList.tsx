@@ -78,9 +78,11 @@ export function ApplicantsList({ initialApplicants }: { initialApplicants: Appli
           </div>
 
           {expandedId === applicant.id && (
-            <div
-              dangerouslySetInnerHTML={{ __html: applicant.resumeHtml }}
-              className="mt-4 rounded-md border border-slate-200 p-8"
+            <iframe
+              sandbox=""
+              srcDoc={applicant.resumeHtml}
+              className="mt-4 h-[800px] w-full rounded-md border border-slate-200"
+              title={`Resume: ${applicant.resumeTitle}`}
             />
           )}
         </li>
