@@ -32,7 +32,7 @@ export default async function MyApplicationsPage() {
             const companyData = application.job.company.profileJson
               ? (JSON.parse(application.job.company.profileJson) as Record<string, string>)
               : null;
-            const companyName = companyData?.companyName ?? application.job.company.name ?? "A company on Focal";
+            const companyName = companyData?.companyName ?? application.job.company.name ?? "A company on ResumeRiseAI";
             return (
               <li key={application.id} className="flex items-center justify-between px-5 py-4">
                 <div>

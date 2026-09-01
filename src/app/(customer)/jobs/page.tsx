@@ -31,7 +31,7 @@ export default async function JobsPage({
     <div className="flex flex-col gap-6">
       <div>
         <h1 className="text-2xl font-bold text-slate-900">Job opportunities</h1>
-        <p className="mt-1 text-slate-600">Browse open roles and internships posted by companies on Focal.</p>
+        <p className="mt-1 text-slate-600">Browse open roles and internships posted by companies on ResumeRiseAI.</p>
       </div>
 
       <JobFilters />
@@ -46,7 +46,7 @@ export default async function JobsPage({
             const companyData = job.company.profileJson
               ? (JSON.parse(job.company.profileJson) as Record<string, string>)
               : null;
-            const companyName = companyData?.companyName ?? job.company.name ?? "A company on Focal";
+            const companyName = companyData?.companyName ?? job.company.name ?? "A company on ResumeRiseAI";
             return (
               <li key={job.id} className="px-5 py-4">
                 <Link href={`/jobs/${job.id}`} className="block hover:opacity-80">

@@ -41,7 +41,7 @@ export function ConsentBanner() {
     <div className="fixed inset-x-0 bottom-0 z-50 border-t border-slate-200 bg-white p-4 shadow-lg">
       <div className="mx-auto flex max-w-3xl flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm text-slate-700">
-          We&rsquo;d like to record how you use Focal (clicks and page views — never
+          We&rsquo;d like to record how you use ResumeRiseAI (clicks and page views — never
           passwords or personal data) so we can improve the experience. You can change
           this anytime in your account settings.
         </p>

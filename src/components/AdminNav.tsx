@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/Button";
+import { Logo } from "@/components/Logo";
 
 export function AdminNav() {
   const router = useRouter();
@@ -19,8 +20,8 @@ export function AdminNav() {
     <nav className="border-b border-slate-800 bg-slate-950">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
         <div className="flex items-center gap-6">
-          <Link href="/admin" className="font-semibold text-white">
-            Focal Admin
+          <Link href="/admin">
+            <Logo variant="dark" suffix="Admin" />
           </Link>
           <Link href="/admin/sessions" className="text-sm text-slate-400 hover:text-white">
             Session Recordings

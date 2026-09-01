@@ -52,7 +52,7 @@ export default async function CompanyDashboardPage() {
         <div className="rounded-lg border border-dashed border-slate-300 bg-white p-10 text-center">
           <p className="font-medium text-slate-700">No job postings yet</p>
           <p className="mt-1 text-sm text-slate-500">
-            Create your first job posting to start receiving applications from candidates on Focal.
+            Create your first job posting to start receiving applications from candidates on ResumeRiseAI.
           </p>
           <Link href="/company/jobs/new" className="mt-4 inline-block">
             <Button>Post a job</Button>

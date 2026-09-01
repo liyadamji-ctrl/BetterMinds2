@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/Button";
+import { Logo } from "@/components/Logo";
 
 export function CompanyNav() {
   const router = useRouter();
@@ -19,8 +20,8 @@ export function CompanyNav() {
     <nav className="border-b border-slate-200 bg-white">
       <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
         <div className="flex items-center gap-6">
-          <Link href="/company" className="font-semibold text-indigo-700">
-            Focal
+          <Link href="/company">
+            <Logo />
           </Link>
           <Link href="/company/jobs" className="text-sm text-slate-600 hover:text-slate-900">
             Job Postings

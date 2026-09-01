@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { Logo } from "@/components/Logo";
 
 export default function HomePage() {
   return (
     <main className="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center gap-8 px-6 text-center">
       <div className="flex flex-col items-center gap-3">
-        <p className="text-sm font-semibold uppercase tracking-widest text-indigo-700">Focal</p>
+        <Logo />
         <h1 className="text-4xl font-bold text-slate-900">
           Your career starts here.
         </h1>
@@ -29,7 +30,7 @@ export default function HomePage() {
           <p className="text-lg font-semibold text-slate-900">For Job Seekers</p>
           <p className="mt-1 text-sm text-slate-500">
             Upload or build your resume, get AI feedback, and apply to internships posted
-            directly on Focal.
+            directly on ResumeRiseAI.
           </p>
         </div>
         <div className="rounded-lg border border-slate-200 bg-white p-5">
