@@ -41,6 +41,7 @@ model Profile {
   resumeAnalyses    ResumeAnalysis[]
   jobsPosted        Job[]              @relation("CompanyJobs")
   applications      Application[]      @relation("UserApplications")
+  coverLetters      CoverLetter[]
   consent           Consent?
   sessionRecordings SessionRecording[]
 
@@ -55,6 +56,7 @@ model Resume {
   user   Profile @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   applications Application[]
+  coverLetters CoverLetter[]
 
   format String // matches an id in src/features/resume-builder/formats/*.ts
   title  String
@@ -135,6 +137,7 @@ model Job {
   status String @default("OPEN")
 
   applications Application[]
+  coverLetters CoverLetter[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -172,6 +175,44 @@ model Application {
   @@index([jobId])
   @@index([userId])
   @@map("applications")
+}
+
+// --- Cover letters (Groq) ---------------------------------------------
+
+/// A generated cover letter, tied to one of the customer's own resumes
+/// and either a job posted on this platform or a hand-described external
+/// one. See src/features/cover-letters/.
+model CoverLetter {
+  id     String  @id @default(cuid())
+  userId String  @db.Uuid @map("user_id")
+  user   Profile @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  resumeId String @map("resume_id")
+  resume   Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+
+  /// Set when generated for a job posted on this platform; null for a
+  /// hand-described external job. onDelete: SetNull — deleting the
+  /// platform job must not delete the customer's saved letter.
+  jobId String? @map("job_id")
+  job   Job?    @relation(fields: [jobId], references: [id], onDelete: SetNull)
+
+  /// Always populated — copied from the platform Job at generation time,
+  /// or typed in directly for an external job. Independent of jobId so a
+  /// saved letter keeps correct context even if the Job row changes later.
+  companyName    String  @map("company_name")
+  jobTitle       String  @map("job_title")
+  jobDescription String? @map("job_description")
+
+  /// Editable HTML content of the letter — same role as Resume.htmlContent.
+  /// Always a flat sequence of <p> tags (see the generation prompt in
+  /// Task 2) — no headers, no styling.
+  htmlContent String @map("html_content")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([userId])
+  @@map("cover_letters")
 }
 
 // --- Session recording (admin) --------------------------------------------
