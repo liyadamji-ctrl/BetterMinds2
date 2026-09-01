@@ -9,7 +9,7 @@ import { Document, Packer, Paragraph } from "docx";
  * by the browser as "&amp;lt;") into "&lt;", which the next step would then
  * wrongly decode into "<".
  */
-function decodeHtmlEntities(text: string): string {
+export function decodeHtmlEntities(text: string): string {
   return text
     .replace(/&nbsp;/g, " ")
     .replace(/&lt;/g, "<")

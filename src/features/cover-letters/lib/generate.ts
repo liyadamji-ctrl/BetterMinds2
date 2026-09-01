@@ -2,6 +2,7 @@ import "server-only";
 import { z } from "zod";
 import { groqChat } from "@/lib/groq";
 import { escapeHtml, type ResumeAnswers } from "@/features/resume-builder/formats/types";
+import { decodeHtmlEntities } from "./exportDocx";
 
 function str(answers: ResumeAnswers, section: string, field: string): string {
   const value = answers[section];
@@ -123,12 +124,20 @@ export async function generateCoverLetterHtml(answers: ResumeAnswers, job: JobCo
    * <p>...</p> — regardless of what Groq actually returned. Do not simplify
    * this back to `return result.html` even though it "should" already be
    * clean per the prompt.
+   *
+   * Each chunk is also run through decodeHtmlEntities() before escaping, so
+   * legitimate entities Groq emits in its HTML field (e.g. "Johnson &amp;
+   * Johnson") round-trip to the correct text instead of getting
+   * double-escaped — this stays exactly as safe as escaping alone, since
+   * decode-then-escape is idempotent for a genuine injection attempt (an
+   * already-encoded "&lt;script&gt;" decodes to the text "<script>", which
+   * escapeHtml then re-encodes right back to inert "&lt;script&gt;").
    */
   const normalizedHtml = result.html
     .split(/<\/p>/i)
     .map((chunk) => chunk.replace(/<[^>]*>/g, "").trim())
     .filter(Boolean)
-    .map((text) => `<p>${escapeHtml(text)}</p>`)
+    .map((text) => `<p>${escapeHtml(decodeHtmlEntities(text))}</p>`)
     .join("");
 
   if (!normalizedHtml) {
