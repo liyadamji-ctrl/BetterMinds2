@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import Link from "next/link";
 import { requireUser } from "@/features/auth/lib/guard";
 import { db } from "@/lib/db";
 import { ApplyButton } from "@/features/jobs/components/customer/ApplyButton";
@@ -70,6 +71,10 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
       ) : (
         <p className="text-sm text-slate-500">This posting is closed and no longer accepting applications.</p>
       )}
+
+      <Link href={`/cover-letters/new?jobId=${job.id}`} className="text-sm text-indigo-700 hover:underline">
+        Write a cover letter for this job
+      </Link>
     </div>
   );
 }

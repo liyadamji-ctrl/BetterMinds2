@@ -29,6 +29,9 @@ export function CustomerNav() {
           <Link href="/resume-analyzer" className="text-sm text-slate-600 hover:text-slate-900">
             Analyze resume
           </Link>
+          <Link href="/cover-letters" className="text-sm text-slate-600 hover:text-slate-900">
+            Cover letters
+          </Link>
           <Link href="/jobs" className="text-sm text-slate-600 hover:text-slate-900">
             Jobs
           </Link>
