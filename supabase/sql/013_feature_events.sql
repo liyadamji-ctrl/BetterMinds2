@@ -71,9 +71,16 @@ begin
     insert into public.feature_events (user_id, feature, action, created_at)
       select user_id, 'interview-simulator', 'session_started', created_at from public.interview_sessions;
 
-    insert into public.feature_events (user_id, feature, action, created_at)
-      select user_id, 'interview-simulator', 'session_finished', updated_at
-      from public.interview_sessions where status = 'COMPLETED';
+    -- An older interview_sessions table has no status column until
+    -- 014_interview_sessions_upgrade.sql runs; skip the finished backfill then.
+    if exists (
+      select 1 from information_schema.columns
+      where table_schema = 'public' and table_name = 'interview_sessions' and column_name = 'status'
+    ) then
+      insert into public.feature_events (user_id, feature, action, created_at)
+        select user_id, 'interview-simulator', 'session_finished', updated_at
+        from public.interview_sessions where status = 'COMPLETED';
+    end if;
   end if;
 
   if to_regclass('public.discovery_searches') is not null then

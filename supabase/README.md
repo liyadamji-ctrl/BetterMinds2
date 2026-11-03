@@ -29,6 +29,7 @@ file in this folder **in order**, one at a time:
 10. `sql/011_discovery_searches.sql` (programs & internships search history)
 11. `sql/012_interview_sessions.sql` (interview simulator)
 12. `sql/013_feature_events.sql` (admin feature-usage tracking; backfills history from the tables above)
+13. `sql/014_interview_sessions_upgrade.sql` (upgrades an older `interview_sessions` table; a no-op on a fresh database)
 
 (`sql/006_promote_to_admin.sql` comes later, in step 6 below.)
 
@@ -92,5 +93,5 @@ Repeat step 6 for every additional admin.
 
 Every record the app stores — every resume (both the raw answers and the
 rendered HTML), every session recording's events, consent choices, and user
-profiles — lives in these five Postgres tables inside your Supabase project.
+profiles — lives in the Postgres tables created by the scripts above inside your Supabase project.
 Nothing is stored anywhere else; there's no separate file storage to manage.
