@@ -19,7 +19,7 @@ function ScoreBadge({ score }: { score: number | null }) {
 
 function ResultPanel({ result, title }: { result: AnalysisResult; title: string }) {
   return (
-    <div className="flex flex-col gap-6 rounded-lg border border-slate-200 bg-white p-6">
+    <div className="flex flex-col gap-6 rounded-mw-lg bg-surface-raised shadow-mw-card p-6">
       <div className="flex items-center justify-between">
         <h2 className="font-semibold text-slate-900">Match for &ldquo;{title}&rdquo;</h2>
         <ScoreBadge score={result.matchScore} />
@@ -205,7 +205,7 @@ export function ResumeAnalyzer({ initialHistory }: { initialHistory: ResumeAnaly
 
   return (
     <div className="flex flex-col gap-8">
-      <div className="rounded-lg border border-slate-200 bg-white p-6">
+      <div className="rounded-mw-lg bg-surface-raised shadow-mw-card p-6">
         <h2 className="mb-4 font-semibold text-slate-900">1. Upload your resume</h2>
         <div className="flex flex-col gap-3">
           <input
@@ -213,7 +213,7 @@ export function ResumeAnalyzer({ initialHistory }: { initialHistory: ResumeAnaly
             type="file"
             accept=".pdf,.docx,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain"
             onChange={handleFileChange}
-            className="text-sm text-slate-700 file:mr-4 file:rounded-md file:border-0 file:bg-indigo-700 file:px-4 file:py-2 file:text-sm file:font-medium file:text-white hover:file:bg-indigo-800"
+            className="text-sm text-slate-700 file:mr-4 file:rounded-mw-md file:border-0 file:bg-indigo-700 file:px-4 file:py-2 file:text-sm file:font-medium file:text-white hover:file:bg-indigo-800"
           />
           <p className="text-xs text-slate-500">PDF, DOCX, or TXT — up to 8MB. Your file is read in your browser and never uploaded as-is.</p>
           {extracting && <p className="text-sm text-slate-600">Reading {fileName}…</p>}
@@ -224,7 +224,7 @@ export function ResumeAnalyzer({ initialHistory }: { initialHistory: ResumeAnaly
         </div>
       </div>
 
-      <div className="rounded-lg border border-slate-200 bg-white p-6">
+      <div className="rounded-mw-lg bg-surface-raised shadow-mw-card p-6">
         <h2 className="mb-4 font-semibold text-slate-900">2. Which job is this for?</h2>
         <div className="flex flex-col gap-4">
           <TextField
@@ -256,7 +256,7 @@ export function ResumeAnalyzer({ initialHistory }: { initialHistory: ResumeAnaly
         {history.length === 0 ? (
           <p className="text-sm text-slate-500">No analyses yet.</p>
         ) : (
-          <ul className="divide-y divide-slate-200 rounded-lg border border-slate-200 bg-white">
+          <ul className="divide-y divide-line rounded-mw-lg bg-surface-raised shadow-mw-card">
             {history.map((item) => (
               <li key={item.id} className="flex items-center justify-between px-5 py-3">
                 <div>

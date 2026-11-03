@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { Building2, GraduationCap } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/Button";
 import { TextField } from "@/components/ui/Field";
@@ -23,13 +24,15 @@ function TypeCard({
     <button
       type="button"
       onClick={onClick}
-      className={`flex flex-col items-start gap-2 rounded-lg border-2 p-4 text-left transition-colors ${
+      className={`flex flex-col items-start gap-2 rounded-mw-lg border-2 p-4 text-left transition-colors ${
         selected
           ? "border-indigo-600 bg-indigo-50"
           : "border-slate-200 bg-white hover:border-slate-300"
       }`}
     >
-      <span className="text-2xl">{isSeeker ? "🎓" : "🏢"}</span>
+      <span className="text-brand">
+        {isSeeker ? <GraduationCap size={26} aria-hidden /> : <Building2 size={26} aria-hidden />}
+      </span>
       <span className="font-semibold text-slate-900">{isSeeker ? "Job Seeker" : "Employer"}</span>
       <span className="text-xs text-slate-500">
         {isSeeker

@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { logger } from "@/lib/logger";
 import { getSession } from "@/features/auth/lib/guard";
+import { trackEvent } from "@/features/analytics/lib/track";
 import { createJobSchema } from "@/features/jobs/lib/types";
 
 export async function POST(request: Request) {
@@ -37,6 +38,7 @@ export async function POST(request: Request) {
     });
 
     logger.info("jobs", "Job posted", { jobId: job.id, companyId: session.userId });
+    await trackEvent({ userId: session.userId, feature: "job-postings", action: "job_posted", metadata: { jobId: job.id } });
     return NextResponse.json({ id: job.id });
   } catch (error) {
     logger.error("jobs", "Create job failed", { error: String(error) });

@@ -74,7 +74,7 @@ export default async function EmailTemplatesPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900">Email templates</h1>
+        <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ink sm:text-[40px] sm:leading-[46px]">Email templates</h1>
         <p className="mt-1 text-slate-600">
           Copy one of these and fill in the bracketed details — use them alongside your cover letters.
         </p>
@@ -82,7 +82,7 @@ export default async function EmailTemplatesPage() {
 
       <div className="flex flex-col gap-4">
         {TEMPLATES.map((template) => (
-          <div key={template.title} className="rounded-lg border border-slate-200 bg-white p-6">
+          <div key={template.title} className="rounded-mw-lg bg-surface-raised shadow-mw-card p-6">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <h2 className="font-semibold text-slate-900">{template.title}</h2>

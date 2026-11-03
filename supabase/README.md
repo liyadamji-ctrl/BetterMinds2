@@ -22,8 +22,15 @@ file in this folder **in order**, one at a time:
 3. `sql/003_consent_and_sessions.sql`
 4. `sql/004_new_user_trigger.sql`
 5. `sql/005_rls_policies.sql`
+6. `sql/007_resume_analyses.sql` (resume analyzer)
+7. `sql/008_jobs.sql` (job postings + applications)
+8. `sql/009_cover_letters.sql` (cover letters)
+9. `sql/010_application_screening.sql` (AI applicant screening)
+10. `sql/011_discovery_searches.sql` (programs & internships search history)
+11. `sql/012_interview_sessions.sql` (interview simulator)
+12. `sql/013_feature_events.sql` (admin feature-usage tracking; backfills history from the tables above)
 
-(`sql/006_promote_to_admin.sql` comes later, in step 6.)
+(`sql/006_promote_to_admin.sql` comes later, in step 6 below.)
 
 If a script errors, read the message — it's almost always "already exists"
 from re-running one, which is safe to ignore.

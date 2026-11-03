@@ -32,14 +32,14 @@ export function CoverLetterList({ initialCoverLetters }: { initialCoverLetters: 
 
   if (coverLetters.length === 0) {
     return (
-      <div className="rounded-lg border border-dashed border-slate-300 bg-white p-10 text-center">
+      <div className="rounded-mw-lg bg-surface-raised shadow-mw-card p-10 text-center">
         <p className="text-slate-600">You haven&rsquo;t written any cover letters yet.</p>
       </div>
     );
   }
 
   return (
-    <ul className="divide-y divide-slate-200 rounded-lg border border-slate-200 bg-white">
+    <ul className="divide-y divide-line rounded-mw-lg bg-surface-raised shadow-mw-card">
       {coverLetters.map((coverLetter) => (
         <li key={coverLetter.id} className="flex items-center justify-between px-5 py-4">
           <div>

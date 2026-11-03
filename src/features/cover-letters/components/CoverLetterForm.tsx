@@ -35,7 +35,7 @@ export function CoverLetterForm({
 
   if (resumes.length === 0) {
     return (
-      <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm text-slate-700">
+      <div className="rounded-mw-lg bg-surface-raised shadow-mw-card p-4 text-sm text-slate-700">
         You need a resume before generating a cover letter.{" "}
         <Link href="/resume-builder" className="text-indigo-700 hover:underline">
           Build one now
@@ -86,7 +86,7 @@ export function CoverLetterForm({
   ];
 
   return (
-    <div className="flex flex-col gap-6 rounded-lg border border-slate-200 bg-white p-6">
+    <div className="flex flex-col gap-6 rounded-mw-lg bg-surface-raised shadow-mw-card p-6">
       <SelectField
         label="Resume to base it on"
         value={resumeId}

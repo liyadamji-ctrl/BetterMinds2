@@ -1,7 +1,6 @@
-import Link from "next/link";
 import { requireCompany } from "@/features/auth/lib/guard";
 import { db } from "@/lib/db";
-import { Button } from "@/components/ui/Button";
+import { Badge, EmptyState, LinkButton, PageHeader } from "@/components/teamstead/ui";
 import { JobActions } from "@/features/jobs/components/company/JobActions";
 import { EMPLOYMENT_TYPE_LABELS, type EmploymentType, type JobStatus } from "@/features/jobs/lib/types";
 
@@ -16,36 +15,31 @@ export default async function CompanyJobsPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-slate-900">Job postings</h1>
-        <Link href="/company/jobs/new">
-          <Button>Post a job</Button>
-        </Link>
-      </div>
+      <PageHeader
+        title="Job postings"
+        actions={<LinkButton href="/company/jobs/new" variant="primary">Post a job</LinkButton>}
+      />
 
       {jobs.length === 0 ? (
-        <div className="rounded-lg border border-dashed border-slate-300 bg-white p-10 text-center">
-          <p className="font-medium text-slate-700">No job postings yet</p>
-          <p className="mt-1 text-sm text-slate-500">
-            When you create a job posting, it will appear here. Candidates on the platform can
-            apply directly, and you can use AI to filter and shortlist resumes.
-          </p>
-          <Link href="/company/jobs/new" className="mt-4 inline-block">
-            <Button variant="secondary">Create your first posting</Button>
-          </Link>
-        </div>
+        <EmptyState
+          title="No job postings yet"
+          description="When you create a job posting, it will appear here. Candidates on the platform can apply directly, and you can use AI to filter and shortlist resumes."
+          action={<LinkButton href="/company/jobs/new" variant="primary">Create your first posting</LinkButton>}
+        />
       ) : (
-        <ul className="divide-y divide-slate-200 rounded-lg border border-slate-200 bg-white">
+        <ul className="divide-y divide-line overflow-hidden rounded-ts-lg border border-line bg-surface shadow-card">
           {jobs.map((job) => (
-            <li key={job.id} className="flex items-center justify-between gap-4 px-5 py-4">
-              <div>
-                <p className="font-medium text-slate-900">{job.title}</p>
-                <p className="text-xs uppercase tracking-wide text-slate-500">
-                  {EMPLOYMENT_TYPE_LABELS[job.employmentType as EmploymentType]} ·{" "}
-                  <span className={job.status === "OPEN" ? "text-green-700" : "text-slate-500"}>
+            <li key={job.id} className="flex flex-wrap items-center justify-between gap-4 px-5 py-4">
+              <div className="min-w-0">
+                <p className="font-display text-[18px] font-semibold leading-6 text-ink">{job.title}</p>
+                <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-medium text-ink-muted">
+                  <Badge tone={job.status === "OPEN" ? "success" : "neutral"} dot>
                     {job.status === "OPEN" ? "Open" : "Closed"}
-                  </span>{" "}
-                  · {job._count.applications} applicant{job._count.applications === 1 ? "" : "s"}
+                  </Badge>
+                  <span>{EMPLOYMENT_TYPE_LABELS[job.employmentType as EmploymentType]}</span>
+                  <span className="tabular-nums">
+                    {job._count.applications} applicant{job._count.applications === 1 ? "" : "s"}
+                  </span>
                 </p>
               </div>
               <JobActions jobId={job.id} status={job.status as JobStatus} />

@@ -18,18 +18,18 @@ export default async function AdminSessionsPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-2xl font-bold text-white">Session recordings</h1>
-        <p className="mt-1 text-sm text-slate-400">
+        <h1 className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ink sm:text-[36px] sm:leading-[42px]">Session recordings</h1>
+        <p className="mt-1 text-sm text-ink-muted">
           Only customers who opted in to the consent banner appear here.
         </p>
       </div>
 
       {recordings.length === 0 ? (
-        <p className="text-slate-500">No recordings yet.</p>
+        <p className="text-ink-muted">No recordings yet.</p>
       ) : (
-        <div className="overflow-hidden rounded-lg border border-slate-800">
-          <table className="w-full text-left text-sm">
-            <thead className="bg-slate-900 text-slate-400">
+        <div className="overflow-x-auto rounded-ts-lg border border-line">
+          <table className="w-full min-w-[520px] text-left text-sm">
+            <thead className="bg-surface text-ink-muted">
               <tr>
                 <th className="px-4 py-3 font-medium">Customer</th>
                 <th className="px-4 py-3 font-medium">Started</th>
@@ -37,14 +37,14 @@ export default async function AdminSessionsPage() {
                 <th className="px-4 py-3" />
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800 bg-slate-900/50">
+            <tbody className="divide-y divide-line bg-surface">
               {recordings.map((r) => (
                 <tr key={r.id}>
-                  <td className="px-4 py-3 text-white">{r.user.name ?? r.user.email}</td>
-                  <td className="px-4 py-3 text-slate-400">{r.startedAt.toLocaleString()}</td>
-                  <td className="px-4 py-3 text-slate-400">{formatDuration(r.durationMs)}</td>
+                  <td className="px-4 py-3 text-ink">{r.user.name ?? r.user.email}</td>
+                  <td className="px-4 py-3 text-ink-muted">{r.startedAt.toLocaleString()}</td>
+                  <td className="px-4 py-3 text-ink-muted">{formatDuration(r.durationMs)}</td>
                   <td className="px-4 py-3 text-right">
-                    <Link href={`/admin/sessions/${r.id}`} className="text-indigo-400 hover:underline">
+                    <Link href={`/admin/sessions/${r.id}`} className="text-forest hover:underline">
                       Replay
                     </Link>
                   </td>

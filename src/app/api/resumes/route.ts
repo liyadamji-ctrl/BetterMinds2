@@ -3,6 +3,7 @@ import { z } from "zod";
 import { db } from "@/lib/db";
 import { logger } from "@/lib/logger";
 import { getSession } from "@/features/auth/lib/guard";
+import { trackEvent } from "@/features/analytics/lib/track";
 import { getResumeFormat } from "@/features/resume-builder/formats";
 
 const createSchema = z.object({
@@ -46,6 +47,12 @@ export async function POST(request: Request) {
     });
 
     logger.info("resume-builder", "Resume created", { resumeId: resume.id, userId: session.userId });
+    await trackEvent({
+      userId: session.userId,
+      feature: "resume-builder",
+      action: "resume_created",
+      metadata: { format: format.id },
+    });
     return NextResponse.json({ id: resume.id });
   } catch (error) {
     logger.error("resume-builder", "Create resume failed", { error: String(error) });

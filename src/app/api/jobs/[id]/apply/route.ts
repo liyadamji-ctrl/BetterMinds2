@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { logger } from "@/lib/logger";
 import { getSession } from "@/features/auth/lib/guard";
+import { trackEvent } from "@/features/analytics/lib/track";
 import { applySchema } from "@/features/jobs/lib/types";
 
 export async function POST(request: Request, { params }: { params: Promise<{ id: string }> }) {
@@ -50,6 +51,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
       jobId,
       userId: session.userId,
     });
+    await trackEvent({ userId: session.userId, feature: "job-board", action: "applied", metadata: { jobId } });
     return NextResponse.json({ id: application.id, status: application.status });
   } catch (error) {
     logger.error("jobs", "Apply failed", { jobId, error: String(error) });

@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { requireCompany } from "@/features/auth/lib/guard";
 import { db } from "@/lib/db";
+import { PageHeader } from "@/components/teamstead/ui";
 import { JobForm, type JobFormInitial } from "@/features/jobs/components/company/JobForm";
 import type { EmploymentType, LocationType } from "@/features/jobs/lib/types";
 
@@ -26,9 +27,7 @@ export default async function EditJobPage({ params }: { params: Promise<{ id: st
 
   return (
     <div className="flex flex-col gap-6">
-      <div>
-        <h1 className="text-2xl font-bold text-slate-900">Edit job posting</h1>
-      </div>
+      <PageHeader title="Edit job posting" />
       <JobForm mode="edit" job={initial} />
     </div>
   );

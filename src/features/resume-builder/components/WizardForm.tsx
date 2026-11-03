@@ -115,7 +115,7 @@ export function WizardForm({ format }: { format: WizardFormat }) {
       <TextField label="Resume title (just for your own reference)" value={title} onChange={(e) => setTitle(e.target.value)} />
 
       {format.sections.map((section) => (
-        <div key={section.id} className="rounded-lg border border-slate-200 bg-white p-6">
+        <div key={section.id} className="rounded-mw-lg bg-surface-raised shadow-mw-card p-6">
           <h2 className="mb-4 font-semibold text-slate-900">{section.title}</h2>
 
           {section.kind === "simple" ? (
@@ -137,7 +137,7 @@ export function WizardForm({ format }: { format: WizardFormat }) {
             <div className="flex flex-col gap-4">
               {(Array.isArray(answers[section.id]) ? (answers[section.id] as Array<Record<string, string>>) : []).map(
                 (item, index) => (
-                  <div key={index} className="rounded-md border border-slate-200 p-4">
+                  <div key={index} className="rounded-mw-md border border-slate-200 p-4">
                     <div className="grid gap-4 sm:grid-cols-2">
                       {section.itemFields.map((field) => (
                         <div key={field.id} className={field.type === "textarea" ? "sm:col-span-2" : ""}>

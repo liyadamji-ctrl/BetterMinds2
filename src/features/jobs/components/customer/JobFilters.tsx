@@ -27,7 +27,7 @@ export function JobFilters() {
   }
 
   return (
-    <div className="grid gap-4 rounded-lg border border-slate-200 bg-white p-4 sm:grid-cols-3">
+    <div className="grid gap-4 rounded-mw-lg bg-surface-raised shadow-mw-card p-4 sm:grid-cols-3">
       <TextField
         label="Search"
         placeholder="Search job titles…"

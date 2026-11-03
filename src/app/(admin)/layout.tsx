@@ -1,6 +1,14 @@
 import { requireAdmin } from "@/features/auth/lib/guard";
 import { AppErrorBoundary } from "@/components/AppErrorBoundary";
-import { AdminNav } from "@/components/AdminNav";
+import { AppShell, type NavEntry } from "@/components/teamstead/AppShell";
+
+const NAV: NavEntry[] = [
+  { href: "/admin", label: "Overview", icon: "grid", exact: true },
+  { href: "/admin/features", label: "Feature usage", icon: "chart" },
+  { href: "/admin/companies", label: "Companies", icon: "building" },
+  { href: "/admin/analyses", label: "Resume analyses", icon: "analysis" },
+  { href: "/admin/sessions", label: "Session recordings", icon: "recording" },
+];
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   // Also enforced in middleware.ts — this is the belt-and-suspenders check
@@ -8,11 +16,8 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   await requireAdmin();
 
   return (
-    <div className="min-h-screen bg-slate-950">
-      <AdminNav />
-      <AppErrorBoundary scope="admin">
-        <main className="mx-auto max-w-5xl px-6 py-10">{children}</main>
-      </AppErrorBoundary>
-    </div>
+    <AppShell nav={NAV} homeHref="/admin" badge="Admin">
+      <AppErrorBoundary scope="admin">{children}</AppErrorBoundary>
+    </AppShell>
   );
 }

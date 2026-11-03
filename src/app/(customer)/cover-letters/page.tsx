@@ -23,7 +23,7 @@ export default async function CoverLettersPage() {
   return (
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-slate-900">Cover letters</h1>
+        <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ink sm:text-[40px] sm:leading-[46px]">Cover letters</h1>
         <div className="flex items-center gap-3">
           <Link href="/email-templates">
             <Button variant="secondary">Email templates</Button>

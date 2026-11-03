@@ -90,7 +90,7 @@ export function JobForm(props: Props) {
   }
 
   return (
-    <div className="flex flex-col gap-6 rounded-lg border border-slate-200 bg-white p-6">
+    <div className="flex flex-col gap-6 rounded-ts-lg border border-line bg-surface shadow-card p-6">
       <TextField label="Job title" value={title} onChange={(e) => setTitle(e.target.value)} required />
       <TextAreaField
         label="Role description"

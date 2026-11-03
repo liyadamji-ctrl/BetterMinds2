@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { logger } from "@/lib/logger";
 import { getSession } from "@/features/auth/lib/guard";
+import { trackEvent } from "@/features/analytics/lib/track";
 import { buildResumeDocx } from "@/features/resume-builder/lib/exportDocx";
 import type { ResumeAnswers } from "@/features/resume-builder/formats/types";
 
@@ -26,6 +27,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
     const filename = `${resume.title.replace(/[^a-z0-9-_ ]/gi, "").trim() || "resume"}.docx`;
 
     logger.info("resume-builder", "Resume exported as docx", { resumeId: id, userId: session.userId });
+    await trackEvent({ userId: session.userId, feature: "resume-builder", action: "resume_exported" });
 
     return new NextResponse(new Uint8Array(buffer), {
       headers: {

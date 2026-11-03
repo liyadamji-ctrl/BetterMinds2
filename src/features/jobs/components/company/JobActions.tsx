@@ -53,8 +53,8 @@ export function JobActions({ jobId, status }: { jobId: string; status: JobStatus
   }
 
   return (
-    <div className="flex flex-col items-end gap-2">
-      <div className="flex items-center gap-2">
+    <div className="flex flex-col gap-2 sm:items-end">
+      <div className="flex flex-wrap items-center gap-2">
         <Link href={`/company/jobs/${jobId}/applicants`}>
           <Button variant="secondary">Applicants</Button>
         </Link>

@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { getSession } from "@/features/auth/lib/guard";
 import { db } from "@/lib/db";
 import { OnboardingWizard, type Role } from "@/features/onboarding/components/OnboardingWizard";
+import { AuthFrame } from "@/components/meadow/AuthFrame";
 
 export default async function OnboardingPage() {
   const session = await getSession();
@@ -18,14 +19,18 @@ export default async function OnboardingPage() {
   }
 
   return (
-    <main className="mx-auto flex min-h-screen max-w-xl flex-col justify-center gap-8 px-6 py-12">
-      <div>
-        <h1 className="text-2xl font-bold text-slate-900">Welcome! Let&rsquo;s set up your profile</h1>
-        <p className="mt-1 text-sm text-slate-600">
-          This helps us personalise your experience. You can always update it later.
-        </p>
+    <AuthFrame wide>
+      <div className="flex flex-col gap-6">
+        <div>
+          <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ink">
+            Welcome. Let&rsquo;s set up your profile
+          </h1>
+          <p className="mt-2 text-[15px] text-ink-muted">
+            This helps us personalise your experience. You can update it later.
+          </p>
+        </div>
+        <OnboardingWizard initialRole={(profile?.role ?? "CUSTOMER") as Role} />
       </div>
-      <OnboardingWizard initialRole={(profile?.role ?? "CUSTOMER") as Role} />
-    </main>
+    </AuthFrame>
   );
 }

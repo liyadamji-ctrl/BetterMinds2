@@ -24,7 +24,7 @@ export function ApplyButton({
 
   if (status) {
     return (
-      <div className="rounded-lg border border-green-200 bg-green-50 p-4 text-sm text-green-800">
+      <div className="rounded-mw-lg border border-green-200 bg-green-50 p-4 text-sm text-green-800">
         You&rsquo;ve applied to this job. Status: {APPLICATION_STATUS_LABELS[status]}
       </div>
     );
@@ -32,7 +32,7 @@ export function ApplyButton({
 
   if (resumes.length === 0) {
     return (
-      <div className="rounded-lg border border-slate-200 bg-white p-4 text-sm text-slate-700">
+      <div className="rounded-mw-lg bg-surface-raised shadow-mw-card p-4 text-sm text-slate-700">
         You need a resume before applying.{" "}
         <Link href="/resume-builder" className="text-indigo-700 hover:underline">
           Build one now
@@ -69,7 +69,7 @@ export function ApplyButton({
   }
 
   return (
-    <div className="flex flex-col gap-4 rounded-lg border border-slate-200 bg-white p-6">
+    <div className="flex flex-col gap-4 rounded-mw-lg bg-surface-raised shadow-mw-card p-6">
       <SelectField
         label="Resume to send"
         value={resumeId}

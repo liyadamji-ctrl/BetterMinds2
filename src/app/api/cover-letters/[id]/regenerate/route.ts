@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { logger } from "@/lib/logger";
 import { getSession } from "@/features/auth/lib/guard";
+import { trackEvent } from "@/features/analytics/lib/track";
 import { generateCoverLetterHtml } from "@/features/cover-letters/lib/generate";
 import type { ResumeAnswers } from "@/features/resume-builder/formats/types";
 
@@ -34,6 +35,7 @@ export async function POST(_request: Request, { params }: { params: Promise<{ id
 
     const updated = await db.coverLetter.update({ where: { id }, data: { htmlContent: html } });
     logger.info("cover-letters", "Cover letter regenerated", { coverLetterId: id, userId: session.userId });
+    await trackEvent({ userId: session.userId, feature: "cover-letters", action: "cover_letter_regenerated" });
     return NextResponse.json({ coverLetter: updated });
   } catch (error) {
     logger.error("cover-letters", "Cover letter regeneration failed", { coverLetterId: id, error: String(error) });

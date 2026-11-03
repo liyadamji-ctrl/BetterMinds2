@@ -29,6 +29,8 @@ type GroqChatArgs = {
   json?: boolean;
   model?: string;
   temperature?: number;
+  /** Cap on generated tokens. Raise for long JSON replies that get cut off. */
+  maxTokens?: number;
 };
 
 /**
@@ -42,6 +44,7 @@ export async function groqChat({
   json = true,
   model,
   temperature = 0.2,
+  maxTokens,
 }: GroqChatArgs): Promise<string> {
   const apiKey = process.env.GROQ_API_KEY;
   if (!apiKey) {
@@ -59,6 +62,7 @@ export async function groqChat({
     body: JSON.stringify({
       model: model ?? process.env.GROQ_MODEL ?? DEFAULT_MODEL,
       temperature,
+      ...(maxTokens ? { max_completion_tokens: maxTokens } : {}),
       ...(json ? { response_format: { type: "json_object" } } : {}),
       messages: [
         { role: "system", content: system },
@@ -80,4 +84,66 @@ export async function groqChat({
     throw new Error("Groq returned an empty response.");
   }
   return content;
+}
+
+/**
+ * Escapes raw control characters (newlines, tabs) that appear inside JSON
+ * string values, which models sometimes emit and strict parsers reject.
+ */
+function escapeControlCharsInStrings(source: string): string {
+  let out = "";
+  let inString = false;
+  let escaped = false;
+  for (const ch of source) {
+    if (inString) {
+      if (escaped) {
+        escaped = false;
+        out += ch;
+      } else if (ch === "\\") {
+        escaped = true;
+        out += ch;
+      } else if (ch === '"') {
+        inString = false;
+        out += ch;
+      } else if (ch === "\n") out += "\\n";
+      else if (ch === "\r") out += "\\r";
+      else if (ch === "\t") out += "\\t";
+      else out += ch;
+    } else {
+      if (ch === '"') inString = true;
+      out += ch;
+    }
+  }
+  return out;
+}
+
+/**
+ * Asks Groq for a JSON object and parses it ourselves. Groq's own
+ * `response_format: json_object` check rejects the whole reply
+ * ("json_validate_failed") on small flaws such as an unescaped newline in a
+ * long string, so this asks for plain text, then extracts and repairs the
+ * JSON. Retries once if the reply still can't be parsed.
+ */
+export async function groqJson(args: Omit<GroqChatArgs, "json">): Promise<unknown> {
+  let lastError: unknown;
+  for (let attempt = 0; attempt < 2; attempt++) {
+    const raw = await groqChat({ ...args, json: false, maxTokens: args.maxTokens ?? 8000 });
+    const start = raw.indexOf("{");
+    const end = raw.lastIndexOf("}");
+    if (start === -1 || end <= start) {
+      lastError = new Error("Groq reply contained no JSON object.");
+      continue;
+    }
+    const candidate = raw.slice(start, end + 1);
+    try {
+      return JSON.parse(candidate);
+    } catch {
+      try {
+        return JSON.parse(escapeControlCharsInStrings(candidate));
+      } catch (error) {
+        lastError = error;
+      }
+    }
+  }
+  throw lastError instanceof Error ? lastError : new Error("Groq returned invalid JSON.");
 }

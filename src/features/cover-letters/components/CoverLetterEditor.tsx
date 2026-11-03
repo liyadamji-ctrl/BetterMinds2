@@ -135,7 +135,7 @@ export function CoverLetterEditor({
         contentEditable
         suppressContentEditableWarning
         dangerouslySetInnerHTML={{ __html: initialHtml }}
-        className="min-h-[500px] rounded-lg border border-slate-200 bg-white p-10 outline-none focus:ring-2 focus:ring-indigo-200"
+        className="min-h-[500px] rounded-mw-lg border border-slate-200 bg-[#ffffff] text-[#111827] p-10 outline-none focus:ring-2 focus:ring-indigo-200"
       />
     </div>
   );

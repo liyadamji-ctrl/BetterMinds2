@@ -1,4 +1,5 @@
 import { requireCompany } from "@/features/auth/lib/guard";
+import { PageHeader } from "@/components/teamstead/ui";
 import { JobForm } from "@/features/jobs/components/company/JobForm";
 
 export default async function NewJobPage() {
@@ -6,12 +7,10 @@ export default async function NewJobPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div>
-        <h1 className="text-2xl font-bold text-slate-900">Post a job</h1>
-        <p className="mt-1 text-slate-600">
-          Fill in the details below — it&rsquo;ll be visible to job seekers once posted.
-        </p>
-      </div>
+      <PageHeader
+        title="Post a job"
+        description="Fill in the details below. Job seekers can see it as soon as you post it."
+      />
       <JobForm mode="create" />
     </div>
   );

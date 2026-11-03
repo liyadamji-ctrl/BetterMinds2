@@ -109,7 +109,7 @@ export function OnboardingWizard({ initialRole }: Props) {
               key={r}
               type="button"
               onClick={() => setRole(r)}
-              className={`rounded-lg border-2 px-4 py-3 text-sm font-medium transition-colors ${
+              className={`rounded-mw-lg border-2 px-4 py-3 text-sm font-medium transition-colors ${
                 role === r
                   ? "border-indigo-600 bg-indigo-50 text-indigo-700"
                   : "border-slate-200 text-slate-600 hover:border-slate-300"

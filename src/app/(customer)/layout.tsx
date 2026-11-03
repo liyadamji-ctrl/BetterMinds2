@@ -4,7 +4,8 @@ import { db } from "@/lib/db";
 import { AppErrorBoundary } from "@/components/AppErrorBoundary";
 import { ConsentBanner } from "@/features/session-recording/components/ConsentBanner";
 import { RecorderProvider } from "@/features/session-recording/components/RecorderProvider";
-import { CustomerNav } from "@/components/CustomerNav";
+import { CustomerShell } from "@/components/meadow/CustomerShell";
+import { FeatureViewTracker } from "@/features/analytics/components/FeatureViewTracker";
 
 export default async function CustomerLayout({ children }: { children: React.ReactNode }) {
   const session = await requireUser();
@@ -21,18 +22,13 @@ export default async function CustomerLayout({ children }: { children: React.Rea
   if (profile?.role === "COMPANY") redirect("/company");
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <CustomerNav />
-      <AppErrorBoundary scope="customer">
-        {/* pb-28 reserves space for the fixed ConsentBanner below so it can
-            never sit on top of — and silently swallow clicks on — content
-            near the bottom of a page, e.g. the resume wizard's submit button. */}
-        <main className="mx-auto max-w-4xl px-6 py-10 pb-28">{children}</main>
-      </AppErrorBoundary>
+    <CustomerShell>
+      <FeatureViewTracker />
+      <AppErrorBoundary scope="customer">{children}</AppErrorBoundary>
       <AppErrorBoundary scope="session-recording">
         <RecorderProvider />
         <ConsentBanner />
       </AppErrorBoundary>
-    </div>
+    </CustomerShell>
   );
 }

@@ -2,7 +2,13 @@ import { redirect } from "next/navigation";
 import { requireCompany } from "@/features/auth/lib/guard";
 import { db } from "@/lib/db";
 import { AppErrorBoundary } from "@/components/AppErrorBoundary";
-import { CompanyNav } from "@/components/CompanyNav";
+import { AppShell, type NavEntry } from "@/components/teamstead/AppShell";
+import { FeatureViewTracker } from "@/features/analytics/components/FeatureViewTracker";
+
+const NAV: NavEntry[] = [
+  { href: "/company", label: "Overview", icon: "grid", exact: true },
+  { href: "/company/jobs", label: "Job postings", icon: "briefcase" },
+];
 
 export default async function CompanyLayout({ children }: { children: React.ReactNode }) {
   const session = await requireCompany();
@@ -15,11 +21,9 @@ export default async function CompanyLayout({ children }: { children: React.Reac
   if (profile?.needsOnboarding) redirect("/onboarding");
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <CompanyNav />
-      <AppErrorBoundary scope="company">
-        <main className="mx-auto max-w-5xl px-6 py-10">{children}</main>
-      </AppErrorBoundary>
-    </div>
+    <AppShell nav={NAV} homeHref="/company">
+      <FeatureViewTracker />
+      <AppErrorBoundary scope="company">{children}</AppErrorBoundary>
+    </AppShell>
   );
 }

@@ -42,8 +42,11 @@ model Profile {
   jobsPosted        Job[]              @relation("CompanyJobs")
   applications      Application[]      @relation("UserApplications")
   coverLetters      CoverLetter[]
-  consent           Consent?
+  discoverySearches DiscoverySearch[]
+  interviewSessions InterviewSession[]
+  consent          Consent?
   sessionRecordings SessionRecording[]
+  featureEvents     FeatureEvent[]
 
   @@map("profiles")
 }
@@ -57,6 +60,7 @@ model Resume {
 
   applications Application[]
   coverLetters CoverLetter[]
+  interviewSessions InterviewSession[]
 
   format String // matches an id in src/features/resume-builder/formats/*.ts
   title  String
@@ -138,6 +142,7 @@ model Job {
 
   applications Application[]
   coverLetters CoverLetter[]
+  interviewSessions InterviewSession[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -167,6 +172,12 @@ model Application {
 
   /// "SUBMITTED" | "REVIEWED" | "SHORTLISTED" | "REJECTED"
   status String @default("SUBMITTED")
+
+  /// AI screening (Groq), set by the company's "Screen with AI" action.
+  /// matchScore is 0-100, duplicated out of screeningJson for sorting.
+  matchScore    Int?      @map("match_score")
+  screeningJson String?   @map("screening_json")
+  screenedAt    DateTime? @map("screened_at")
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -240,4 +251,96 @@ model SessionRecording {
 
   @@index([userId])
   @@map("session_recordings")
+}
+
+// --- Programs & internships discovery -------------------------------------
+
+model DiscoverySearch {
+  id     String  @id @default(cuid())
+  userId String  @db.Uuid @map("user_id")
+  user   Profile @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  /// "PROGRAM" | "INTERNSHIP"
+  kind String
+
+  /// What the customer typed (topic, or role).
+  query String
+
+  /// JSON of the other form inputs (area, location, level, remote, ...).
+  filtersJson String @map("filters_json")
+
+  /// JSON array of search keywords used to build the external links
+  /// (Groq-suggested, or just [query] when AI was skipped/unavailable).
+  keywordsJson String @map("keywords_json")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([userId, kind])
+  @@map("discovery_searches")
+}
+
+// --- Interview simulator --------------------------------------------------
+
+model InterviewSession {
+  id     String  @id @default(cuid())
+  userId String  @db.Uuid @map("user_id")
+  user   Profile @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  /// Optional: the simulator also works without a resume. SetNull so deleting
+  /// a resume never deletes the customer's practice history.
+  resumeId String? @map("resume_id")
+  resume   Resume? @relation(fields: [resumeId], references: [id], onDelete: SetNull)
+
+  jobId String? @map("job_id")
+  job   Job?    @relation(fields: [jobId], references: [id], onDelete: SetNull)
+
+  /// Snapshot of the job context at creation time (same idea as CoverLetter).
+  jobTitle       String  @map("job_title")
+  companyName    String? @map("company_name")
+  jobDescription String? @map("job_description")
+
+  /// "BEHAVIORAL" | "TECHNICAL" | "MIXED"
+  interviewType String @map("interview_type")
+
+  /// "IN_PROGRESS" | "COMPLETED"
+  status String @default("IN_PROGRESS")
+
+  /// JSON array of questions with the customer's transcript, per-answer
+  /// analysis and camera metrics. Transcripts and numbers only: no audio or
+  /// video is ever stored.
+  questionsJson String @map("questions_json")
+
+  /// JSON final report (scores, key findings). Null until finished.
+  reportJson   String? @map("report_json")
+  overallScore Int?    @map("overall_score")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@index([userId])
+  @@map("interview_sessions")
+}
+
+// --- Product analytics ----------------------------------------------------
+
+/// One row per user action in the product, for the admin "Feature usage"
+/// page. Written server-side only (src/features/analytics/lib/track.ts).
+/// feature ids and labels: src/features/analytics/lib/features.ts.
+model FeatureEvent {
+  id     String   @id @default(cuid())
+  /// SetNull so usage history survives a deleted account.
+  userId String?  @db.Uuid @map("user_id")
+  user   Profile? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  feature String
+  /// "view" (opened the feature's page) or an action like "resume_created".
+  action  String
+  metadataJson String? @map("metadata_json")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  @@index([feature, createdAt])
+  @@index([userId])
+  @@index([createdAt])
+  @@map("feature_events")
 }

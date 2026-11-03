@@ -1,54 +1,79 @@
 import Link from "next/link";
 import { requireUser } from "@/features/auth/lib/guard";
 import { db } from "@/lib/db";
-import { Button } from "@/components/ui/Button";
+import { MwBadge, MwLink, PageTitle } from "@/components/meadow/ui";
+import { MwEmpty, Monogram } from "@/components/meadow/blocks";
 
 export default async function DashboardPage() {
   const session = await requireUser();
-  const resumes = await db.resume.findMany({
-    where: { userId: session.userId },
-    orderBy: { updatedAt: "desc" },
-  });
+  const [profile, resumes] = await Promise.all([
+    db.profile.findUnique({ where: { id: session.userId }, select: { name: true } }),
+    db.resume.findMany({ where: { userId: session.userId }, orderBy: { updatedAt: "desc" } }),
+  ]);
+  const firstName = profile?.name?.trim().split(/\s+/)[0];
 
   return (
     <div className="flex flex-col gap-8">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-bold text-slate-900">Your resumes</h1>
-        <div className="flex items-center gap-3">
-          <Link href="/resume-analyzer">
-            <Button variant="secondary">Analyze a resume</Button>
-          </Link>
-          <Link href="/resume-builder">
-            <Button>Build a new resume</Button>
-          </Link>
-        </div>
-      </div>
+      <PageTitle
+        title={firstName ? `Hi, ${firstName}` : "Your resumes"}
+        description={
+          resumes.length === 0
+            ? "Start with a resume. It only takes a few minutes."
+            : "Pick up where you left off, or start something new."
+        }
+        actions={
+          <>
+            <MwLink href="/resume-analyzer" variant="secondary">
+              Analyze a resume
+            </MwLink>
+            <MwLink href="/resume-builder" variant="primary">
+              Build a new resume
+            </MwLink>
+          </>
+        }
+      />
 
-      {resumes.length === 0 ? (
-        <div className="rounded-lg border border-dashed border-slate-300 bg-white p-10 text-center">
-          <p className="text-slate-600">You haven&rsquo;t built a resume yet.</p>
-          <Link href="/resume-builder" className="mt-3 inline-block">
-            <Button>Get started</Button>
-          </Link>
-        </div>
-      ) : (
-        <ul className="divide-y divide-slate-200 rounded-lg border border-slate-200 bg-white">
-          {resumes.map((resume) => (
-            <li key={resume.id} className="flex items-center justify-between px-5 py-4">
-              <div>
-                <p className="font-medium text-slate-900">{resume.title}</p>
-                <p className="text-xs uppercase tracking-wide text-slate-500">
-                  {resume.format} · {resume.status} · updated{" "}
-                  {resume.updatedAt.toLocaleDateString()}
-                </p>
-              </div>
-              <Link href={`/resume-builder/edit/${resume.id}`}>
-                <Button variant="secondary">Open</Button>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
+      <section aria-labelledby="resumes-heading" className="flex flex-col gap-4">
+        <h2 id="resumes-heading" className="font-serif-mw text-[28px] font-medium leading-[34px] text-ink">
+          Your resumes
+        </h2>
+        {resumes.length === 0 ? (
+          <MwEmpty
+            title="No resumes yet"
+            description="Build one from scratch or upload your CV and we will turn it into a resume."
+            action={
+              <MwLink href="/resume-builder" variant="primary">
+                Build a resume
+              </MwLink>
+            }
+          />
+        ) : (
+          <ul className="grid gap-4 sm:grid-cols-2 sm:gap-6">
+            {resumes.map((resume) => (
+              <li key={resume.id}>
+                <Link
+                  href={`/resume-builder/edit/${resume.id}`}
+                  className="flex h-full flex-col gap-4 rounded-mw-lg bg-surface-raised p-5 shadow-mw-card transition-shadow hover:shadow-mw-float sm:p-6"
+                >
+                  <div className="flex items-start gap-3">
+                    <Monogram name={resume.title} />
+                    <div className="min-w-0 flex-1">
+                      <p className="break-words text-[18px] font-semibold leading-6 text-ink">{resume.title}</p>
+                      <p className="mt-0.5 text-sm capitalize text-ink-muted">{resume.format.toLowerCase()}</p>
+                    </div>
+                    <MwBadge tone={resume.status === "DRAFT" ? "neutral" : "brand"}>
+                      {resume.status.charAt(0) + resume.status.slice(1).toLowerCase()}
+                    </MwBadge>
+                  </div>
+                  <p className="mt-auto border-t border-line pt-4 text-xs text-ink-muted">
+                    Updated {resume.updatedAt.toLocaleDateString()}
+                  </p>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
     </div>
   );
 }

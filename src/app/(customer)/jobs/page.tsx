@@ -1,6 +1,9 @@
 import Link from "next/link";
+import { MapPin, Wallet } from "lucide-react";
 import { requireUser } from "@/features/auth/lib/guard";
 import { db } from "@/lib/db";
+import { MwBadge, PageTitle } from "@/components/meadow/ui";
+import { MwEmpty, Monogram } from "@/components/meadow/blocks";
 import { JobFilters } from "@/features/jobs/components/customer/JobFilters";
 import {
   EMPLOYMENT_TYPE_LABELS,
@@ -29,33 +32,51 @@ export default async function JobsPage({
 
   return (
     <div className="flex flex-col gap-6">
-      <div>
-        <h1 className="text-2xl font-bold text-slate-900">Job opportunities</h1>
-        <p className="mt-1 text-slate-600">Browse open roles and internships posted by companies on ResumeRiseAI.</p>
-      </div>
+      <PageTitle
+        title="Job opportunities"
+        description="Browse open roles and internships posted by companies on ResumeRiseAI."
+      />
 
       <JobFilters />
 
       {jobs.length === 0 ? (
-        <div className="rounded-lg border border-dashed border-slate-300 bg-white p-10 text-center">
-          <p className="text-slate-600">No open postings match your filters right now.</p>
-        </div>
+        <MwEmpty
+          title="Nothing matches yet"
+          description="No open postings fit those filters. Clear a filter or check back soon."
+        />
       ) : (
-        <ul className="divide-y divide-slate-200 rounded-lg border border-slate-200 bg-white">
+        <ul className="grid gap-4 sm:grid-cols-2 sm:gap-6">
           {jobs.map((job) => {
             const companyData = job.company.profileJson
               ? (JSON.parse(job.company.profileJson) as Record<string, string>)
               : null;
             const companyName = companyData?.companyName ?? job.company.name ?? "A company on ResumeRiseAI";
             return (
-              <li key={job.id} className="px-5 py-4">
-                <Link href={`/jobs/${job.id}`} className="block hover:opacity-80">
-                  <p className="font-medium text-slate-900">{job.title}</p>
-                  <p className="text-xs uppercase tracking-wide text-slate-500">
-                    {companyName} · {EMPLOYMENT_TYPE_LABELS[job.employmentType as EmploymentType]} ·{" "}
-                    {LOCATION_TYPE_LABELS[job.locationType as LocationType]}
-                    {job.pay ? ` · ${job.pay}` : ""}
-                  </p>
+              <li key={job.id}>
+                <Link
+                  href={`/jobs/${job.id}`}
+                  className="flex h-full flex-col gap-4 rounded-mw-lg bg-surface-raised p-5 shadow-mw-card transition-shadow hover:shadow-mw-float sm:p-6"
+                >
+                  <div className="flex items-start gap-3">
+                    <Monogram name={companyName} />
+                    <div className="min-w-0 flex-1">
+                      <p className="break-words text-[18px] font-semibold leading-6 text-ink">{job.title}</p>
+                      <p className="text-[15px] text-ink-muted">{companyName}</p>
+                    </div>
+                  </div>
+                  <ul className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-ink-muted">
+                    <li className="inline-flex items-center gap-1.5">
+                      <MapPin size={16} aria-hidden /> {LOCATION_TYPE_LABELS[job.locationType as LocationType]}
+                    </li>
+                    {job.pay && (
+                      <li className="inline-flex items-center gap-1.5 font-semibold text-ink">
+                        <Wallet size={16} aria-hidden className="text-ink-muted" /> {job.pay}
+                      </li>
+                    )}
+                  </ul>
+                  <div className="mt-auto">
+                    <MwBadge tone="brand">{EMPLOYMENT_TYPE_LABELS[job.employmentType as EmploymentType]}</MwBadge>
+                  </div>
                 </Link>
               </li>
             );

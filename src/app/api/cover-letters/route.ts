@@ -3,6 +3,7 @@ import { z } from "zod";
 import { db } from "@/lib/db";
 import { logger } from "@/lib/logger";
 import { getSession } from "@/features/auth/lib/guard";
+import { trackEvent } from "@/features/analytics/lib/track";
 import { generateCoverLetterHtml } from "@/features/cover-letters/lib/generate";
 import type { ResumeAnswers } from "@/features/resume-builder/formats/types";
 
@@ -90,6 +91,7 @@ export async function POST(request: Request) {
       coverLetterId: coverLetter.id,
       userId: session.userId,
     });
+    await trackEvent({ userId: session.userId, feature: "cover-letters", action: "cover_letter_created" });
     return NextResponse.json({ id: coverLetter.id });
   } catch (error) {
     logger.error("cover-letters", "Cover letter generation failed", { error: String(error) });

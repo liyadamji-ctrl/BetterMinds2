@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { logger } from "@/lib/logger";
 import { getSession } from "@/features/auth/lib/guard";
+import { trackEvent } from "@/features/analytics/lib/track";
 import { groqChat } from "@/lib/groq";
 import {
   analyzeRequestSchema,
@@ -86,6 +87,7 @@ export async function POST(request: Request) {
       userId: session.userId,
       matchScore: result.matchScore,
     });
+    await trackEvent({ userId: session.userId, feature: "resume-analyzer", action: "analysis_created" });
 
     return NextResponse.json({
       id: analysis.id,

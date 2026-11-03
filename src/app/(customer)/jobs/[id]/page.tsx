@@ -38,7 +38,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="text-2xl font-bold text-slate-900">{job.title}</h1>
+        <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ink sm:text-[40px] sm:leading-[46px]">{job.title}</h1>
         <p className="mt-1 text-slate-600">{companyName}</p>
         <p className="mt-1 text-xs uppercase tracking-wide text-slate-500">
           {EMPLOYMENT_TYPE_LABELS[job.employmentType as EmploymentType]} ·{" "}
@@ -50,13 +50,13 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
         </p>
       </div>
 
-      <div className="rounded-lg border border-slate-200 bg-white p-6">
+      <div className="rounded-mw-lg bg-surface-raised shadow-mw-card p-6">
         <h2 className="mb-2 font-semibold text-slate-900">About this role</h2>
         <p className="whitespace-pre-wrap text-sm text-slate-700">{job.description}</p>
       </div>
 
       {job.requirements && (
-        <div className="rounded-lg border border-slate-200 bg-white p-6">
+        <div className="rounded-mw-lg bg-surface-raised shadow-mw-card p-6">
           <h2 className="mb-2 font-semibold text-slate-900">Requirements</h2>
           <p className="whitespace-pre-wrap text-sm text-slate-700">{job.requirements}</p>
         </div>
@@ -74,6 +74,9 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
 
       <Link href={`/cover-letters/new?jobId=${job.id}`} className="text-sm text-indigo-700 hover:underline">
         Write a cover letter for this job
+      </Link>
+      <Link href={`/interview/new?jobId=${job.id}`} className="text-sm text-indigo-700 hover:underline">
+        Practise an interview for this job
       </Link>
     </div>
   );

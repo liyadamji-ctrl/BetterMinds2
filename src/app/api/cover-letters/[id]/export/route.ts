@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { logger } from "@/lib/logger";
 import { getSession } from "@/features/auth/lib/guard";
+import { trackEvent } from "@/features/analytics/lib/track";
 import { buildCoverLetterDocx } from "@/features/cover-letters/lib/exportDocx";
 
 export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
@@ -28,6 +29,7 @@ export async function GET(request: Request, { params }: { params: Promise<{ id: 
       coverLetterId: id,
       userId: session.userId,
     });
+    await trackEvent({ userId: session.userId, feature: "cover-letters", action: "cover_letter_exported" });
 
     return new NextResponse(new Uint8Array(buffer), {
       headers: {

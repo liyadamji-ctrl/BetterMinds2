@@ -1,7 +1,16 @@
 import Link from "next/link";
 import { requireUser } from "@/features/auth/lib/guard";
 import { db } from "@/lib/db";
+import { MwBadge, MwLink, PageTitle } from "@/components/meadow/ui";
+import { MwEmpty, Monogram } from "@/components/meadow/blocks";
 import { APPLICATION_STATUS_LABELS, type ApplicationStatus } from "@/features/jobs/lib/types";
+
+const TONES = {
+  SUBMITTED: "neutral",
+  REVIEWED: "brand",
+  SHORTLISTED: "success",
+  REJECTED: "danger",
+} as const;
 
 export default async function MyApplicationsPage() {
   const session = await requireUser();
@@ -14,38 +23,41 @@ export default async function MyApplicationsPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <div>
-        <h1 className="text-2xl font-bold text-slate-900">My applications</h1>
-        <p className="mt-1 text-slate-600">Jobs you&rsquo;ve applied to and their current status.</p>
-      </div>
+      <PageTitle title="My applications" description="Jobs you have applied to and where each one stands." />
 
       {applications.length === 0 ? (
-        <div className="rounded-lg border border-dashed border-slate-300 bg-white p-10 text-center">
-          <p className="text-slate-600">You haven&rsquo;t applied to any jobs yet.</p>
-          <Link href="/jobs" className="mt-3 inline-block text-sm text-indigo-700 hover:underline">
-            Browse open jobs
-          </Link>
-        </div>
+        <MwEmpty
+          title="No applications yet"
+          description="When you apply to a job, you can follow it here."
+          action={
+            <MwLink href="/jobs" variant="primary">
+              Browse open jobs
+            </MwLink>
+          }
+        />
       ) : (
-        <ul className="divide-y divide-slate-200 rounded-lg border border-slate-200 bg-white">
+        <ul className="flex flex-col gap-3">
           {applications.map((application) => {
             const companyData = application.job.company.profileJson
               ? (JSON.parse(application.job.company.profileJson) as Record<string, string>)
               : null;
             const companyName = companyData?.companyName ?? application.job.company.name ?? "A company on ResumeRiseAI";
+            const status = application.status as ApplicationStatus;
             return (
-              <li key={application.id} className="flex items-center justify-between px-5 py-4">
-                <div>
-                  <Link href={`/jobs/${application.job.id}`} className="font-medium text-slate-900 hover:underline">
-                    {application.job.title}
-                  </Link>
-                  <p className="text-xs text-slate-500">
-                    {companyName} · applied {application.createdAt.toLocaleDateString()}
-                  </p>
-                </div>
-                <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-700">
-                  {APPLICATION_STATUS_LABELS[application.status as ApplicationStatus]}
-                </span>
+              <li key={application.id}>
+                <Link
+                  href={`/jobs/${application.job.id}`}
+                  className="flex flex-wrap items-center gap-4 rounded-mw-lg bg-surface-raised p-5 shadow-mw-card transition-shadow hover:shadow-mw-float"
+                >
+                  <Monogram name={companyName} />
+                  <div className="min-w-0 flex-1 basis-48">
+                    <p className="break-words text-[18px] font-semibold leading-6 text-ink">{application.job.title}</p>
+                    <p className="text-sm text-ink-muted">
+                      {companyName} · applied {application.createdAt.toLocaleDateString()}
+                    </p>
+                  </div>
+                  <MwBadge tone={TONES[status] ?? "neutral"}>{APPLICATION_STATUS_LABELS[status]}</MwBadge>
+                </Link>
               </li>
             );
           })}
