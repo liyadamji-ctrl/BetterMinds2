@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { TextAreaField } from "@/components/ui/Field";
@@ -19,6 +19,15 @@ export function CoverLetterEditor({
   initialHtml: string;
 }) {
   const editorRef = useRef<HTMLDivElement>(null);
+
+  // The letter is written into the DOM imperatively, once, instead of via
+  // dangerouslySetInnerHTML. With that prop React re-applied `initialHtml`
+  // on every re-render, which wiped out both the user's typing and the text
+  // returned by regenerate (the saved letter changed, but the screen didn't).
+  useEffect(() => {
+    if (editorRef.current) editorRef.current.innerHTML = initialHtml;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [saving, setSaving] = useState(false);
   const [regenerating, setRegenerating] = useState(false);
   const [reviseOpen, setReviseOpen] = useState(false);
@@ -166,7 +175,6 @@ export function CoverLetterEditor({
         ref={editorRef}
         contentEditable
         suppressContentEditableWarning
-        dangerouslySetInnerHTML={{ __html: initialHtml }}
         className="min-h-[500px] rounded-mw-lg border border-slate-200 bg-[#ffffff] text-[#111827] p-10 outline-none focus:ring-2 focus:ring-indigo-200"
       />
     </div>
