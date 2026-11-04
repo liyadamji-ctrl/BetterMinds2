@@ -3,12 +3,27 @@ import { db } from "@/lib/db";
 import { logger } from "@/lib/logger";
 import { getSession } from "@/features/auth/lib/guard";
 import { trackEvent } from "@/features/analytics/lib/track";
-import { generateCoverLetterHtml } from "@/features/cover-letters/lib/generate";
+import { z } from "zod";
+import { MAX_REVISION_FEEDBACK_CHARS, reviseCoverLetterHtml } from "@/features/cover-letters/lib/generate";
 import type { ResumeAnswers } from "@/features/resume-builder/formats/types";
 
-export async function POST(_request: Request, { params }: { params: Promise<{ id: string }> }) {
+const bodySchema = z.object({
+  feedback: z.string().trim().min(1, "Tell us what you'd like to change").max(MAX_REVISION_FEEDBACK_CHARS),
+  /** The letter as currently shown in the editor, including unsaved manual edits. */
+  currentHtml: z.string().max(60000).optional(),
+});
+
+export async function POST(request: Request, { params }: { params: Promise<{ id: string }> }) {
   const session = await getSession();
   if (!session) return NextResponse.json({ error: "Not signed in" }, { status: 401 });
+
+  const parsed = bodySchema.safeParse(await request.json().catch(() => null));
+  if (!parsed.success) {
+    return NextResponse.json(
+      { error: parsed.error.issues[0]?.message ?? "Tell us what you'd like to change" },
+      { status: 400 }
+    );
+  }
 
   const { id } = await params;
   const coverLetter = await db.coverLetter.findUnique({ where: { id } });
@@ -26,12 +41,17 @@ export async function POST(_request: Request, { params }: { params: Promise<{ id
     }
 
     const answers = JSON.parse(resume.fieldsJson) as ResumeAnswers;
-    const html = await generateCoverLetterHtml(answers, {
-      companyName: coverLetter.companyName,
-      jobTitle: coverLetter.jobTitle,
-      jobDescription: coverLetter.jobDescription,
-      notes: null,
-    });
+    const html = await reviseCoverLetterHtml(
+      answers,
+      {
+        companyName: coverLetter.companyName,
+        jobTitle: coverLetter.jobTitle,
+        jobDescription: coverLetter.jobDescription,
+        notes: null,
+      },
+      parsed.data.currentHtml?.trim() ? parsed.data.currentHtml : coverLetter.htmlContent,
+      parsed.data.feedback
+    );
 
     const updated = await db.coverLetter.update({ where: { id }, data: { htmlContent: html } });
     logger.info("cover-letters", "Cover letter regenerated", { coverLetterId: id, userId: session.userId });
