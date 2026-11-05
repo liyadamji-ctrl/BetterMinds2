@@ -185,7 +185,7 @@ export function CustomerShell({ children }: { children: ReactNode }) {
             className="absolute inset-y-0 right-0 flex w-80 max-w-[88vw] flex-col gap-6 overflow-y-auto bg-surface p-6 shadow-mw-float"
           >
             <div className="flex items-center justify-between">
-              <span className="font-serif-mw text-[22px] text-ink">Menu</span>
+              <span className="font-serif-mw text-[22px] text-ocean">Menu</span>
               <button
                 type="button"
                 onClick={() => setOpen(false)}

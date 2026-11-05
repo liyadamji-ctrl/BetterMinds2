@@ -9,7 +9,7 @@ export default async function InternshipsPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ink sm:text-[40px] sm:leading-[46px]">Internships</h1>
+        <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ocean sm:text-[40px] sm:leading-[46px]">Internships</h1>
         <p className="mt-1 text-sm text-slate-600">
           Search a role and field to get links to openings on top job boards, then apply to any of them.
         </p>

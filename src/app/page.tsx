@@ -95,7 +95,7 @@ export default function HomePage() {
         {/* Hero */}
         <section className="mx-auto grid max-w-6xl gap-12 px-4 pb-16 pt-12 sm:px-6 sm:pt-16 lg:grid-cols-[1.15fr_0.85fr] lg:items-center lg:gap-16 lg:pb-24 lg:pt-20">
           <div>
-            <h1 className="font-serif-mw text-[44px] font-medium leading-[48px] tracking-[-0.02em] text-ink sm:text-[56px] sm:leading-[60px]">
+            <h1 className="font-serif-mw text-[44px] font-medium leading-[48px] tracking-[-0.02em] text-ocean sm:text-[56px] sm:leading-[60px]">
               Find your first step.
             </h1>
             <p className="mt-5 max-w-[46ch] text-[17px] leading-[26px] text-ink-muted">
@@ -149,7 +149,7 @@ export default function HomePage() {
                     <p className="text-[18px] font-semibold leading-6 text-ink">Product Design Intern</p>
                     <p className="text-[15px] text-ink-muted">Northwind Studio</p>
                   </div>
-                  <MwBadge tone="lime">New</MwBadge>
+                  <MwBadge tone="seafoam">New</MwBadge>
                 </div>
                 <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-sm text-ink-muted">
                   <li className="inline-flex items-center gap-1.5">
@@ -169,10 +169,10 @@ export default function HomePage() {
               <div className="mt-4 rounded-mw-lg bg-surface-raised p-5 shadow-mw-card">
                 <div className="flex items-baseline justify-between">
                   <p className="text-[15px] font-semibold text-ink">Your profile</p>
-                  <p className="font-serif-mw text-[32px] font-medium leading-none text-ink">72</p>
+                  <p className="font-serif-mw text-[32px] font-medium leading-none text-ocean">72</p>
                 </div>
                 <div className="mt-3 h-2 overflow-hidden rounded-full bg-surface-sunken">
-                  <div className="h-full w-[72%] rounded-full bg-lime" />
+                  <div className="h-full w-[72%] rounded-full bg-teal" />
                 </div>
                 <p className="mt-3 text-sm text-ink-muted">Keep going. Add a project to stand out.</p>
               </div>
@@ -184,7 +184,7 @@ export default function HomePage() {
         {/* Features */}
         <section id="features" className="scroll-mt-20 border-t border-line bg-surface-sunken/60">
           <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:py-20">
-            <h2 className="max-w-[20ch] font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ink sm:text-[40px] sm:leading-[46px]">
+            <h2 className="max-w-[20ch] font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ocean sm:text-[40px] sm:leading-[46px]">
               Everything for your first role
             </h2>
             <p className="mt-3 max-w-[56ch] text-[17px] leading-[26px] text-ink-muted">
@@ -206,7 +206,7 @@ export default function HomePage() {
                     <h3
                       className={`${
                         wide ? "font-serif-mw text-[28px] leading-[34px]" : "text-[18px] font-semibold leading-6"
-                      } ${wide ? "" : "text-ink"}`}
+                      } ${wide ? "" : "text-ocean"}`}
                     >
                       {title}
                     </h3>
@@ -215,8 +215,8 @@ export default function HomePage() {
                 </li>
               ))}
 
-              {/* Interview practice: the one lilac moment on the page */}
-              <li className="rounded-mw-lg bg-lilac p-6 text-on-lilac shadow-mw-card sm:col-span-2 lg:col-span-3 lg:flex lg:items-center lg:gap-8 lg:p-8">
+              {/* Interview practice: the one sky-blue moment on the page */}
+              <li className="rounded-mw-lg bg-sky p-6 text-ink shadow-mw-card sm:col-span-2 lg:col-span-3 lg:flex lg:items-center lg:gap-8 lg:p-8">
                 <Mic size={28} strokeWidth={1.6} aria-hidden className="flex-none" />
                 <div className="mt-4 lg:mt-0">
                   <h3 className="font-serif-mw text-[28px] leading-[34px]">Interview practice</h3>
@@ -232,13 +232,13 @@ export default function HomePage() {
 
         {/* How it works: a real sequence, so numbered */}
         <section id="how" className="mx-auto max-w-6xl scroll-mt-20 px-4 py-16 sm:px-6 lg:py-20">
-          <h2 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ink sm:text-[40px] sm:leading-[46px]">
+          <h2 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ocean sm:text-[40px] sm:leading-[46px]">
             How it works
           </h2>
           <ol className="mt-10 grid gap-8 md:grid-cols-3 md:gap-6">
             {STEPS.map((step, i) => (
               <li key={step.title} className="flex gap-4 md:flex-col">
-                <span className="grid h-10 w-10 flex-none place-items-center rounded-full bg-lime text-[15px] font-semibold text-on-lime">
+                <span className="grid h-10 w-10 flex-none place-items-center rounded-full bg-seafoam text-[15px] font-semibold text-on-seafoam">
                   {i + 1}
                 </span>
                 <div>
@@ -258,7 +258,7 @@ export default function HomePage() {
                 <Sprout size={20} aria-hidden />
                 <span className="text-sm font-semibold">For employers</span>
               </div>
-              <h2 className="mt-3 max-w-[24ch] font-serif-mw text-[28px] font-medium leading-[34px] text-ink sm:text-[32px] sm:leading-[38px]">
+              <h2 className="mt-3 max-w-[24ch] font-serif-mw text-[28px] font-medium leading-[34px] text-ocean sm:text-[32px] sm:leading-[38px]">
                 Hiring? Shortlist resumes in minutes.
               </h2>
               <p className="mt-2 max-w-[56ch] text-[15px] leading-[22px] text-ink-muted">
@@ -276,7 +276,7 @@ export default function HomePage() {
         <section className="border-t border-line">
           <div className="mx-auto flex max-w-6xl flex-col items-start gap-6 px-4 py-16 sm:px-6 md:flex-row md:items-center md:justify-between">
             <div>
-              <h2 className="max-w-[18ch] font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ink sm:text-[40px] sm:leading-[46px]">
+              <h2 className="max-w-[18ch] font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ocean sm:text-[40px] sm:leading-[46px]">
                 Ready for your first step?
               </h2>
               <p className="mt-2 flex items-center gap-2 text-[15px] text-ink-muted">

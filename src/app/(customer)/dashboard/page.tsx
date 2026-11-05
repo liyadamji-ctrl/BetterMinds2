@@ -34,7 +34,7 @@ export default async function DashboardPage() {
       />
 
       <section aria-labelledby="resumes-heading" className="flex flex-col gap-4">
-        <h2 id="resumes-heading" className="font-serif-mw text-[28px] font-medium leading-[34px] text-ink">
+        <h2 id="resumes-heading" className="font-serif-mw text-[28px] font-medium leading-[34px] text-ocean">
           Your resumes
         </h2>
         {resumes.length === 0 ? (

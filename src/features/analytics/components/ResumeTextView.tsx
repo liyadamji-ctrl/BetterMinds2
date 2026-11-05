@@ -17,7 +17,7 @@ export function ResumeTextView({ resume }: { resume: FormattedResume }) {
       {resume.sections.map((section, i) => (
         <section key={i} className="flex flex-col gap-2">
           {section.heading && (
-            <h3 className="border-b border-line-strong pb-1 text-xs font-semibold uppercase tracking-wider text-forest">
+            <h3 className="border-b border-line-strong pb-1 text-xs font-semibold uppercase tracking-wider text-navy">
               {section.heading}
             </h3>
           )}

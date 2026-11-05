@@ -10,7 +10,7 @@ export function Wordmark({ href = "/", className = "" }: { href?: string; classN
   return (
     <Link
       href={href}
-      className={`inline-flex items-center gap-2 font-serif-mw text-[24px] font-medium leading-none tracking-[-0.01em] text-ink ${className}`}
+      className={`inline-flex items-center gap-2 font-serif-mw text-[24px] font-medium leading-none tracking-[-0.01em] text-ocean ${className}`}
     >
       <span aria-hidden className="grid h-7 w-7 place-items-center rounded-mw-sm bg-brand text-[15px] text-on-brand">
         R
@@ -32,7 +32,7 @@ const sizes = { sm: "h-9 px-4 text-[13px]", md: "h-11 px-6 text-sm", lg: "h-[52p
 
 type StyleProps = { variant?: keyof typeof variants; size?: keyof typeof sizes };
 const cls = ({ variant = "secondary", size = "md" }: StyleProps, extra = "") =>
-  `inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-mw-md font-semibold tracking-[0.01em] transition-colors disabled:cursor-not-allowed disabled:bg-surface-sunken disabled:text-ink-muted ${variants[variant]} ${sizes[size]} ${extra}`;
+  `inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-semibold tracking-[0.01em] transition-colors disabled:cursor-not-allowed disabled:bg-surface-sunken disabled:text-ink-muted ${variants[variant]} ${sizes[size]} ${extra}`;
 
 export function MwButton({
   variant,
@@ -61,11 +61,11 @@ export function MwLink({
 const badgeTones = {
   neutral: "bg-surface-sunken text-ink",
   brand: "bg-brand-soft text-brand",
-  lilac: "bg-lilac text-on-lilac",
+  sky: "bg-sky text-ink",
   success: "bg-success-soft text-success",
   warning: "bg-warning-soft text-warning",
   danger: "bg-danger-soft text-danger",
-  lime: "bg-lime text-on-lime",
+  seafoam: "bg-seafoam text-on-seafoam",
 } as const;
 
 export function MwBadge({ tone = "neutral", children }: { tone?: keyof typeof badgeTones; children: ReactNode }) {
@@ -98,7 +98,7 @@ export function PageTitle({
   return (
     <header className="flex flex-wrap items-end justify-between gap-4">
       <div className="min-w-0">
-        <h1 className="break-words font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ink sm:text-[40px] sm:leading-[46px]">
+        <h1 className="break-words font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ocean sm:text-[40px] sm:leading-[46px]">
           {title}
         </h1>
         {description && <p className="mt-2 max-w-[62ch] text-[15px] leading-[22px] text-ink-muted">{description}</p>}

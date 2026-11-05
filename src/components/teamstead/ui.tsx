@@ -4,13 +4,13 @@ import type { ButtonHTMLAttributes, ReactNode } from "react";
 /* ---------- Badge ---------- */
 const badgeTones = {
   neutral: "bg-surface-sunken text-ink-muted",
-  brand: "bg-forest-soft text-forest",
+  brand: "bg-mist text-navy",
   success: "bg-success-soft text-success",
   warning: "bg-warning-soft text-warning",
   danger: "bg-danger-soft text-danger",
-  plum: "bg-plum-soft text-plum",
-  match: "bg-iris-soft text-iris",
-  accent: "bg-lime text-on-lime",
+  plum: "bg-sky text-ocean",
+  match: "bg-mist text-navy",
+  accent: "bg-seafoam text-on-seafoam",
 } as const;
 
 export function Badge({
@@ -34,10 +34,10 @@ export function Badge({
 
 /* ---------- Button (use LinkButton for navigation) ---------- */
 const buttonVariants = {
-  primary: "bg-forest text-on-forest hover:brightness-110",
+  primary: "bg-navy text-on-navy hover:brightness-110",
   secondary: "border border-line-strong bg-surface text-ink hover:bg-surface-sunken",
   ghost: "text-ink hover:bg-surface-sunken",
-  accent: "bg-lime text-on-lime hover:brightness-95",
+  accent: "bg-seafoam text-on-seafoam hover:brightness-95",
   danger: "border border-danger bg-surface text-danger hover:bg-danger-soft",
 } as const;
 
@@ -49,7 +49,7 @@ type ButtonStyleProps = {
 };
 
 function buttonClass({ variant = "secondary", size = "md" }: ButtonStyleProps, extra = "") {
-  return `inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-ts-md font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-45 ${buttonVariants[variant]} ${buttonSizes[size]} ${extra}`;
+  return `inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-45 ${buttonVariants[variant]} ${buttonSizes[size]} ${extra}`;
 }
 
 export function TsButton({
@@ -96,7 +96,7 @@ export function PageHeader({
   return (
     <header className="flex flex-wrap items-end justify-between gap-4">
       <div className="min-w-0">
-        <h1 className="break-words font-display text-[36px] font-bold leading-[42px] tracking-[-0.015em] text-ink max-sm:text-[28px] max-sm:leading-9">
+        <h1 className="break-words font-display text-[36px] font-bold leading-[42px] tracking-[-0.015em] text-ocean max-sm:text-[28px] max-sm:leading-9">
           {title}
         </h1>
         {description && <p className="mt-1 max-w-[68ch] text-sm text-ink-muted">{description}</p>}
@@ -117,7 +117,7 @@ export function EmptyState({
 }) {
   return (
     <div className="rounded-ts-lg border border-dashed border-line-strong bg-surface p-10 text-center">
-      <p className="font-display text-[22px] font-semibold leading-7 text-ink">{title}</p>
+      <p className="font-display text-[22px] font-semibold leading-7 text-ocean">{title}</p>
       <p className="mx-auto mt-1 max-w-[56ch] text-sm text-ink-muted">{description}</p>
       {action && <div className="mt-4 flex justify-center">{action}</div>}
     </div>
@@ -138,7 +138,7 @@ export function StatCard({
   const body = (
     <div className="grid gap-2">
       <p className="text-[13px] font-medium text-ink-muted">{label}</p>
-      <p className="font-display text-[32px] font-semibold leading-9 tracking-[-0.01em] tabular-nums text-ink">
+      <p className="font-display text-[32px] font-semibold leading-9 tracking-[-0.01em] tabular-nums text-ocean">
         {value}
       </p>
       {hint && <p className="text-xs font-medium text-ink-muted">{hint}</p>}
@@ -147,7 +147,7 @@ export function StatCard({
   return href ? (
     <Link
       href={href}
-      className="block min-w-0 rounded-ts-lg border border-line bg-surface px-5 py-4 shadow-card transition-colors hover:border-forest"
+      className="block min-w-0 rounded-ts-lg border border-line bg-surface px-5 py-4 shadow-card transition-colors hover:border-navy"
     >
       {body}
     </Link>

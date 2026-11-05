@@ -14,7 +14,7 @@ export default async function InterviewSessionPage({ params }: { params: Promise
 
   return (
     <div className="flex flex-col gap-6">
-      <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ink sm:text-[40px] sm:leading-[46px]">
+      <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ocean sm:text-[40px] sm:leading-[46px]">
         {interview.jobTitle}
         {interview.companyName ? ` at ${interview.companyName}` : ""}
       </h1>

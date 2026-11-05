@@ -1,14 +1,16 @@
-import { Bricolage_Grotesque, Instrument_Sans, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono, Newsreader } from "next/font/google";
 
-const display = Bricolage_Grotesque({
+// Calm Coast type: Newsreader for display lines, Inter for everything you read and tap.
+const display = Newsreader({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["400", "500", "700"],
+  adjustFontFallback: false,
   variable: "--font-display-ts",
   display: "swap",
 });
-const sans = Instrument_Sans({
+const sans = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["300", "400", "500", "600"],
   variable: "--font-sans-ts",
   display: "swap",
 });

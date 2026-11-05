@@ -97,9 +97,9 @@ export function AppShell({
       <div className="flex items-center justify-between">
         <Link
           href={homeHref}
-          className="flex items-center gap-2 font-display text-[22px] font-bold tracking-[-0.01em] text-ink"
+          className="flex items-center gap-2 font-display text-[22px] font-bold tracking-[-0.01em] text-ocean"
         >
-          <span aria-hidden className="grid h-7 w-7 place-items-center rounded-ts-md bg-forest text-sm text-on-forest">
+          <span aria-hidden className="grid h-7 w-7 place-items-center rounded-ts-md bg-navy text-sm text-on-navy">
             R
           </span>
           ResumeRise
@@ -114,7 +114,7 @@ export function AppShell({
         </button>
       </div>
       {badge && (
-        <span className="-mt-3 w-fit rounded-full bg-lime px-2.5 py-0.5 text-xs font-semibold text-on-lime">
+        <span className="-mt-3 w-fit rounded-full bg-seafoam px-2.5 py-0.5 text-xs font-semibold text-on-seafoam">
           {badge}
         </span>
       )}
@@ -129,7 +129,7 @@ export function AppShell({
               aria-current={active ? "page" : undefined}
               className={`flex h-10 items-center gap-2.5 rounded-ts-md px-3 text-sm transition-colors ${
                 active
-                  ? "bg-forest-soft font-semibold text-forest"
+                  ? "bg-mist font-semibold text-navy"
                   : "font-medium text-ink-muted hover:bg-surface-sunken hover:text-ink"
               }`}
             >

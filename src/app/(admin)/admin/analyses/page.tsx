@@ -11,14 +11,14 @@ import { AnalysesTabs, Pager, ScoreBadge } from "@/features/analytics/components
 function StatCard({ label, value }: { label: string; value: string | number }) {
   return (
     <div className="rounded-ts-lg border border-line bg-surface p-5">
-      <p className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ink sm:text-[36px] sm:leading-[42px]">{value}</p>
+      <p className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ocean sm:text-[36px] sm:leading-[42px]">{value}</p>
       <p className="mt-1 text-sm text-ink-muted">{label}</p>
     </div>
   );
 }
 
 const input =
-  "rounded-ts-md border border-line-strong bg-canvas px-3 py-2 text-sm text-ink outline-none focus:border-forest";
+  "rounded-ts-md border border-line-strong bg-canvas px-3 py-2 text-sm text-ink outline-none focus:border-navy";
 
 export default async function AdminAnalysesPage({
   searchParams,
@@ -38,7 +38,7 @@ export default async function AdminAnalysesPage({
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ink sm:text-[36px] sm:leading-[42px]">Resume analyses</h1>
+        <h1 className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ocean sm:text-[36px] sm:leading-[42px]">Resume analyses</h1>
         <p className="mt-1 text-sm text-ink-muted">
           Every resume customers have run through the Resume Analyzer, who ran it, and the job they analysed it against.
           One person can appear many times, once per job.
@@ -77,7 +77,7 @@ export default async function AdminAnalysesPage({
           To
           <input type="date" name="to" defaultValue={filters.to} className={input} />
         </label>
-        <button type="submit" className="rounded-ts-md bg-forest px-4 py-2 text-sm font-medium text-on-forest hover:brightness-110">
+        <button type="submit" className="rounded-ts-md bg-navy px-4 py-2 text-sm font-medium text-on-navy hover:brightness-110">
           Apply
         </button>
         {filtered && (
@@ -111,7 +111,7 @@ export default async function AdminAnalysesPage({
               {list.rows.map((row) => (
                 <tr key={row.id}>
                   <td className="px-4 py-3">
-                    <Link href={`/admin/analyses/people/${row.userId}`} className="font-medium text-ink hover:text-forest">
+                    <Link href={`/admin/analyses/people/${row.userId}`} className="font-medium text-ink hover:text-navy">
                       {row.personName}
                     </Link>
                     <p className="text-xs text-ink-muted">{row.personEmail}</p>
@@ -123,7 +123,7 @@ export default async function AdminAnalysesPage({
                   </td>
                   <td className="px-4 py-3 text-ink-muted">{row.createdAt.toLocaleDateString()}</td>
                   <td className="px-4 py-3 text-right">
-                    <Link href={`/admin/analyses/${row.id}`} className="text-forest hover:underline">
+                    <Link href={`/admin/analyses/${row.id}`} className="text-navy hover:underline">
                       View
                     </Link>
                   </td>

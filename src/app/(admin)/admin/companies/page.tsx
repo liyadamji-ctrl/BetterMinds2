@@ -9,7 +9,7 @@ export default async function AdminCompaniesPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ink sm:text-[36px] sm:leading-[42px]">Companies</h1>
+        <h1 className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ocean sm:text-[36px] sm:leading-[42px]">Companies</h1>
         <p className="mt-1 text-sm text-ink-muted">
           Every company on the platform and whether AI screening is giving them results they agree with. The AI
           &ldquo;agrees&rdquo; when a recruiter shortlists a Strong or Possible match, or rejects a Weak one. Results are
@@ -59,7 +59,7 @@ export default async function AdminCompaniesPage() {
                     <VerdictBadge verdict={c.ai.verdict} />
                   </td>
                   <td className="px-4 py-3 text-right">
-                    <Link href={`/admin/companies/${c.id}`} className="text-forest hover:underline">
+                    <Link href={`/admin/companies/${c.id}`} className="text-navy hover:underline">
                       View
                     </Link>
                   </td>

@@ -14,10 +14,10 @@ export default async function AdminAnalysisPersonPage({ params }: { params: Prom
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <Link href="/admin/analyses/people" className="text-sm text-forest hover:underline">
+        <Link href="/admin/analyses/people" className="text-sm text-navy hover:underline">
           ← All people
         </Link>
-        <h1 className="mt-2 font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ink sm:text-[36px] sm:leading-[42px]">{person.name}</h1>
+        <h1 className="mt-2 font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ocean sm:text-[36px] sm:leading-[42px]">{person.name}</h1>
         <p className="mt-1 text-sm text-ink-muted">
           {person.email} · {analyses.length} {analyses.length === 1 ? "analysis" : "analyses"} across {jobs.length}{" "}
           {jobs.length === 1 ? "job" : "different jobs"}
@@ -61,7 +61,7 @@ export default async function AdminAnalysisPersonPage({ params }: { params: Prom
                     <ScoreBadge score={a.matchScore} />
                   </td>
                   <td className="px-4 py-3 text-right">
-                    <Link href={`/admin/analyses/${a.id}`} className="text-forest hover:underline">
+                    <Link href={`/admin/analyses/${a.id}`} className="text-navy hover:underline">
                       View
                     </Link>
                   </td>

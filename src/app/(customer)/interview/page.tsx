@@ -31,7 +31,7 @@ export default async function InterviewPage() {
     <div className="flex flex-col gap-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ink sm:text-[40px] sm:leading-[46px]">Interview simulator</h1>
+          <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ocean sm:text-[40px] sm:leading-[46px]">Interview simulator</h1>
           <p className="mt-1 text-sm text-slate-600">
             Practise a realistic interview for your target role and get a score with clear things to improve.
           </p>

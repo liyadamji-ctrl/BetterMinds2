@@ -49,21 +49,21 @@ export default async function AdminAnalysisDetailPage({ params }: { params: Prom
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <Link href="/admin/analyses" className="text-sm text-forest hover:underline">
+        <Link href="/admin/analyses" className="text-sm text-navy hover:underline">
           ← All analyses
         </Link>
         <div className="mt-2 flex flex-wrap items-center gap-3">
-          <h1 className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ink sm:text-[36px] sm:leading-[42px]">{analysis.jobTitle}</h1>
+          <h1 className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ocean sm:text-[36px] sm:leading-[42px]">{analysis.jobTitle}</h1>
           <ScoreBadge score={analysis.matchScore} />
         </div>
         <p className="mt-1 text-sm text-ink-muted">
-          <Link href={`/admin/analyses/people/${analysis.user.id}`} className="text-forest hover:underline">
+          <Link href={`/admin/analyses/people/${analysis.user.id}`} className="text-navy hover:underline">
             {personName}
           </Link>{" "}
           ({analysis.user.email}) · {analysis.fileName ?? "Pasted text"} · {analysis.createdAt.toLocaleString()}
         </p>
         <p className="mt-1 text-sm">
-          <Link href={`/admin/analyses/people/${analysis.user.id}`} className="text-forest hover:underline">
+          <Link href={`/admin/analyses/people/${analysis.user.id}`} className="text-navy hover:underline">
             See everything {personName} has analysed →
           </Link>
         </p>

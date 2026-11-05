@@ -1,18 +1,18 @@
 "use client";
 
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
-import { DM_Sans, Newsreader } from "next/font/google";
+import { Inter, Newsreader } from "next/font/google";
 
 const display = Newsreader({
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "500", "700"],
   adjustFontFallback: false,
   variable: "--font-display-mw",
   display: "swap",
 });
-const sans = DM_Sans({
+const sans = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["300", "400", "500", "600"],
   variable: "--font-sans-mw-src",
   display: "swap",
 });

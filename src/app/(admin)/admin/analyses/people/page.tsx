@@ -3,7 +3,7 @@ import { getPeople } from "@/features/analytics/lib/analysisAdmin";
 import { AnalysesTabs, Pager, ScoreBadge } from "@/features/analytics/components/AnalysisParts";
 
 const input =
-  "rounded-ts-md border border-line-strong bg-canvas px-3 py-2 text-sm text-ink outline-none focus:border-forest";
+  "rounded-ts-md border border-line-strong bg-canvas px-3 py-2 text-sm text-ink outline-none focus:border-navy";
 
 export default async function AdminAnalysisPeoplePage({
   searchParams,
@@ -19,7 +19,7 @@ export default async function AdminAnalysisPeoplePage({
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ink sm:text-[36px] sm:leading-[42px]">Resume analyses by person</h1>
+        <h1 className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ocean sm:text-[36px] sm:leading-[42px]">Resume analyses by person</h1>
         <p className="mt-1 text-sm text-ink-muted">
           One row per customer. Open a person to see every job they analysed a resume against.
         </p>
@@ -32,7 +32,7 @@ export default async function AdminAnalysisPeoplePage({
           Search name or email
           <input name="q" defaultValue={q} className={input} />
         </label>
-        <button type="submit" className="rounded-ts-md bg-forest px-4 py-2 text-sm font-medium text-on-forest hover:brightness-110">
+        <button type="submit" className="rounded-ts-md bg-navy px-4 py-2 text-sm font-medium text-on-navy hover:brightness-110">
           Search
         </button>
         {q && (
@@ -75,7 +75,7 @@ export default async function AdminAnalysisPeoplePage({
                   </td>
                   <td className="px-4 py-3 text-ink-muted">{p.lastAt.toLocaleDateString()}</td>
                   <td className="px-4 py-3 text-right">
-                    <Link href={`/admin/analyses/people/${p.userId}`} className="text-forest hover:underline">
+                    <Link href={`/admin/analyses/people/${p.userId}`} className="text-navy hover:underline">
                       View
                     </Link>
                   </td>

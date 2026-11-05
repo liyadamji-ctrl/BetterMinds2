@@ -74,7 +74,7 @@ export default async function EmailTemplatesPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ink sm:text-[40px] sm:leading-[46px]">Email templates</h1>
+        <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ocean sm:text-[40px] sm:leading-[46px]">Email templates</h1>
         <p className="mt-1 text-slate-600">
           Copy one of these and fill in the bracketed details — use them alongside your cover letters.
         </p>

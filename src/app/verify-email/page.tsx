@@ -40,7 +40,7 @@ function VerifyEmailContent() {
       </span>
 
       <div className="flex flex-col gap-2">
-        <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] text-ink">Check your inbox</h1>
+        <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] text-ocean">Check your inbox</h1>
         <p className="text-sm text-slate-600">
           We sent a verification link to{" "}
           {email ? <strong className="text-slate-800">{email}</strong> : "your email address"}.

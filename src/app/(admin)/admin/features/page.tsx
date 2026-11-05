@@ -11,7 +11,7 @@ const RANGE_LABELS: Record<Range, string> = {
 function StatCard({ label, value, hint }: { label: string; value: string | number; hint?: string }) {
   return (
     <div className="rounded-ts-lg border border-line bg-surface p-5">
-      <p className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ink sm:text-[36px] sm:leading-[42px]">{value}</p>
+      <p className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ocean sm:text-[36px] sm:leading-[42px]">{value}</p>
       <p className="mt-1 text-sm text-ink-muted">{label}</p>
       {hint && <p className="mt-0.5 text-xs text-ink-muted">{hint}</p>}
     </div>
@@ -41,7 +41,7 @@ export default async function AdminFeaturesPage({ searchParams }: { searchParams
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ink sm:text-[36px] sm:leading-[42px]">Feature usage</h1>
+          <h1 className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ocean sm:text-[36px] sm:leading-[42px]">Feature usage</h1>
           <p className="mt-1 text-sm text-ink-muted">
             Every feature on the platform, most used first. A &ldquo;use&rdquo; is someone completing the
             feature&apos;s main action, not just opening the page.
@@ -53,7 +53,7 @@ export default async function AdminFeaturesPage({ searchParams }: { searchParams
               key={r}
               href={`/admin/features?range=${r}`}
               className={`rounded-ts-md px-3 py-1.5 text-sm ${
-                r === range ? "bg-forest text-on-forest" : "text-ink-muted hover:text-ink"
+                r === range ? "bg-navy text-on-navy" : "text-ink-muted hover:text-ink"
               }`}
             >
               {RANGE_LABELS[r]}
@@ -96,7 +96,7 @@ export default async function AdminFeaturesPage({ searchParams }: { searchParams
                       {row.feature.audience}
                     </span>
                     {row.feature.usesAi && (
-                      <span className="ml-1 rounded bg-forest-soft px-1.5 py-0.5 text-[10px] font-semibold uppercase text-forest">
+                      <span className="ml-1 rounded bg-mist px-1.5 py-0.5 text-[10px] font-semibold uppercase text-navy">
                         AI
                       </span>
                     )}
@@ -112,7 +112,7 @@ export default async function AdminFeaturesPage({ searchParams }: { searchParams
                   <div className="flex items-center gap-2">
                     <div className="h-2 flex-1 rounded-full bg-surface-sunken">
                       <div
-                        className="h-2 rounded-full bg-forest"
+                        className="h-2 rounded-full bg-navy"
                         style={{ width: `${Math.round((row.uses / max) * 100)}%` }}
                       />
                     </div>

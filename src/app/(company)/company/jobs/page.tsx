@@ -31,7 +31,7 @@ export default async function CompanyJobsPage() {
           {jobs.map((job) => (
             <li key={job.id} className="flex flex-wrap items-center justify-between gap-4 px-5 py-4">
               <div className="min-w-0">
-                <p className="font-display text-[18px] font-semibold leading-6 text-ink">{job.title}</p>
+                <p className="font-display text-[18px] font-semibold leading-6 text-ocean">{job.title}</p>
                 <p className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs font-medium text-ink-muted">
                   <Badge tone={job.status === "OPEN" ? "success" : "neutral"} dot>
                     {job.status === "OPEN" ? "Open" : "Closed"}

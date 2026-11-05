@@ -30,9 +30,9 @@ export default async function AdminOverviewPage() {
           <Link
             key={href}
             href={href}
-            className="rounded-ts-lg border border-line bg-surface p-5 shadow-card transition-colors hover:border-forest"
+            className="rounded-ts-lg border border-line bg-surface p-5 shadow-card transition-colors hover:border-navy"
           >
-            <p className="font-display text-[18px] font-semibold text-ink">{title}</p>
+            <p className="font-display text-[18px] font-semibold text-ocean">{title}</p>
             <p className="mt-1 text-sm text-ink-muted">{body}</p>
           </Link>
         ))}

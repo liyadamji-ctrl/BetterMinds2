@@ -11,7 +11,7 @@ export function MwEmpty({
 }) {
   return (
     <div className="rounded-mw-lg bg-surface-raised p-8 text-center shadow-mw-card sm:p-10">
-      <p className="font-serif-mw text-[24px] font-medium leading-8 text-ink">{title}</p>
+      <p className="font-serif-mw text-[24px] font-medium leading-8 text-ocean">{title}</p>
       {description && (
         <p className="mx-auto mt-2 max-w-[50ch] text-[15px] leading-[22px] text-ink-muted">{description}</p>
       )}

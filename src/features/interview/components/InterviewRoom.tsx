@@ -370,7 +370,7 @@ function Stat({ label, value }: { label: string; value: number }) {
   return (
     <div>
       <span className="text-xs uppercase text-slate-500">{label}</span>
-      <p className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ink sm:text-[40px] sm:leading-[46px]">{value}</p>
+      <p className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ocean sm:text-[40px] sm:leading-[46px]">{value}</p>
     </div>
   );
 }

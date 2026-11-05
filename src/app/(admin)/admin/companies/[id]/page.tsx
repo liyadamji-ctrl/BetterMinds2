@@ -42,11 +42,11 @@ export default async function AdminCompanyDetailPage({ params }: { params: Promi
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <Link href="/admin/companies" className="text-sm text-forest hover:underline">
+        <Link href="/admin/companies" className="text-sm text-navy hover:underline">
           ← All companies
         </Link>
         <div className="mt-2 flex flex-wrap items-center gap-3">
-          <h1 className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ink sm:text-[36px] sm:leading-[42px]">{company.name}</h1>
+          <h1 className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ocean sm:text-[36px] sm:leading-[42px]">{company.name}</h1>
           <VerdictBadge verdict={overall.verdict} />
         </div>
         <p className="mt-1 text-sm text-ink-muted">

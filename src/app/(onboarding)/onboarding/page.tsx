@@ -22,7 +22,7 @@ export default async function OnboardingPage() {
     <AuthFrame wide>
       <div className="flex flex-col gap-6">
         <div>
-          <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ink">
+          <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ocean">
             Welcome. Let&rsquo;s set up your profile
           </h1>
           <p className="mt-2 text-[15px] text-ink-muted">

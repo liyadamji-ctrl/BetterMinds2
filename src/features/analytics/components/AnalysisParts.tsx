@@ -17,7 +17,7 @@ export function AnalysesTabs({ active }: { active: "all" | "people" }) {
     <Link
       href={href}
       className={`rounded-ts-md px-3 py-1.5 text-sm ${
-        active === key ? "bg-forest text-on-forest" : "text-ink-muted hover:text-ink"
+        active === key ? "bg-navy text-on-navy" : "text-ink-muted hover:text-ink"
       }`}
     >
       {label}

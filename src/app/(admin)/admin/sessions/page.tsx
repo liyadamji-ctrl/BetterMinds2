@@ -18,7 +18,7 @@ export default async function AdminSessionsPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ink sm:text-[36px] sm:leading-[42px]">Session recordings</h1>
+        <h1 className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ocean sm:text-[36px] sm:leading-[42px]">Session recordings</h1>
         <p className="mt-1 text-sm text-ink-muted">
           Only customers who opted in to the consent banner appear here.
         </p>
@@ -44,7 +44,7 @@ export default async function AdminSessionsPage() {
                   <td className="px-4 py-3 text-ink-muted">{r.startedAt.toLocaleString()}</td>
                   <td className="px-4 py-3 text-ink-muted">{formatDuration(r.durationMs)}</td>
                   <td className="px-4 py-3 text-right">
-                    <Link href={`/admin/sessions/${r.id}`} className="text-forest hover:underline">
+                    <Link href={`/admin/sessions/${r.id}`} className="text-navy hover:underline">
                       Replay
                     </Link>
                   </td>

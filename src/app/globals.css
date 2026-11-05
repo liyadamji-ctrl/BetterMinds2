@@ -1,124 +1,160 @@
 @import "tailwindcss";
 
-/* Customer-facing pages keep the original look. */
+/* ------------------------------------------------------------------
+   Calm Coast design system (v1) — the whole app.
+   Navy, teal and sky blue with a touch of sea foam, on warm beige.
+   Source of truth: the Calm Coast design-system mood board.
+   Light is the primary theme; dark values apply when the user picks dark,
+   or when they have not chosen and their OS prefers dark.
+   Two scopes share one palette: .theme-meadow (customer app, landing, auth)
+   and .theme-teamstead (company and admin). The scopes only differ in the
+   names they give the page and card surfaces.
+   ------------------------------------------------------------------ */
 body {
-  background: #f8fafc;
-  color: #0f172a;
+  background: #f5efeb;
+  color: #1c2733;
 }
 
-/* ------------------------------------------------------------------
-   Teamstead design system — company and admin only.
-   Every token lives under .theme-teamstead so the customer app is
-   untouched. Dark values apply when the user picks dark, or when they
-   have not chosen and their OS prefers dark.
-   ------------------------------------------------------------------ */
+.theme-meadow,
 .theme-teamstead {
-  --canvas: #f3f6f2;
-  --surface: #ffffff;
-  --surface-sunken: #eef2ed;
-  --line: #dfe6de;
-  --line-strong: #8a978e;
-  --ink: #142019;
-  --ink-muted: #56645b;
-  --forest: #1f6b3a;
-  --on-forest: #ffffff;
-  --forest-soft: #e3f1e6;
-  --lime: #c6f04a;
-  --on-lime: #142019;
-  --plum: #4a1631;
-  --on-plum: #ffffff;
-  --plum-soft: #f6e6ee;
-  --iris: #5b45d6;
-  --iris-soft: #ece9fd;
-  --success: #1a7f45;
-  --success-soft: #e2f4e8;
-  --warning: #9a5b00;
-  --warning-soft: #fdf0d9;
-  --danger: #c2410c;
-  --danger-soft: #fde8df;
-  --focus-ring: #1f6b3a;
-  --ts-shadow-card: 0 1px 2px rgba(20, 32, 25, 0.06);
-  --ts-shadow-pop: 0 12px 32px rgba(20, 32, 25, 0.12);
+  --page: #f5efeb;
+  --raised: #fbf9f7;
+  --surface-sunken: #ebe4de;
+  --mist: #e3ecf3;
+  --line: #e2dad3;
+  --line-strong: #7d8794;
+  --ink: #1c2733;
+  --ink-muted: #5a6572;
+  --ink-subtle: #6b7682;
+  --navy: #2f4156;
+  --on-navy: #ffffff;
+  --ocean: #2c365a;
+  --teal: #567c8d;
+  --seafoam: #8fb8b3;
+  --on-seafoam: #1c2733;
+  --sky: #c8d9e6;
+  --sand: #cfc4b8;
+  --success: #2f6b4a;
+  --success-soft: #e1eee6;
+  --warning: #8a6420;
+  --warning-soft: #f4ead3;
+  --danger: #a4483b;
+  --danger-soft: #f6e0db;
+  --focus-ring: #2b6a86;
+  --shadow-soft: 0 1px 2px rgba(28, 39, 51, 0.04), 0 8px 24px rgba(28, 39, 51, 0.06);
+  --shadow-raised: 0 12px 32px rgba(28, 39, 51, 0.12);
   color-scheme: light;
 }
 
+.theme-meadow[data-theme="dark"],
 .theme-teamstead[data-theme="dark"] {
-  --canvas: #0f1612;
-  --surface: #17201a;
-  --surface-sunken: #121a15;
-  --line: #2a362e;
-  --line-strong: #5f6f64;
-  --ink: #e8efe9;
-  --ink-muted: #9caba1;
-  --forest: #4fbf73;
-  --on-forest: #0b1a10;
-  --forest-soft: #1c3324;
-  --plum: #e2a3c1;
-  --on-plum: #2a0f1c;
-  --plum-soft: #3a1a2a;
-  --iris: #a99bff;
-  --iris-soft: #262046;
-  --success: #5fd28c;
-  --success-soft: #173222;
-  --warning: #f2b452;
-  --warning-soft: #33270f;
-  --danger: #ff8a5c;
-  --danger-soft: #3a1d12;
-  --focus-ring: #c6f04a;
-  --ts-shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --ts-shadow-pop: 0 12px 32px rgba(0, 0, 0, 0.5);
+  --page: #161c23;
+  --raised: #1b222b;
+  --surface-sunken: #0f1318;
+  --mist: #24303c;
+  --line: #2f3a46;
+  --line-strong: #7a8796;
+  --ink: #edf1f5;
+  --ink-muted: #a6b1bd;
+  --ink-subtle: #8b97a4;
+  --navy: #a9c6db;
+  --on-navy: #13202c;
+  --ocean: #cfe0ec;
+  --teal: #7fa6b8;
+  --seafoam: #6f9c97;
+  --on-seafoam: #0f1318;
+  --sky: #22303d;
+  --sand: #8a7f74;
+  --success: #8fd0a8;
+  --success-soft: #1a2e24;
+  --warning: #e0b45e;
+  --warning-soft: #33290f;
+  --danger: #e58e80;
+  --danger-soft: #3a201b;
+  --focus-ring: #8cc3dc;
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3);
+  --shadow-raised: 0 12px 32px rgba(0, 0, 0, 0.5);
   color-scheme: dark;
 }
 
 @media (prefers-color-scheme: dark) {
+  .theme-meadow:not([data-theme="light"]),
   .theme-teamstead:not([data-theme="light"]) {
-    --canvas: #0f1612;
-    --surface: #17201a;
-    --surface-sunken: #121a15;
-    --line: #2a362e;
-    --line-strong: #5f6f64;
-    --ink: #e8efe9;
-    --ink-muted: #9caba1;
-    --forest: #4fbf73;
-    --on-forest: #0b1a10;
-    --forest-soft: #1c3324;
-    --plum: #e2a3c1;
-    --on-plum: #2a0f1c;
-    --plum-soft: #3a1a2a;
-    --iris: #a99bff;
-    --iris-soft: #262046;
-    --success: #5fd28c;
-    --success-soft: #173222;
-    --warning: #f2b452;
-    --warning-soft: #33270f;
-    --danger: #ff8a5c;
-    --danger-soft: #3a1d12;
-    --focus-ring: #c6f04a;
-    --ts-shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4);
-    --ts-shadow-pop: 0 12px 32px rgba(0, 0, 0, 0.5);
-    color-scheme: dark;
+      --page: #161c23;
+      --raised: #1b222b;
+      --surface-sunken: #0f1318;
+      --mist: #24303c;
+      --line: #2f3a46;
+      --line-strong: #7a8796;
+      --ink: #edf1f5;
+      --ink-muted: #a6b1bd;
+      --ink-subtle: #8b97a4;
+      --navy: #a9c6db;
+      --on-navy: #13202c;
+      --ocean: #cfe0ec;
+      --teal: #7fa6b8;
+      --seafoam: #6f9c97;
+  --on-seafoam: #0f1318;
+      --sky: #22303d;
+      --sand: #8a7f74;
+      --success: #8fd0a8;
+      --success-soft: #1a2e24;
+      --warning: #e0b45e;
+      --warning-soft: #33290f;
+      --danger: #e58e80;
+      --danger-soft: #3a201b;
+      --focus-ring: #8cc3dc;
+      --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3);
+      --shadow-raised: 0 12px 32px rgba(0, 0, 0, 0.5);
+      color-scheme: dark;
   }
 }
 
-/* Utilities: bg-canvas, text-ink, border-line, rounded-ts-lg, shadow-card ... */
+/* Teamstead (company + admin): --canvas is the page, --surface is a card. */
+.theme-teamstead {
+  --canvas: var(--page);
+  --surface: var(--raised);
+  --ts-shadow-card: var(--shadow-soft);
+  --ts-shadow-pop: var(--shadow-raised);
+}
+
+/* Meadow (customer + landing + auth): --surface is the page, --surface-raised a card. */
+.theme-meadow {
+  --surface: var(--page);
+  --surface-raised: var(--raised);
+  --brand: var(--navy);
+  --brand-hover: var(--ocean);
+  --on-brand: var(--on-navy);
+  --brand-soft: var(--mist);
+  --focus: var(--focus-ring);
+  --mw-shadow-card: var(--shadow-soft);
+  --mw-shadow-float: var(--shadow-raised);
+}
+
+/* Utilities: bg-canvas, text-ink, border-line, bg-navy, rounded-ts-lg, shadow-card ... */
 @theme inline {
   --color-canvas: var(--canvas);
   --color-surface: var(--surface);
+  --color-surface-raised: var(--surface-raised);
   --color-surface-sunken: var(--surface-sunken);
+  --color-mist: var(--mist);
   --color-line: var(--line);
   --color-line-strong: var(--line-strong);
   --color-ink: var(--ink);
   --color-ink-muted: var(--ink-muted);
-  --color-forest: var(--forest);
-  --color-on-forest: var(--on-forest);
-  --color-forest-soft: var(--forest-soft);
-  --color-lime: var(--lime);
-  --color-on-lime: var(--on-lime);
-  --color-plum: var(--plum);
-  --color-on-plum: var(--on-plum);
-  --color-plum-soft: var(--plum-soft);
-  --color-iris: var(--iris);
-  --color-iris-soft: var(--iris-soft);
+  --color-ink-subtle: var(--ink-subtle);
+  --color-navy: var(--navy);
+  --color-on-navy: var(--on-navy);
+  --color-ocean: var(--ocean);
+  --color-teal: var(--teal);
+  --color-seafoam: var(--seafoam);
+  --color-on-seafoam: var(--on-seafoam);
+  --color-sky: var(--sky);
+  --color-sand: var(--sand);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-on-brand: var(--on-brand);
+  --color-brand-soft: var(--brand-soft);
   --color-success: var(--success);
   --color-success-soft: var(--success-soft);
   --color-warning: var(--warning);
@@ -126,15 +162,25 @@ body {
   --color-danger: var(--danger);
   --color-danger-soft: var(--danger-soft);
   --color-focus-ring: var(--focus-ring);
-  --radius-ts-sm: 6px;
-  --radius-ts-md: 10px;
-  --radius-ts-lg: 16px;
-  --radius-ts-xl: 24px;
+  --color-focus: var(--focus);
+  /* Soft, pillowy corners: pill for controls, lg for cards, md for inner panels, sm for tiles. */
+  --radius-ts-sm: 8px;
+  --radius-ts-md: 14px;
+  --radius-ts-lg: 22px;
+  --radius-ts-xl: 28px;
+  --radius-mw-sm: 8px;
+  --radius-mw-md: 14px;
+  --radius-mw-lg: 22px;
+  --radius-mw-xl: 28px;
   --shadow-card: var(--ts-shadow-card);
   --shadow-pop: var(--ts-shadow-pop);
-  --font-display: var(--font-display-ts), var(--font-sans-ts), system-ui, sans-serif;
+  --shadow-mw-card: var(--mw-shadow-card);
+  --shadow-mw-float: var(--mw-shadow-float);
+  --font-display: var(--font-display-ts), Georgia, "Times New Roman", serif;
   --font-sans-ui: var(--font-sans-ts), system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono-ts: var(--font-mono-ts-src), ui-monospace, "SF Mono", Menlo, monospace;
+  --font-serif-mw: var(--font-display-mw), Georgia, "Times New Roman", serif;
+  --font-sans-mw: var(--font-sans-mw-src), ui-sans-serif, system-ui, sans-serif;
 }
 
 .theme-teamstead {
@@ -143,190 +189,47 @@ body {
   font-family: var(--font-sans-ui);
   -webkit-font-smoothing: antialiased;
 }
-
-.theme-teamstead :focus-visible {
-  outline: 2px solid var(--focus-ring);
-  outline-offset: 2px;
-}
-
-/*
- * Bridge: shared components (ui/Button, ui/Field) and feature components
- * still use Tailwind's slate/indigo palette. Inside the Teamstead scope
- * those palette colours resolve to Teamstead tokens, so they restyle
- * themselves in both themes without touching the customer app.
- */
-.theme-teamstead {
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-  --color-white: var(--surface);
-  --color-slate-50: var(--canvas);
-  --color-slate-100: var(--surface-sunken);
-  --color-slate-200: var(--line);
-  --color-slate-300: var(--line-strong);
-  --color-slate-400: var(--ink-muted);
-  --color-slate-500: var(--ink-muted);
-  --color-slate-600: var(--ink-muted);
-  --color-slate-700: var(--ink);
-  --color-slate-800: var(--ink);
-  --color-slate-900: var(--ink);
-  --color-indigo-50: var(--forest-soft);
-  --color-indigo-100: var(--forest-soft);
-  --color-indigo-500: var(--forest);
-  --color-indigo-600: var(--forest);
-  --color-indigo-700: var(--forest);
-  --color-indigo-800: var(--forest);
-  --color-red-50: var(--danger-soft);
-  --color-red-100: var(--danger-soft);
-  --color-red-600: var(--danger);
-  --color-red-700: var(--danger);
-  --color-green-50: var(--success-soft);
-  --color-green-100: var(--success-soft);
-  --color-green-700: var(--success);
-  --color-emerald-100: var(--success-soft);
-  --color-emerald-800: var(--success);
-  --color-amber-100: var(--warning-soft);
-  --color-amber-800: var(--warning);
-}
-
-/* ------------------------------------------------------------------
-   Meadow design system — customer app and landing page only.
-   Same variable names as Teamstead where the role matches, so shared
-   utilities (text-ink, border-line, bg-surface-sunken) work in both.
-   ------------------------------------------------------------------ */
-.theme-meadow {
-  --surface: #eef0e8;
-  --surface-raised: #ffffff;
-  --surface-sunken: #e3e7dc;
-  --line: #d6dccf;
-  --line-strong: #738374;
-  --ink: #1c2a1f;
-  --ink-muted: #56655a;
-  --ink-subtle: #7d8a7f;
-  --brand: #2f5d3a;
-  --brand-hover: #244a2e;
-  --on-brand: #ffffff;
-  --brand-soft: #dbe6d3;
-  --sage: #9cb08f;
-  --lime: #b6d86a;
-  --on-lime: #1c2a1f;
-  --lilac: #d9c6ec;
-  --on-lilac: #4d3468;
-  --success: #1d6a73;
-  --success-soft: #d6ecee;
-  --warning: #80530a;
-  --warning-soft: #f6ead2;
-  --danger: #a63a28;
-  --danger-soft: #f7dfd8;
-  --focus: #2f5d3a;
-  --mw-shadow-card: 0 1px 2px rgba(28,42,31,0.06), 0 8px 24px rgba(28,42,31,0.06);
-  --mw-shadow-float: 0 16px 40px rgba(28,42,31,0.12);
-  color-scheme: light;
-}
-.theme-meadow[data-theme="dark"] {
-  --surface: #121a14;
-  --surface-raised: #1b251d;
-  --surface-sunken: #0d130f;
-  --line: #2c3a2f;
-  --line-strong: #6e8070;
-  --ink: #e8eee3;
-  --ink-muted: #a3b1a2;
-  --ink-subtle: #7c8b7d;
-  --brand: #9cc78a;
-  --brand-hover: #b2d6a3;
-  --on-brand: #10200f;
-  --brand-soft: #24382a;
-  --sage: #5f7a58;
-  --lime: #c5e07f;
-  --on-lime: #1c2a1f;
-  --lilac: #4a3a5e;
-  --on-lilac: #e6d8f5;
-  --success: #7cc8cf;
-  --success-soft: #173236;
-  --warning: #e8c170;
-  --warning-soft: #3a2e14;
-  --danger: #f0907c;
-  --danger-soft: #3d1d17;
-  --focus: #c5e07f;
-  --mw-shadow-card: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.3);
-  --mw-shadow-float: 0 16px 40px rgba(0,0,0,0.5);
-  color-scheme: dark;
-}
-@media (prefers-color-scheme: dark) {
-  .theme-meadow:not([data-theme="light"]) {
-    --surface: #121a14;
-    --surface-raised: #1b251d;
-    --surface-sunken: #0d130f;
-    --line: #2c3a2f;
-    --line-strong: #6e8070;
-    --ink: #e8eee3;
-    --ink-muted: #a3b1a2;
-    --ink-subtle: #7c8b7d;
-    --brand: #9cc78a;
-    --brand-hover: #b2d6a3;
-    --on-brand: #10200f;
-    --brand-soft: #24382a;
-    --sage: #5f7a58;
-    --lime: #c5e07f;
-    --on-lime: #1c2a1f;
-    --lilac: #4a3a5e;
-    --on-lilac: #e6d8f5;
-    --success: #7cc8cf;
-    --success-soft: #173236;
-    --warning: #e8c170;
-    --warning-soft: #3a2e14;
-    --danger: #f0907c;
-    --danger-soft: #3d1d17;
-    --focus: #c5e07f;
-    --mw-shadow-card: 0 1px 2px rgba(0,0,0,0.4), 0 8px 24px rgba(0,0,0,0.3);
-    --mw-shadow-float: 0 16px 40px rgba(0,0,0,0.5);
-    color-scheme: dark;
-  }
-}
-
-@theme inline {
-  --color-surface: var(--surface);
-  --color-surface-raised: var(--surface-raised);
-  --color-ink-subtle: var(--ink-subtle);
-  --color-brand: var(--brand);
-  --color-brand-hover: var(--brand-hover);
-  --color-on-brand: var(--on-brand);
-  --color-brand-soft: var(--brand-soft);
-  --color-sage: var(--sage);
-  --color-lilac: var(--lilac);
-  --color-on-lilac: var(--on-lilac);
-  --color-focus: var(--focus);
-  --radius-mw-sm: 8px;
-  --radius-mw-md: 14px;
-  --radius-mw-lg: 24px;
-  --radius-mw-xl: 32px;
-  --shadow-mw-card: var(--mw-shadow-card);
-  --shadow-mw-float: var(--mw-shadow-float);
-  --font-serif-mw: var(--font-display-mw), Georgia, "Times New Roman", serif;
-  --font-sans-mw: var(--font-sans-mw-src), ui-sans-serif, system-ui, sans-serif;
-}
-
 .theme-meadow {
   background: var(--surface);
   color: var(--ink);
   font-family: var(--font-sans-mw);
   -webkit-font-smoothing: antialiased;
 }
-.theme-meadow :focus-visible {
-  outline: 2px solid var(--focus);
+
+/* One solid 2px focus ring, offset 2px, on every interactive element. */
+.theme-meadow :focus-visible,
+.theme-teamstead :focus-visible {
+  outline: 2px solid var(--focus-ring);
   outline-offset: 2px;
 }
+
+/* Motion is quiet (Tailwind's 150ms ease transitions); nothing bounces. Press scales to 0.98. */
+.theme-meadow button:active:not(:disabled),
+.theme-teamstead button:active:not(:disabled),
+.theme-meadow a[class*="rounded-full"]:active,
+.theme-teamstead a[class*="rounded-full"]:active {
+  transform: scale(0.98);
+}
 @media (prefers-reduced-motion: reduce) {
-  .theme-meadow * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+  .theme-meadow *,
+  .theme-teamstead * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+  .theme-meadow button:active,
+  .theme-teamstead button:active { transform: none !important; }
 }
 
-/* Bridge for shared components still using slate/indigo classes. */
-.theme-meadow {
+/*
+ * Bridge: shared components (ui/Button, ui/Field) and feature components
+ * still use Tailwind's slate/indigo palette. Inside either scope those
+ * palette colours resolve to Calm Coast tokens, so they restyle themselves
+ * in both themes.
+ */
+.theme-meadow,
+.theme-teamstead {
   --radius-md: 14px;
-  --radius-lg: 24px;
-  --radius-xl: 32px;
-  --color-white: var(--surface-raised);
-  --color-slate-50: var(--surface);
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+  --color-white: var(--raised);
+  --color-slate-50: var(--page);
   --color-slate-100: var(--surface-sunken);
   --color-slate-200: var(--line);
   --color-slate-300: var(--line-strong);
@@ -336,26 +239,33 @@ body {
   --color-slate-700: var(--ink);
   --color-slate-800: var(--ink);
   --color-slate-900: var(--ink);
-  --color-indigo-50: var(--brand-soft);
-  --color-indigo-100: var(--brand-soft);
-  --color-indigo-500: var(--brand);
-  --color-indigo-600: var(--brand);
-  --color-indigo-700: var(--brand);
-  --color-indigo-800: var(--brand-hover);
+  --color-indigo-50: var(--mist);
+  --color-indigo-100: var(--mist);
+  --color-indigo-200: var(--sky);
+  --color-indigo-500: var(--navy);
+  --color-indigo-600: var(--navy);
+  --color-indigo-700: var(--navy);
+  --color-indigo-800: var(--ocean);
   --color-red-50: var(--danger-soft);
   --color-red-100: var(--danger-soft);
   --color-red-500: var(--danger);
   --color-red-600: var(--danger);
   --color-red-700: var(--danger);
+  --color-rose-50: var(--danger-soft);
+  --color-rose-200: var(--danger-soft);
   --color-green-50: var(--success-soft);
   --color-green-100: var(--success-soft);
   --color-green-600: var(--success);
   --color-green-700: var(--success);
+  --color-green-800: var(--success);
   --color-emerald-100: var(--success-soft);
+  --color-emerald-200: var(--success-soft);
+  --color-emerald-600: var(--success);
   --color-emerald-700: var(--success);
   --color-emerald-800: var(--success);
   --color-amber-50: var(--warning-soft);
   --color-amber-100: var(--warning-soft);
+  --color-amber-200: var(--warning-soft);
   --color-amber-700: var(--warning);
   --color-amber-800: var(--warning);
 }

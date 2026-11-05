@@ -7,7 +7,7 @@ export default function SignupPage() {
     <AuthFrame>
       <div className="flex flex-col gap-6">
         <div>
-          <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ink">
+          <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ocean">
             Create your account
           </h1>
           <p className="mt-2 text-[15px] text-ink-muted">
