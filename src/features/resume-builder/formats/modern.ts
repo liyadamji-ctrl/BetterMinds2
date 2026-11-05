@@ -11,7 +11,7 @@ function items(answers: ResumeAnswers, section: string): Array<Record<string, st
   return Array.isArray(value) ? value : [];
 }
 
-const ACCENT = "#4338ca";
+const ACCENT = "#2f4156"; // site navy
 
 export const modernFormat: ResumeFormat = {
   id: "modern",
@@ -134,7 +134,7 @@ function items0(csv: string): string {
   return `<div style="display:flex; flex-wrap:wrap; gap:6px;">${parts
     .map(
       (p) =>
-        `<span style="background:#eef2ff; color:${ACCENT}; font-size:12px; padding:3px 10px; border-radius:999px;">${escapeHtml(p)}</span>`
+        `<span style="background:#e3ecf3; color:${ACCENT}; font-size:12px; padding:3px 10px; border-radius:999px;">${escapeHtml(p)}</span>`
     )
     .join("")}</div>`;
 }

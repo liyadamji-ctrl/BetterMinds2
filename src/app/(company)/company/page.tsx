@@ -28,7 +28,7 @@ export default async function CompanyDashboardPage() {
       <PageHeader
         title={`Welcome, ${companyName}`}
         description="Manage your job postings and review candidate applications from here."
-        actions={<LinkButton href="/company/jobs/new" variant="primary">Post a job</LinkButton>}
+        actions={<LinkButton href="/company/jobs/new" variant="primary">Post a Job</LinkButton>}
       />
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -41,7 +41,7 @@ export default async function CompanyDashboardPage() {
         <EmptyState
           title="No job postings yet"
           description="Create your first job posting to start receiving applications from candidates on Prepped."
-          action={<LinkButton href="/company/jobs/new" variant="primary">Post a job</LinkButton>}
+          action={<LinkButton href="/company/jobs/new" variant="primary">Post a Job</LinkButton>}
         />
       )}
     </div>

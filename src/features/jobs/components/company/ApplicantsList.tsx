@@ -178,7 +178,7 @@ export function ApplicantsList({ jobId, initialApplicants }: { jobId: string; in
             value={sort}
             onChange={(e) => setSort(e.target.value as SortKey)}
             options={[
-              { value: "newest", label: "Newest first" },
+              { value: "newest", label: "Newest First" },
               { value: "score", label: "Highest AI score" },
             ]}
           />
@@ -187,11 +187,11 @@ export function ApplicantsList({ jobId, initialApplicants }: { jobId: string; in
             value={filter}
             onChange={(e) => setFilter(e.target.value as FilterKey)}
             options={[
-              { value: "ALL", label: "All applicants" },
+              { value: "ALL", label: "All Applicants" },
               { value: "STRONG_MATCH", label: RECOMMENDATION_LABELS.STRONG_MATCH },
               { value: "POSSIBLE", label: RECOMMENDATION_LABELS.POSSIBLE },
               { value: "WEAK", label: RECOMMENDATION_LABELS.WEAK },
-              { value: "UNSCREENED", label: "Not screened yet" },
+              { value: "UNSCREENED", label: "Not Screened Yet" },
             ]}
           />
           <TextField
@@ -261,7 +261,7 @@ export function ApplicantsList({ jobId, initialApplicants }: { jobId: string; in
                     <ListBlock title="Missing Requirements" items={applicant.screening.missingRequirements} />
                     {applicant.screening.experienceFit && (
                       <div>
-                        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Experience fit</p>
+                        <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Experience Fit</p>
                         <p className="mt-1 text-sm text-slate-700">{applicant.screening.experienceFit}</p>
                       </div>
                     )}

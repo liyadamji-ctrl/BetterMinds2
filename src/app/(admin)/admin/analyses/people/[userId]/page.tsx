@@ -45,8 +45,8 @@ export default async function AdminAnalysisPersonPage({ params }: { params: Prom
             <thead className="bg-surface text-ink-muted">
               <tr>
                 <th className="px-4 py-3 font-medium">Date</th>
-                <th className="px-4 py-3 font-medium">Resume file</th>
-                <th className="px-4 py-3 font-medium">Analyzed against job</th>
+                <th className="px-4 py-3 font-medium">Resume File</th>
+                <th className="px-4 py-3 font-medium">Analyzed Against Job</th>
                 <th className="px-4 py-3 font-medium">Score</th>
                 <th className="px-4 py-3" />
               </tr>
@@ -55,7 +55,7 @@ export default async function AdminAnalysisPersonPage({ params }: { params: Prom
               {analyses.map((a) => (
                 <tr key={a.id}>
                   <td className="px-4 py-3 text-ink-muted">{a.createdAt.toLocaleString()}</td>
-                  <td className="px-4 py-3 text-ink">{a.fileName ?? <span className="text-ink-muted">Pasted text</span>}</td>
+                  <td className="px-4 py-3 text-ink">{a.fileName ?? <span className="text-ink-muted">Pasted Text</span>}</td>
                   <td className="px-4 py-3 text-ink">{a.jobTitle}</td>
                   <td className="px-4 py-3">
                     <ScoreBadge score={a.matchScore} />

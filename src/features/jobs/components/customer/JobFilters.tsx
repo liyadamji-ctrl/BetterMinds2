@@ -39,7 +39,7 @@ export function JobFilters() {
         value={type}
         onChange={(e) => updateParam("type", e.target.value)}
         options={[
-          { value: "", label: "All types" },
+          { value: "", label: "All Types" },
           ...EMPLOYMENT_TYPES.map((t) => ({ value: t, label: EMPLOYMENT_TYPE_LABELS[t] })),
         ]}
       />

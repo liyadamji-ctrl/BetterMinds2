@@ -178,10 +178,10 @@ export function InterviewRoom({
         <InterviewReport report={report} questions={questions} />
         <div className="flex gap-3">
           <Link href="/interview/new">
-            <Button>Practice again</Button>
+            <Button>Practice Again</Button>
           </Link>
           <Link href="/interview">
-            <Button variant="secondary">All sessions</Button>
+            <Button variant="secondary">All Sessions</Button>
           </Link>
         </div>
       </div>
@@ -213,7 +213,7 @@ export function InterviewRoom({
                   Press record and answer out loud as if in a real interview. Aim for one to two minutes.
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  <Button onClick={startRecording}>Start answering</Button>
+                  <Button onClick={startRecording}>Start Answering</Button>
                   <Button variant="ghost" onClick={() => setTypedMode(true)}>
                     Type instead
                   </Button>
@@ -227,7 +227,7 @@ export function InterviewRoom({
                     : "Voice answers need Chrome or Edge, so you can type your answer here."}
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  <Button onClick={startTyping}>Write my answer</Button>
+                  <Button onClick={startTyping}>Write My Answer</Button>
                   {speech.supported && (
                     <Button variant="ghost" onClick={() => setTypedMode(false)}>
                       Use voice
@@ -322,13 +322,13 @@ export function InterviewRoom({
             {error && <p className="text-sm text-red-600">{error}</p>}
             <div>
               {index < questions.length - 1 && !allAnswered ? (
-                <Button onClick={nextQuestion}>Next question</Button>
+                <Button onClick={nextQuestion}>Next Question</Button>
               ) : allAnswered ? (
                 <Button onClick={finish} disabled={finishing}>
                   {finishing ? "Building your report…" : "Finish and see my report"}
                 </Button>
               ) : (
-                <Button onClick={nextQuestion}>Next question</Button>
+                <Button onClick={nextQuestion}>Next Question</Button>
               )}
             </div>
           </div>

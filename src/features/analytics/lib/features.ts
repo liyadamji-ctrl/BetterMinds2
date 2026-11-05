@@ -36,18 +36,18 @@ export type FeatureDef = {
 };
 
 export const FEATURES: FeatureDef[] = [
-  { id: "resume-builder", label: "Resume builder", audience: "Customer", description: "Build a resume from a template", useActions: ["resume_created"], usesAi: false },
+  { id: "resume-builder", label: "Resume Builder", audience: "Customer", description: "Build a resume from a template", useActions: ["resume_created"], usesAi: false },
   { id: "cv-to-resume", label: "CV to resume (AI)", audience: "Customer", description: "Upload a CV and get an improved resume", useActions: ["cv_analyzed"], usesAi: true },
-  { id: "resume-analyzer", label: "Resume analyzer", audience: "Customer", description: "Score a resume against a job", useActions: ["analysis_created"], usesAi: true },
-  { id: "cover-letters", label: "Cover letters", audience: "Customer", description: "Generate a cover letter for a job", useActions: ["cover_letter_created"], usesAi: true },
-  { id: "email-templates", label: "Email templates", audience: "Customer", description: "Copy-ready application emails", useActions: ["view"], usesAi: false },
+  { id: "resume-analyzer", label: "Resume Analyzer", audience: "Customer", description: "Score a resume against a job", useActions: ["analysis_created"], usesAi: true },
+  { id: "cover-letters", label: "Cover Letters", audience: "Customer", description: "Generate a cover letter for a job", useActions: ["cover_letter_created"], usesAi: true },
+  { id: "email-templates", label: "Email Templates", audience: "Customer", description: "Copy-ready application emails", useActions: ["view"], usesAi: false },
   { id: "job-board", label: "Job board & applying", audience: "Customer", description: "Browse jobs and apply", useActions: ["applied"], usesAi: false },
-  { id: "my-applications", label: "My applications", audience: "Customer", description: "Track submitted applications", useActions: ["view"], usesAi: false },
-  { id: "interview-simulator", label: "Interview simulator", audience: "Customer", description: "Practice interviews with AI feedback", useActions: ["session_started"], usesAi: true },
-  { id: "programs", label: "Programs search", audience: "Customer", description: "Find programs and courses", useActions: ["search_saved"], usesAi: true },
-  { id: "internships", label: "Internships search", audience: "Customer", description: "Find internships", useActions: ["search_saved"], usesAi: true },
-  { id: "job-postings", label: "Job postings", audience: "Company", description: "Companies post jobs and internships", useActions: ["job_posted"], usesAi: false },
-  { id: "ai-screening", label: "AI applicant screening", audience: "Company", description: "AI scores and ranks applicants", useActions: ["application_screened"], usesAi: true },
+  { id: "my-applications", label: "My Applications", audience: "Customer", description: "Track submitted applications", useActions: ["view"], usesAi: false },
+  { id: "interview-simulator", label: "Interview Simulator", audience: "Customer", description: "Practice interviews with AI feedback", useActions: ["session_started"], usesAi: true },
+  { id: "programs", label: "Programs Search", audience: "Customer", description: "Find programs and courses", useActions: ["search_saved"], usesAi: true },
+  { id: "internships", label: "Internships Search", audience: "Customer", description: "Find internships", useActions: ["search_saved"], usesAi: true },
+  { id: "job-postings", label: "Job Postings", audience: "Company", description: "Companies post jobs and internships", useActions: ["job_posted"], usesAi: false },
+  { id: "ai-screening", label: "AI Applicant Screening", audience: "Company", description: "AI scores and ranks applicants", useActions: ["application_screened"], usesAi: true },
 ];
 
 export const FEATURES_BY_ID: Record<FeatureId, FeatureDef> = Object.fromEntries(

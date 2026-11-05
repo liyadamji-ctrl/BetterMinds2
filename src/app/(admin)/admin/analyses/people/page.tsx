@@ -55,9 +55,9 @@ export default async function AdminAnalysisPeoplePage({
               <tr>
                 <th className="px-4 py-3 font-medium">Person</th>
                 <th className="px-4 py-3 text-right font-medium">Analyses</th>
-                <th className="px-4 py-3 text-right font-medium">Different jobs</th>
-                <th className="px-4 py-3 font-medium">Avg score</th>
-                <th className="px-4 py-3 font-medium">Last analysis</th>
+                <th className="px-4 py-3 text-right font-medium">Different Jobs</th>
+                <th className="px-4 py-3 font-medium">Avg Score</th>
+                <th className="px-4 py-3 font-medium">Last Analysis</th>
                 <th className="px-4 py-3" />
               </tr>
             </thead>

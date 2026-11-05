@@ -15,7 +15,7 @@ const SEEKER_FIELDS = [
   },
   {
     name: "currentStatus",
-    label: "Current status",
+    label: "Current Status",
     placeholder: "e.g. Undergraduate Student, Recent Graduate, Career Changer",
   },
   {
@@ -38,7 +38,7 @@ const COMPANY_FIELDS = [
   },
   {
     name: "size",
-    label: "Company size",
+    label: "Company Size",
     placeholder: "e.g. 1–10, 11–50, 51–200, 500+",
   },
   {

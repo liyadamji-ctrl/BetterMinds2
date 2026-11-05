@@ -100,8 +100,8 @@ export default async function AdminAnalysesPage({
             <thead className="bg-surface text-ink-muted">
               <tr>
                 <th className="px-4 py-3 font-medium">Person</th>
-                <th className="px-4 py-3 font-medium">Resume file</th>
-                <th className="px-4 py-3 font-medium">Analyzed against job</th>
+                <th className="px-4 py-3 font-medium">Resume File</th>
+                <th className="px-4 py-3 font-medium">Analyzed Against Job</th>
                 <th className="px-4 py-3 font-medium">Score</th>
                 <th className="px-4 py-3 font-medium">Date</th>
                 <th className="px-4 py-3" />
@@ -116,7 +116,7 @@ export default async function AdminAnalysesPage({
                     </Link>
                     <p className="text-xs text-ink-muted">{row.personEmail}</p>
                   </td>
-                  <td className="px-4 py-3 text-ink">{row.fileName ?? <span className="text-ink-muted">Pasted text</span>}</td>
+                  <td className="px-4 py-3 text-ink">{row.fileName ?? <span className="text-ink-muted">Pasted Text</span>}</td>
                   <td className="px-4 py-3 text-ink">{row.jobTitle}</td>
                   <td className="px-4 py-3">
                     <ScoreBadge score={row.matchScore} />

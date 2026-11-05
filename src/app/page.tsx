@@ -19,23 +19,23 @@ import { MwBadge, MwLink, ThemeToggle, Wordmark } from "@/components/meadow/ui";
 const FEATURES = [
   {
     icon: FileText,
-    title: "Resume builder",
+    title: "Resume Builder",
     body: "Choose a template and answer a few questions, or upload your CV and we'll turn it into a clean resume you can edit and export.",
     wide: true,
   },
   {
     icon: FileSearch,
-    title: "Resume analyzer",
+    title: "Resume Analyzer",
     body: "Paste a job description and see how your resume matches it, with specific feedback to improve.",
   },
   {
     icon: Mail,
-    title: "Cover letters",
+    title: "Cover Letters",
     body: "Get a first draft written for the job. Edit it until it sounds like you.",
   },
   {
     icon: Briefcase,
-    title: "Jobs and internships",
+    title: "Jobs and Internships",
     body: "Apply to openings posted on Prepped, and get quick links to listings on other job boards.",
   },
   {
@@ -46,9 +46,9 @@ const FEATURES = [
 ];
 
 const STEPS = [
-  { title: "Build your resume", body: "Start with a template or bring your CV." },
-  { title: "Practice and polish", body: "See how your resume stacks up for a job, write a cover letter and run a mock interview." },
-  { title: "Apply with confidence", body: "Apply to jobs and internships, then keep track of every application in one place." },
+  { title: "Build Your Resume", body: "Start with a template or bring your CV." },
+  { title: "Practice and Polish", body: "See how your resume stacks up for a job, write a cover letter and run a mock interview." },
+  { title: "Apply with Confidence", body: "Apply to jobs and internships, then keep track of every application in one place." },
 ];
 
 export default function HomePage() {
@@ -151,7 +151,7 @@ export default function HomePage() {
 
               <div className="mt-4 rounded-mw-lg bg-surface-raised p-5 shadow-mw-card">
                 <div className="flex items-baseline justify-between">
-                  <p className="text-[15px] font-semibold text-ink">Resume review</p>
+                  <p className="text-[15px] font-semibold text-ink">Resume Review</p>
                   <p className="font-serif-mw text-[32px] font-medium leading-none text-ocean">72</p>
                 </div>
                 <div className="mt-3 h-2 overflow-hidden rounded-full bg-surface-sunken">

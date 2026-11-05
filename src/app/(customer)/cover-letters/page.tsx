@@ -26,10 +26,10 @@ export default async function CoverLettersPage() {
         <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ocean sm:text-[40px] sm:leading-[46px]">Cover Letters</h1>
         <div className="flex items-center gap-3">
           <Link href="/email-templates">
-            <Button variant="secondary">Email templates</Button>
+            <Button variant="secondary">Email Templates</Button>
           </Link>
           <Link href="/cover-letters/new">
-            <Button>New cover letter</Button>
+            <Button>New Cover Letter</Button>
           </Link>
         </div>
       </div>

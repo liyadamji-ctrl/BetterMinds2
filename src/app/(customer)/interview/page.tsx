@@ -37,7 +37,7 @@ export default async function InterviewPage() {
           </p>
         </div>
         <Link href="/interview/new">
-          <Button>New interview</Button>
+          <Button>New Interview</Button>
         </Link>
       </div>
       <InterviewHistory initialRows={rows} />

@@ -15,20 +15,20 @@ type NavEntry = NavLink | NavGroup;
 const NAV: NavEntry[] = [
   { href: "/dashboard", label: "Dashboard" },
   {
-    label: "Find work",
+    label: "Find Work",
     items: [
       { href: "/jobs", label: "Jobs" },
       { href: "/internships", label: "Internships" },
       { href: "/programs", label: "Programs" },
-      { href: "/jobs/applications", label: "My applications" },
+      { href: "/jobs/applications", label: "My Applications" },
     ],
   },
   {
     label: "Build",
     items: [
-      { href: "/resume-builder", label: "New resume" },
-      { href: "/resume-analyzer", label: "Analyze resume" },
-      { href: "/cover-letters", label: "Cover letters" },
+      { href: "/resume-builder", label: "New Resume" },
+      { href: "/resume-analyzer", label: "Analyze Resume" },
+      { href: "/cover-letters", label: "Cover Letters" },
     ],
   },
   { href: "/interview", label: "Interview" },

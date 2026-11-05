@@ -81,11 +81,11 @@ export default async function AdminCompanyDetailPage({ params }: { params: Promi
                   <th className="px-4 py-3 font-medium">Job</th>
                   <th className="px-4 py-3 text-right font-medium">Applicants</th>
                   <th className="px-4 py-3 text-right font-medium">Screened</th>
-                  <th className="px-4 py-3 text-right font-medium">Avg score</th>
+                  <th className="px-4 py-3 text-right font-medium">Avg Score</th>
                   <th className="px-4 py-3 text-right font-medium">Strong / Possible / Weak</th>
                   <th className="px-4 py-3 text-right font-medium">Shortlisted / Rejected</th>
                   <th className="px-4 py-3 text-right font-medium">Agreement</th>
-                  <th className="px-4 py-3 font-medium">AI verdict</th>
+                  <th className="px-4 py-3 font-medium">AI Verdict</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-line bg-surface">

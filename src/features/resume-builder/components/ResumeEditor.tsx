@@ -194,7 +194,7 @@ export function ResumeEditor({
               <p className="whitespace-pre-line text-slate-900">{suggestion.after}</p>
             </div>
             <div className="flex gap-2 md:col-span-2">
-              <Button onClick={acceptSuggestion}>Use this</Button>
+              <Button onClick={acceptSuggestion}>Use This</Button>
               <Button variant="ghost" onClick={() => setSuggestion(null)}>
                 Discard
               </Button>

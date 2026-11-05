@@ -16,7 +16,7 @@ export const minimalFormat: ResumeFormat = {
         (item) => `
         <div style="margin-bottom:14px;">
           <div style="display:flex; justify-content:space-between; gap:12px;">
-            <span style="font-weight:600;">${escapeHtml(item.role ?? "")}, ${escapeHtml(item.company ?? "")}</span>
+            <span style="font-weight:400;">${escapeHtml(item.role ?? "")}, ${escapeHtml(item.company ?? "")}</span>
             <span style="color:#666; white-space:nowrap;">${escapeHtml(item.dates ?? "")}</span>
           </div>
           ${bulletList(item.description ?? "")}
@@ -43,7 +43,7 @@ export const minimalFormat: ResumeFormat = {
 
     return `
       <div style="font-family: Helvetica, Arial, sans-serif; color:#222; max-width:700px; font-size:13px; line-height:1.5;">
-        <h1 style="font-size:30px; font-weight:300; margin:0 0 4px;">${name}</h1>
+        <h1 style="font-size:30px; font-weight:700; margin:0 0 4px;">${name}</h1>
         <p style="color:#666; margin:0 0 26px;">${contactLine}</p>
         ${section("Summary", summary ? `<p style="margin:0;">${summary}</p>` : "")}
         ${section("Experience", experience)}

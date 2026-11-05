@@ -27,10 +27,10 @@ export default async function AdminCompaniesPage() {
                 <th className="px-4 py-3 font-medium">Company</th>
                 <th className="px-4 py-3 text-right font-medium">Jobs</th>
                 <th className="px-4 py-3 text-right font-medium">Applicants</th>
-                <th className="px-4 py-3 text-right font-medium">AI screened</th>
-                <th className="px-4 py-3 text-right font-medium">Avg score</th>
+                <th className="px-4 py-3 text-right font-medium">AI Screened</th>
+                <th className="px-4 py-3 text-right font-medium">Avg Score</th>
                 <th className="px-4 py-3 text-right font-medium">Agreement</th>
-                <th className="px-4 py-3 font-medium">AI verdict</th>
+                <th className="px-4 py-3 font-medium">AI Verdict</th>
                 <th className="px-4 py-3" />
               </tr>
             </thead>

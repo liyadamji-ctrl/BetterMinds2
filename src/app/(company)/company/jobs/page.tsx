@@ -17,7 +17,7 @@ export default async function CompanyJobsPage() {
     <div className="flex flex-col gap-6">
       <PageHeader
         title="Job Postings"
-        actions={<LinkButton href="/company/jobs/new" variant="primary">Post a job</LinkButton>}
+        actions={<LinkButton href="/company/jobs/new" variant="primary">Post a Job</LinkButton>}
       />
 
       {jobs.length === 0 ? (

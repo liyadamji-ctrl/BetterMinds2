@@ -138,7 +138,7 @@ export function CoverLetterEditor({
             {downloading ? "Preparing…" : "Download"}
           </Button>
           <Link href="/cover-letters/new">
-            <Button variant="ghost">Start over</Button>
+            <Button variant="ghost">Start Over</Button>
           </Link>
         </div>
       </div>

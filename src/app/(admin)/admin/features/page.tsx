@@ -80,9 +80,9 @@ export default async function AdminFeaturesPage({ searchParams }: { searchParams
               <th className="px-4 py-3 font-medium">Feature</th>
               <th className="w-48 px-4 py-3 font-medium">Uses</th>
               <th className="px-4 py-3 text-right font-medium">Users</th>
-              <th className="px-4 py-3 text-right font-medium">Page opens</th>
+              <th className="px-4 py-3 text-right font-medium">Page Opens</th>
               <th className="px-4 py-3 text-right font-medium">vs previous</th>
-              <th className="px-4 py-3 font-medium">Last used</th>
+              <th className="px-4 py-3 font-medium">Last Used</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-line bg-surface">

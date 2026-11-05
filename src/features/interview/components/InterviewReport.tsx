@@ -41,7 +41,7 @@ export function InterviewReport({ report, questions }: { report: Report; questio
   return (
     <div className="flex flex-col gap-6">
       <div className="rounded-mw-lg bg-surface-raised shadow-mw-card p-6">
-        <p className="text-sm text-slate-500">Overall score</p>
+        <p className="text-sm text-slate-500">Overall Score</p>
         <p className={`text-5xl font-bold ${tone(report.overallScore)}`}>
           {report.overallScore}
           <span className="text-xl font-medium text-slate-400"> / 100</span>
@@ -77,7 +77,7 @@ export function InterviewReport({ report, questions }: { report: Report; questio
             {q.analysis ? (
               <div className="mt-3 flex flex-col gap-3 text-sm text-slate-700">
                 <div>
-                  <p className="text-xs font-medium uppercase text-slate-500">Your answer</p>
+                  <p className="text-xs font-medium uppercase text-slate-500">Your Answer</p>
                   <p className="whitespace-pre-line">{q.transcript || "(nothing recorded)"}</p>
                 </div>
                 <p className="text-xs text-slate-500">

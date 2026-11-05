@@ -39,7 +39,7 @@ const COPY = {
 } as const;
 
 const LEVEL_OPTIONS = [
-  { value: "", label: "Any level" },
+  { value: "", label: "Any Level" },
   { value: "beginner", label: "Beginner" },
   { value: "intermediate", label: "Intermediate" },
   { value: "advanced", label: "Advanced" },
