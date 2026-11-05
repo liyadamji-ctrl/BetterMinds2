@@ -9,9 +9,9 @@ import { TextField, TextAreaField, SelectField } from "@/components/ui/Field";
 type PrefillJob = { jobId: string; jobTitle: string; companyName: string };
 
 const TYPE_OPTIONS = [
-  { value: "MIXED", label: "Mixed (behavioral + role-specific)" },
+  { value: "MIXED", label: "Mixed (behavioral + job-specific)" },
   { value: "BEHAVIORAL", label: "Behavioral" },
-  { value: "TECHNICAL", label: "Technical / role knowledge" },
+  { value: "TECHNICAL", label: "Technical / job knowledge" },
 ];
 
 const COUNT_OPTIONS = [
@@ -77,7 +77,7 @@ export function InterviewSetup({
   return (
     <div className="flex flex-col gap-4 rounded-mw-lg bg-surface-raised shadow-mw-card p-5">
       {invalidJobId && (
-        <p className="text-sm text-amber-700">That job link wasn&rsquo;t valid, so describe the role below instead.</p>
+        <p className="text-sm text-amber-700">That job link wasn&rsquo;t valid, so describe the job below instead.</p>
       )}
 
       {prefillJob ? (
@@ -87,7 +87,7 @@ export function InterviewSetup({
       ) : (
         <>
           <TextField
-            label="Role you're interviewing for"
+            label="Job You're Interviewing For"
             name="jobTitle"
             value={jobTitle}
             onChange={(e) => setJobTitle(e.target.value)}
@@ -103,7 +103,7 @@ export function InterviewSetup({
             maxLength={150}
           />
           <TextAreaField
-            label="Job description (optional, makes questions more specific)"
+            label="Job Description (optional, makes questions more specific)"
             name="jobDescription"
             value={jobDescription}
             onChange={(e) => setJobDescription(e.target.value)}
@@ -114,7 +114,7 @@ export function InterviewSetup({
 
       {resumes.length > 0 ? (
         <SelectField
-          label="Resume to tailor questions to"
+          label="Resume to Tailor Questions To"
           name="resumeId"
           value={resumeId}
           onChange={(e) => setResumeId(e.target.value)}
@@ -122,7 +122,7 @@ export function InterviewSetup({
         />
       ) : (
         <p className="text-xs text-slate-500">
-          No resume yet, so questions will be based on the role only.{" "}
+          No resume yet, so questions will be based on the job only.{" "}
           <Link href="/resume-builder" className="text-indigo-700 hover:underline">
             Build one
           </Link>
@@ -131,13 +131,13 @@ export function InterviewSetup({
       )}
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <SelectField label="Interview type" name="interviewType" value={interviewType} onChange={(e) => setInterviewType(e.target.value)} options={TYPE_OPTIONS} />
+        <SelectField label="Interview Type" name="interviewType" value={interviewType} onChange={(e) => setInterviewType(e.target.value)} options={TYPE_OPTIONS} />
         <SelectField label="Length" name="count" value={count} onChange={(e) => setCount(e.target.value)} options={COUNT_OPTIONS} />
       </div>
 
       <ul className="list-disc space-y-1 pl-5 text-xs text-slate-500">
         <li>You&rsquo;ll answer out loud (Chrome or Edge) or type. Allow the microphone when asked.</li>
-        <li>The camera is optional and analysed in your browser only; no audio or video is saved.</li>
+        <li>The camera is optional and analyzed in your browser only; no audio or video is saved.</li>
       </ul>
 
       {error && <p className="text-sm text-red-600">{error}</p>}

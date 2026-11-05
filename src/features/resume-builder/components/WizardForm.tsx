@@ -112,7 +112,7 @@ export function WizardForm({ format }: { format: WizardFormat }) {
 
   return (
     <div className="flex flex-col gap-8">
-      <TextField label="Resume title (just for your own reference)" value={title} onChange={(e) => setTitle(e.target.value)} />
+      <TextField label="Resume Title (just for your own reference)" value={title} onChange={(e) => setTitle(e.target.value)} />
 
       {format.sections.map((section) => (
         <div key={section.id} className="rounded-mw-lg bg-surface-raised shadow-mw-card p-6">

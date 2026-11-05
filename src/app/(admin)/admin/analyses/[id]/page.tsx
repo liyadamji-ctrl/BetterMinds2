@@ -64,7 +64,7 @@ export default async function AdminAnalysisDetailPage({ params }: { params: Prom
         </p>
         <p className="mt-1 text-sm">
           <Link href={`/admin/analyses/people/${analysis.user.id}`} className="text-navy hover:underline">
-            See everything {personName} has analysed →
+            See everything {personName} has analyzed →
           </Link>
         </p>
       </div>
@@ -77,8 +77,8 @@ export default async function AdminAnalysisDetailPage({ params }: { params: Prom
             <div className="grid gap-4 sm:grid-cols-2">
               <List title="Strengths" items={result.strengths} />
               <List title="Gaps" items={result.gaps} />
-              <List title="Suggestions" items={result.suggestions} />
-              <List title="Missing keywords" items={result.missingKeywords} />
+              <List title="Feedback" items={result.suggestions} />
+              <List title="Missing Keywords" items={result.missingKeywords} />
             </div>
           </>
         ) : (
@@ -87,7 +87,7 @@ export default async function AdminAnalysisDetailPage({ params }: { params: Prom
       </section>
 
       <section className="flex flex-col gap-2 rounded-ts-lg border border-line bg-surface p-5">
-        <h2 className="font-semibold text-ink">Job they analysed against</h2>
+        <h2 className="font-semibold text-ink">Job They Analyzed Against</h2>
         {analysis.jobDescription ? (
           <p className="whitespace-pre-wrap text-sm text-ink">{analysis.jobDescription}</p>
         ) : (

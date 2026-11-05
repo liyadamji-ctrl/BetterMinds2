@@ -33,8 +33,8 @@ export default async function JobsPage({
   return (
     <div className="flex flex-col gap-6">
       <PageTitle
-        title="Job opportunities"
-        description="Browse open roles and internships posted by companies on Prepped."
+        title="Job Opportunities"
+        description="Browse open jobs and internships posted by companies on Prepped."
       />
 
       <JobFilters />

@@ -8,7 +8,7 @@ export default function LoginPage() {
       <div className="flex flex-col gap-6">
         <div>
           <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ocean">
-            Welcome back
+            Welcome Back
           </h1>
           <p className="mt-2 text-[15px] text-ink-muted">
             New here?{" "}

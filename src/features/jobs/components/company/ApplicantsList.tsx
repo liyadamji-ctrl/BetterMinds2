@@ -170,11 +170,11 @@ export function ApplicantsList({ jobId, initialApplicants }: { jobId: string; in
         </div>
         <p className="text-xs text-slate-500">
           AI scores each resume against this job&apos;s description and requirements, with contact details removed
-          first. It is a suggestion to help you prioritise — you decide who moves forward.
+          first. It is a suggestion to help you prioritize — you decide who moves forward.
         </p>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
           <SelectField
-            label="Sort by"
+            label="Sort By"
             value={sort}
             onChange={(e) => setSort(e.target.value as SortKey)}
             options={[
@@ -195,7 +195,7 @@ export function ApplicantsList({ jobId, initialApplicants }: { jobId: string; in
             ]}
           />
           <TextField
-            label="Minimum score"
+            label="Minimum Score"
             type="number"
             min={0}
             max={100}
@@ -257,15 +257,15 @@ export function ApplicantsList({ jobId, initialApplicants }: { jobId: string; in
               <div className="mt-4 flex flex-col gap-4">
                 {applicant.screening && (
                   <div className="flex flex-col gap-3 rounded-ts-md bg-slate-50 p-4">
-                    <ListBlock title="Matched skills" items={applicant.screening.matchedSkills} />
-                    <ListBlock title="Missing requirements" items={applicant.screening.missingRequirements} />
+                    <ListBlock title="Matched Skills" items={applicant.screening.matchedSkills} />
+                    <ListBlock title="Missing Requirements" items={applicant.screening.missingRequirements} />
                     {applicant.screening.experienceFit && (
                       <div>
                         <p className="text-xs font-semibold uppercase tracking-wide text-slate-500">Experience fit</p>
                         <p className="mt-1 text-sm text-slate-700">{applicant.screening.experienceFit}</p>
                       </div>
                     )}
-                    <ListBlock title="Red flags" items={applicant.screening.redFlags} />
+                    <ListBlock title="Red Flags" items={applicant.screening.redFlags} />
                   </div>
                 )}
                 <iframe

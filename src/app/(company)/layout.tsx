@@ -7,7 +7,7 @@ import { FeatureViewTracker } from "@/features/analytics/components/FeatureViewT
 
 const NAV: NavEntry[] = [
   { href: "/company", label: "Overview", icon: "grid", exact: true },
-  { href: "/company/jobs", label: "Job postings", icon: "briefcase" },
+  { href: "/company/jobs", label: "Job Postings", icon: "briefcase" },
 ];
 
 export default async function CompanyLayout({ children }: { children: React.ReactNode }) {

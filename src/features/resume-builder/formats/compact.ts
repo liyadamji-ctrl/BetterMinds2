@@ -5,7 +5,7 @@ const SIDEBAR = "#1e293b";
 
 export const compactFormat: ResumeFormat = {
   id: "compact",
-  name: "Compact sidebar",
+  name: "Compact Sidebar",
   description: "Two columns: a dark sidebar with contact, skills and education, and your experience on the right.",
   sections: standardSections,
   render(answers) {

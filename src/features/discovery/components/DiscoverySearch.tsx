@@ -32,7 +32,7 @@ const COPY = {
     linkVerb: "courses",
   },
   INTERNSHIP: {
-    queryLabel: "Role you want",
+    queryLabel: "Internship you want",
     queryPlaceholder: "e.g. marketing intern, software engineer",
     linkVerb: "openings",
   },
@@ -167,9 +167,9 @@ export function DiscoverySearch({ kind, initialSearches }: { kind: Kind; initial
           </div>
         ) : (
           <div className="grid gap-4 sm:grid-cols-2">
-            <TextField label="Area / field (optional)" name="area" value={area} onChange={(e) => setArea(e.target.value)} placeholder="e.g. fintech, healthcare" maxLength={100} />
+            <TextField label="Area / Field (optional)" name="area" value={area} onChange={(e) => setArea(e.target.value)} placeholder="e.g. fintech, healthcare" maxLength={100} />
             <TextField label="Location (optional)" name="location" value={location} onChange={(e) => setLocation(e.target.value)} placeholder="e.g. Mumbai, London" maxLength={100} disabled={remote} />
-            <SelectField label="Looking for" name="jobType" value={jobType} onChange={(e) => setJobType(e.target.value)} options={JOB_TYPE_OPTIONS} />
+            <SelectField label="Looking For" name="jobType" value={jobType} onChange={(e) => setJobType(e.target.value)} options={JOB_TYPE_OPTIONS} />
             <label className="flex items-center gap-2 self-end pb-2 text-sm text-slate-700">
               <input type="checkbox" checked={remote} onChange={(e) => setRemote(e.target.checked)} />
               Remote only
@@ -193,7 +193,7 @@ export function DiscoverySearch({ kind, initialSearches }: { kind: Kind; initial
       {current && <Results kind={kind} search={current} notice={notice} />}
 
       <section className="flex flex-col gap-3">
-        <h2 className="text-lg font-semibold text-slate-900">Your past searches</h2>
+        <h2 className="text-lg font-semibold text-slate-900">Your Past Searches</h2>
         {searches.length === 0 ? (
           <p className="text-sm text-slate-500">No saved searches yet.</p>
         ) : (

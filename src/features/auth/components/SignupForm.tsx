@@ -37,7 +37,7 @@ function TypeCard({
       <span className="text-xs text-slate-500">
         {isSeeker
           ? "Build your resume, find internships, and prep for interviews"
-          : "Post jobs, find candidates, and screen resumes with AI"}
+          : "Post jobs, find candidates, and review resumes with AI"}
       </span>
     </button>
   );

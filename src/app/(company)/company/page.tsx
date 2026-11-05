@@ -32,9 +32,9 @@ export default async function CompanyDashboardPage() {
       />
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <StatCard label="Active job postings" value={activeJobs} href="/company/jobs" />
-        <StatCard label="Total applicants" value={totalApplicants} />
-        <StatCard label="Shortlisted candidates" value={shortlisted} />
+        <StatCard label="Active Job Postings" value={activeJobs} href="/company/jobs" />
+        <StatCard label="Total Applicants" value={totalApplicants} />
+        <StatCard label="Shortlisted Candidates" value={shortlisted} />
       </div>
 
       {totalJobs === 0 && (

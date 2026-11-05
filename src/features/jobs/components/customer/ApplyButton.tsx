@@ -71,7 +71,7 @@ export function ApplyButton({
   return (
     <div className="flex flex-col gap-4 rounded-mw-lg bg-surface-raised shadow-mw-card p-6">
       <SelectField
-        label="Resume to send"
+        label="Resume to Send"
         value={resumeId}
         onChange={(e) => setResumeId(e.target.value)}
         options={resumes.map((r) => ({ value: r.id, label: r.title }))}

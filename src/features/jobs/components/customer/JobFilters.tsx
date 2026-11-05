@@ -35,7 +35,7 @@ export function JobFilters() {
         onChange={(e) => handleSearchChange(e.target.value)}
       />
       <SelectField
-        label="Employment type"
+        label="Employment Type"
         value={type}
         onChange={(e) => updateParam("type", e.target.value)}
         options={[

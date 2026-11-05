@@ -92,7 +92,7 @@ export function CvToResume() {
           <p className="text-xs text-slate-500">The file is read in your browser; only its text is sent for analysis.</p>
         </div>
         <TextField
-          label="Role you're applying for (optional)"
+          label="Job You're Applying For (optional)"
           name="targetRole"
           value={targetRole}
           onChange={(e) => setTargetRole(e.target.value)}
@@ -110,13 +110,13 @@ export function CvToResume() {
       {analysis && (
         <>
           <section className="grid gap-4 md:grid-cols-2">
-            <PointList title="Keep on your resume" tone="keep" points={analysis.keep} />
-            <PointList title="Leave off your resume" tone="cut" points={analysis.cut} />
+            <PointList title="Keep on Your Resume" tone="keep" points={analysis.keep} />
+            <PointList title="Leave Off Your Resume" tone="cut" points={analysis.cut} />
           </section>
 
           {analysis.missing.length > 0 && (
             <section className="rounded-mw-lg border border-amber-200 bg-amber-50 p-5">
-              <h2 className="font-semibold text-slate-900">Worth adding</h2>
+              <h2 className="font-semibold text-slate-900">Worth Adding</h2>
               <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-700">
                 {analysis.missing.map((m) => (
                   <li key={m}>{m}</li>
@@ -129,7 +129,7 @@ export function CvToResume() {
           )}
 
           <section className="flex flex-col gap-4">
-            <h2 className="text-lg font-semibold text-slate-900">Pick a template</h2>
+            <h2 className="text-lg font-semibold text-slate-900">Pick a Template</h2>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {resumeFormats.map((format) => {
                 const selected = format.id === formatId;
@@ -156,7 +156,7 @@ export function CvToResume() {
             </div>
 
             <div className="max-w-md">
-              <TextField label="Resume title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} maxLength={150} />
+              <TextField label="Resume Title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} maxLength={150} />
             </div>
             <div>
               <Button onClick={createResume} disabled={creating}>

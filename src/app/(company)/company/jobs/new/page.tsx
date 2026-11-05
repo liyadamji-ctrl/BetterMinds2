@@ -8,7 +8,7 @@ export default async function NewJobPage() {
   return (
     <div className="flex flex-col gap-6">
       <PageHeader
-        title="Post a job"
+        title="Post a Job"
         description="Fill in the details below. Job seekers can see it as soon as you post it."
       />
       <JobForm mode="create" />

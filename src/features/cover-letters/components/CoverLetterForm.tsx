@@ -88,7 +88,7 @@ export function CoverLetterForm({
   return (
     <div className="flex flex-col gap-6 rounded-mw-lg bg-surface-raised shadow-mw-card p-6">
       <SelectField
-        label="Resume to base it on"
+        label="Resume to Base It On"
         value={resumeId}
         onChange={(e) => setResumeId(e.target.value)}
         options={resumes.map((r) => ({ value: r.id, label: r.title }))}
@@ -133,14 +133,14 @@ export function CoverLetterForm({
         ) : (
           <>
             <TextField
-              label="Company name"
+              label="Company Name"
               value={companyName}
               onChange={(e) => setCompanyName(e.target.value)}
               required
             />
-            <TextField label="Job title" value={jobTitle} onChange={(e) => setJobTitle(e.target.value)} required />
+            <TextField label="Job Title" value={jobTitle} onChange={(e) => setJobTitle(e.target.value)} required />
             <TextAreaField
-              label="Job description (optional, but helps a lot)"
+              label="Job Description (optional, but helps a lot)"
               value={jobDescription}
               onChange={(e) => setJobDescription(e.target.value)}
             />
@@ -149,7 +149,7 @@ export function CoverLetterForm({
       </div>
 
       <TextAreaField
-        label="Accomplishments to emphasize (optional)"
+        label="Accomplishments to Emphasize (optional)"
         placeholder="Anything specific you want the letter to highlight…"
         value={notes}
         onChange={(e) => setNotes(e.target.value)}

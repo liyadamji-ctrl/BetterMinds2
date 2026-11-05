@@ -51,7 +51,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
       </div>
 
       <div className="rounded-mw-lg bg-surface-raised shadow-mw-card p-6">
-        <h2 className="mb-2 font-semibold text-slate-900">About this role</h2>
+        <h2 className="mb-2 font-semibold text-slate-900">About This Job</h2>
         <p className="whitespace-pre-wrap text-sm text-slate-700">{job.description}</p>
       </div>
 
@@ -76,7 +76,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
         Write a cover letter for this job
       </Link>
       <Link href={`/interview/new?jobId=${job.id}`} className="text-sm text-indigo-700 hover:underline">
-        Practise an interview for this job
+        Practice an interview for this job
       </Link>
     </div>
   );

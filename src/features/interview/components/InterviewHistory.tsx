@@ -33,7 +33,7 @@ export function InterviewHistory({ initialRows }: { initialRows: InterviewRow[] 
   if (rows.length === 0) {
     return (
       <div className="rounded-mw-lg bg-surface-raised shadow-mw-card p-10 text-center">
-        <p className="text-slate-600">You haven&rsquo;t practised an interview yet.</p>
+        <p className="text-slate-600">You haven&rsquo;t practiced an interview yet.</p>
       </div>
     );
   }

@@ -8,7 +8,7 @@ export default function SignupPage() {
       <div className="flex flex-col gap-6">
         <div>
           <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ocean">
-            Create your account
+            Create Your Account
           </h1>
           <p className="mt-2 text-[15px] text-ink-muted">
             Already have one?{" "}

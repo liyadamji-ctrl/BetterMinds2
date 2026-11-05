@@ -38,9 +38,9 @@ export default async function AdminAnalysesPage({
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ocean sm:text-[36px] sm:leading-[42px]">Resume analyses</h1>
+        <h1 className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ocean sm:text-[36px] sm:leading-[42px]">Resume Analyses</h1>
         <p className="mt-1 text-sm text-ink-muted">
-          Every resume customers have run through the Resume Analyzer, who ran it, and the job they analysed it against.
+          Every resume customers have run through the Resume Analyzer, who ran it, and the job they analyzed it against.
           One person can appear many times, once per job.
         </p>
       </div>
@@ -48,10 +48,10 @@ export default async function AdminAnalysesPage({
       <AnalysesTabs active="all" />
 
       <div className="grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-4">
-        <StatCard label="Analyses run" value={overview.total} />
+        <StatCard label="Analyses Run" value={overview.total} />
         <StatCard label="People" value={overview.people} />
-        <StatCard label="Average score" value={overview.avgScore ?? "—"} />
-        <StatCard label="Scored below 50" value={overview.below50} />
+        <StatCard label="Average Score" value={overview.avgScore ?? "—"} />
+        <StatCard label="Scored Below 50" value={overview.below50} />
       </div>
 
       <form method="get" className="flex flex-wrap items-end gap-3 rounded-ts-lg border border-line bg-surface p-4">
@@ -101,7 +101,7 @@ export default async function AdminAnalysesPage({
               <tr>
                 <th className="px-4 py-3 font-medium">Person</th>
                 <th className="px-4 py-3 font-medium">Resume file</th>
-                <th className="px-4 py-3 font-medium">Analysed against job</th>
+                <th className="px-4 py-3 font-medium">Analyzed against job</th>
                 <th className="px-4 py-3 font-medium">Score</th>
                 <th className="px-4 py-3 font-medium">Date</th>
                 <th className="px-4 py-3" />

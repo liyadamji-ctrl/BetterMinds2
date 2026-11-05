@@ -23,10 +23,10 @@ export default async function ResumeAnalyzerPage() {
   return (
     <div className="flex flex-col gap-8">
       <div>
-        <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ocean sm:text-[40px] sm:leading-[46px]">Analyze your resume</h1>
+        <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ocean sm:text-[40px] sm:leading-[46px]">Analyze Your Resume</h1>
         <p className="mt-1 text-slate-600">
-          Upload a resume and tell us the job you&rsquo;re targeting — we&rsquo;ll score the match and suggest
-          improvements.
+          Upload a resume and tell us the job you&rsquo;re targeting — we&rsquo;ll score the match and give you
+          feedback to improve.
         </p>
       </div>
       <ResumeAnalyzer initialHistory={initialHistory} />

@@ -6,7 +6,7 @@ const NAVY = "#1f2a44";
 export const executiveFormat: ResumeFormat = {
   id: "executive",
   name: "Executive",
-  description: "Serif headings with a navy rule and bullet-point achievements — suited to experienced roles.",
+  description: "Serif headings, navy divider lines and bullet-point achievements. Best for experienced professionals.",
   sections: standardSections,
   render(answers) {
     const name = escapeHtml(str(answers, "personal", "fullName") || "Your Name");

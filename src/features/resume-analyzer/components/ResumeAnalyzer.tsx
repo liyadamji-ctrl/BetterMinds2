@@ -55,7 +55,7 @@ function ResultPanel({ result, title }: { result: AnalysisResult; title: string 
         </div>
 
         <div>
-          <h3 className="mb-2 text-sm font-semibold text-slate-900">Suggestions</h3>
+          <h3 className="mb-2 text-sm font-semibold text-slate-900">Feedback</h3>
           {result.suggestions.length === 0 ? (
             <p className="text-sm text-slate-500">None noted.</p>
           ) : (
@@ -68,7 +68,7 @@ function ResultPanel({ result, title }: { result: AnalysisResult; title: string 
         </div>
 
         <div>
-          <h3 className="mb-2 text-sm font-semibold text-slate-900">Missing keywords</h3>
+          <h3 className="mb-2 text-sm font-semibold text-slate-900">Missing Keywords</h3>
           {result.missingKeywords.length === 0 ? (
             <p className="text-sm text-slate-500">None noted.</p>
           ) : (
@@ -215,7 +215,7 @@ export function ResumeAnalyzer({ initialHistory }: { initialHistory: ResumeAnaly
             onChange={handleFileChange}
             className="text-sm text-slate-700 file:mr-4 file:rounded-mw-md file:border-0 file:bg-indigo-700 file:px-4 file:py-2 file:text-sm file:font-medium file:text-white hover:file:bg-indigo-800"
           />
-          <p className="text-xs text-slate-500">PDF, DOCX, or TXT — up to 8MB. Your file is read in your browser and never uploaded as-is.</p>
+          <p className="text-xs text-slate-500">PDF, DOCX, or TXT — up to 8MB.</p>
           {extracting && <p className="text-sm text-slate-600">Reading {fileName}…</p>}
           {extractError && <p className="text-sm text-red-600">{extractError}</p>}
           {!extracting && !extractError && resumeText && (
@@ -228,14 +228,14 @@ export function ResumeAnalyzer({ initialHistory }: { initialHistory: ResumeAnaly
         <h2 className="mb-4 font-semibold text-slate-900">2. Which job is this for?</h2>
         <div className="flex flex-col gap-4">
           <TextField
-            label="Job title"
+            label="Job Title"
             placeholder="e.g. Senior Backend Engineer"
             value={jobTitle}
             onChange={(e) => setJobTitle(e.target.value)}
             required
           />
           <TextAreaField
-            label="Job description (optional, but the analysis is much better with it)"
+            label="Job Description (optional — the analysis is stronger with it)"
             placeholder="Paste the job posting or key requirements here…"
             value={jobDescription}
             onChange={(e) => setJobDescription(e.target.value)}
@@ -252,7 +252,7 @@ export function ResumeAnalyzer({ initialHistory }: { initialHistory: ResumeAnaly
       {result && activeTitle && <ResultPanel result={result} title={activeTitle} />}
 
       <div>
-        <h2 className="mb-3 font-semibold text-slate-900">Past analyses</h2>
+        <h2 className="mb-3 font-semibold text-slate-900">Past Analyses</h2>
         {history.length === 0 ? (
           <p className="text-sm text-slate-500">No analyses yet.</p>
         ) : (

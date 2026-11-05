@@ -3,7 +3,7 @@ import { db } from "@/lib/db";
 import { PageHeader, StatCard } from "@/components/teamstead/ui";
 
 const SHORTCUTS = [
-  ["/admin/analyses", "Resume analyses", "Every analysed resume, who it belongs to and the job it was checked against."],
+  ["/admin/analyses", "Resume analyses", "Every analyzed resume, who it belongs to and the job it was checked against."],
   ["/admin/features", "Feature usage", "Which features customers and companies use the most."],
   ["/admin/companies", "Companies", "Job postings and whether AI screening is working for each company."],
 ];
@@ -21,8 +21,8 @@ export default async function AdminOverviewPage() {
       <PageHeader title="Overview" description="How customers and companies are using the platform." />
       <div className="grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-4">
         <StatCard label="Customers" value={customerCount} />
-        <StatCard label="Resumes built" value={resumeCount} />
-        <StatCard label="Session recordings" value={recordingCount} />
+        <StatCard label="Resumes Built" value={resumeCount} />
+        <StatCard label="Session Recordings" value={recordingCount} />
         <StatCard label="Customers who opted in to recording" value={consentedCount} />
       </div>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

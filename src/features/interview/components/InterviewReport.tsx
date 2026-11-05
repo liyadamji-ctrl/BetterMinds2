@@ -51,19 +51,19 @@ export function InterviewReport({ report, questions }: { report: Report; questio
       </div>
 
       <div className="grid gap-3 sm:grid-cols-3">
-        <ScoreCard label="Answer quality" score={report.contentScore} />
+        <ScoreCard label="Answer Quality" score={report.contentScore} />
         <ScoreCard label="Delivery (pace, fillers)" score={report.deliveryScore} />
-        <ScoreCard label="Camera presence" score={report.cameraScore} />
+        <ScoreCard label="Camera Presence" score={report.cameraScore} />
       </div>
 
       <div className="grid gap-4 md:grid-cols-2">
-        <Bullets title="What went well" items={report.strengths} color="border-emerald-200 bg-emerald-50" />
-        <Bullets title="Key things to improve" items={report.improvements} color="border-amber-200 bg-amber-50" />
+        <Bullets title="What Went Well" items={report.strengths} color="border-emerald-200 bg-emerald-50" />
+        <Bullets title="Key Things to Improve" items={report.improvements} color="border-amber-200 bg-amber-50" />
       </div>
-      <Bullets title="Practise next" items={report.nextSteps} color="border-indigo-200 bg-indigo-50" />
+      <Bullets title="Practice Next" items={report.nextSteps} color="border-indigo-200 bg-indigo-50" />
 
       <section className="flex flex-col gap-3">
-        <h2 className="text-lg font-semibold text-slate-900">Question by question</h2>
+        <h2 className="text-lg font-semibold text-slate-900">Question by Question</h2>
         {questions.map((q, i) => (
           <details key={q.id} className="rounded-mw-lg bg-surface-raised shadow-mw-card p-4">
             <summary className="cursor-pointer text-sm font-medium text-slate-900">

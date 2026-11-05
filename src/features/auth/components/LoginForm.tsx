@@ -1,14 +1,12 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { Button } from "@/components/ui/Button";
 import { TextField } from "@/components/ui/Field";
 import { GoogleButton } from "./GoogleButton";
 
 export function LoginForm() {
-  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -16,6 +14,7 @@ export function LoginForm() {
     event.preventDefault();
     setError(null);
     setLoading(true);
+    let navigating = false;
 
     const formData = new FormData(event.currentTarget);
     const email = String(formData.get("email") ?? "");
@@ -29,24 +28,35 @@ export function LoginForm() {
         return;
       }
 
-      // Ask the server which area this account belongs in.
-      const res = await fetch("/api/me");
+      // Ask the server which area this account belongs in. If it can't see
+      // the new session yet, say so instead of guessing: the old code fell
+      // through to /dashboard, which bounced back to /login and made people
+      // click Log In twice.
+      const res = await fetch("/api/me", { cache: "no-store" });
+      if (!res.ok) {
+        setError("We couldn't finish logging you in. Please try again.");
+        return;
+      }
       const data = await res.json();
 
-      if (data.needsOnboarding) {
-        router.push("/onboarding");
-      } else if (data.role === "ADMIN") {
-        router.push("/admin");
-      } else if (data.role === "COMPANY") {
-        router.push("/company");
-      } else {
-        router.push("/dashboard");
-      }
-      router.refresh();
+      const destination = data.needsOnboarding
+        ? "/onboarding"
+        : data.role === "ADMIN"
+          ? "/admin"
+          : data.role === "COMPANY"
+            ? "/company"
+            : "/dashboard";
+
+      // A full page load (not router.push + router.refresh) so the next page is
+      // always rendered with the fresh session cookie, never a cached redirect.
+      navigating = true;
+      window.location.assign(destination);
+      return;
     } catch {
       setError("Couldn't reach the server. Check your connection and try again.");
     } finally {
-      setLoading(false);
+      // Stay in the loading state while the browser navigates away.
+      if (!navigating) setLoading(false);
     }
   }
 
@@ -57,7 +67,7 @@ export function LoginForm() {
         <TextField label="Password" name="password" type="password" autoComplete="current-password" required />
         {error && <p className="text-sm text-red-600">{error}</p>}
         <Button type="submit" disabled={loading}>
-          {loading ? "Logging in…" : "Log in"}
+          {loading ? "Logging In…" : "Log In"}
         </Button>
       </form>
       <div className="flex items-center gap-3 text-xs text-slate-400">

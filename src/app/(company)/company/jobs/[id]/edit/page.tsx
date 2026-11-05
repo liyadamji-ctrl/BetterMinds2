@@ -27,7 +27,7 @@ export default async function EditJobPage({ params }: { params: Promise<{ id: st
 
   return (
     <div className="flex flex-col gap-6">
-      <PageHeader title="Edit job posting" />
+      <PageHeader title="Edit Job Posting" />
       <JobForm mode="edit" job={initial} />
     </div>
   );

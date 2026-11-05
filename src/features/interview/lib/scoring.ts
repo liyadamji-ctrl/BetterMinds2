@@ -38,7 +38,7 @@ const clamp = (n: number) => Math.max(0, Math.min(100, Math.round(n)));
 /**
  * 0-100 from speaking pace and filler density. Ideal pace is roughly
  * 110-160 words per minute; filler words cost points above ~3 per 100 words.
- * Very short answers are penalised because there is little to judge.
+ * Very short answers are penalized because there is little to judge.
  */
 export function deliveryScore(transcript: string, durationSec: number): number {
   const words = countWords(transcript);

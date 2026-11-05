@@ -25,7 +25,7 @@ export default async function AdminAnalysisPersonPage({ params }: { params: Prom
       </div>
 
       <section className="flex flex-col gap-3">
-        <h2 className="font-semibold text-ink">Jobs they analysed resumes against</h2>
+        <h2 className="font-semibold text-ink">Jobs they analyzed resumes against</h2>
         <div className="flex flex-wrap gap-2">
           {jobs.map((j) => (
             <span key={j.jobTitle} className="flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-sm text-ink">
@@ -46,7 +46,7 @@ export default async function AdminAnalysisPersonPage({ params }: { params: Prom
               <tr>
                 <th className="px-4 py-3 font-medium">Date</th>
                 <th className="px-4 py-3 font-medium">Resume file</th>
-                <th className="px-4 py-3 font-medium">Analysed against job</th>
+                <th className="px-4 py-3 font-medium">Analyzed against job</th>
                 <th className="px-4 py-3 font-medium">Score</th>
                 <th className="px-4 py-3" />
               </tr>

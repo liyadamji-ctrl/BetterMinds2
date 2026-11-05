@@ -18,7 +18,7 @@ export default async function AdminSessionsPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ocean sm:text-[36px] sm:leading-[42px]">Session recordings</h1>
+        <h1 className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ocean sm:text-[36px] sm:leading-[42px]">Session Recordings</h1>
         <p className="mt-1 text-sm text-ink-muted">
           Only customers who opted in to the consent banner appear here.
         </p>

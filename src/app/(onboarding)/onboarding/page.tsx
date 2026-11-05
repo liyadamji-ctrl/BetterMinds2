@@ -26,7 +26,7 @@ export default async function OnboardingPage() {
             Welcome. Let&rsquo;s set up your profile
           </h1>
           <p className="mt-2 text-[15px] text-ink-muted">
-            This helps us personalise your experience. You can update it later.
+            This helps us personalize your experience. You can update it later.
           </p>
         </div>
         <OnboardingWizard initialRole={(profile?.role ?? "CUSTOMER") as Role} />

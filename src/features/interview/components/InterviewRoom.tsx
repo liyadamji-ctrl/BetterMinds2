@@ -178,7 +178,7 @@ export function InterviewRoom({
         <InterviewReport report={report} questions={questions} />
         <div className="flex gap-3">
           <Link href="/interview/new">
-            <Button>Practise again</Button>
+            <Button>Practice again</Button>
           </Link>
           <Link href="/interview">
             <Button variant="secondary">All sessions</Button>
@@ -305,8 +305,8 @@ export function InterviewRoom({
               {question.fillerCount ?? 0} filler words
               {question.camera ? ` · eye contact ${question.camera.eyeContactPct}%` : ""}
             </p>
-            <FeedbackList title="What worked" items={question.analysis.strengths} />
-            <FeedbackList title="To improve" items={question.analysis.improvements} />
+            <FeedbackList title="What Worked" items={question.analysis.strengths} />
+            <FeedbackList title="To Improve" items={question.analysis.improvements} />
             {question.analysis.betterAnswerTip && (
               <p className="rounded bg-slate-50 p-3 text-sm text-slate-700">
                 <span className="font-medium">Tip: </span>
@@ -353,7 +353,7 @@ export function InterviewRoom({
           {cameraState === "loading" ? "Starting camera…" : cameraState === "on" ? "Turn camera off" : "Turn camera on"}
         </Button>
         <p className="text-xs text-slate-500">
-          Optional. Video is analysed in your browser to estimate eye contact and head steadiness; it is never uploaded or saved.
+          Optional. Video is analyzed in your browser to estimate eye contact and head steadiness; it is never uploaded or saved.
         </p>
         {cameraNote && <p className="text-xs text-amber-700">{cameraNote}</p>}
         {answeredCount > 0 && !allAnswered && phase !== "analyzing" && (

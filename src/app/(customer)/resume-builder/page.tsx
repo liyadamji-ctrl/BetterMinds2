@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { resumeFormats } from "@/features/resume-builder/formats";
+import { FormatPreview } from "@/features/resume-builder/components/FormatPreview";
 
 export default function ChooseFormatPage() {
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ocean sm:text-[40px] sm:leading-[46px]">Choose a format</h1>
+        <h1 className="font-serif-mw text-[32px] font-medium leading-[38px] tracking-[-0.01em] text-ocean sm:text-[40px] sm:leading-[46px]">Choose a Format</h1>
         <p className="mt-1 text-slate-600">Every format asks the same questions — pick the look you want.</p>
       </div>
       <Link
@@ -22,10 +23,13 @@ export default function ChooseFormatPage() {
           <Link
             key={format.id}
             href={`/resume-builder/${format.id}`}
-            className="rounded-mw-lg bg-surface-raised shadow-mw-card p-6 transition-shadow hover:shadow-md"
+            className="flex flex-col gap-4 rounded-mw-lg bg-surface-raised shadow-mw-card p-6 transition-shadow hover:shadow-mw-float"
           >
-            <h2 className="font-semibold text-slate-900">{format.name}</h2>
-            <p className="mt-1 text-sm text-slate-600">{format.description}</p>
+            <FormatPreview format={format} />
+            <div>
+              <h2 className="font-semibold text-slate-900">{format.name}</h2>
+              <p className="mt-1 text-sm text-slate-600">{format.description}</p>
+            </div>
           </Link>
         ))}
       </div>

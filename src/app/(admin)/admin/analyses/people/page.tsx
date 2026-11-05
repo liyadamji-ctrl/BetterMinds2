@@ -19,9 +19,9 @@ export default async function AdminAnalysisPeoplePage({
   return (
     <div className="flex flex-col gap-6">
       <div>
-        <h1 className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ocean sm:text-[36px] sm:leading-[42px]">Resume analyses by person</h1>
+        <h1 className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ocean sm:text-[36px] sm:leading-[42px]">Resume Analyses by Person</h1>
         <p className="mt-1 text-sm text-ink-muted">
-          One row per customer. Open a person to see every job they analysed a resume against.
+          One row per customer. Open a person to see every job they analyzed a resume against.
         </p>
       </div>
 

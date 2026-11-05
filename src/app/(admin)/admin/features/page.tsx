@@ -41,7 +41,7 @@ export default async function AdminFeaturesPage({ searchParams }: { searchParams
     <div className="flex flex-col gap-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ocean sm:text-[36px] sm:leading-[42px]">Feature usage</h1>
+          <h1 className="font-display text-[28px] font-bold leading-9 tracking-[-0.015em] text-ocean sm:text-[36px] sm:leading-[42px]">Feature Usage</h1>
           <p className="mt-1 text-sm text-ink-muted">
             Every feature on the platform, most used first. A &ldquo;use&rdquo; is someone completing the
             feature&apos;s main action, not just opening the page.
@@ -63,10 +63,10 @@ export default async function AdminFeaturesPage({ searchParams }: { searchParams
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        <StatCard label="Total feature uses" value={report.totalUses} hint={RANGE_LABELS[range]} />
-        <StatCard label="Active users" value={report.activeUsers} hint="Users with any activity in range" />
+        <StatCard label="Total Feature Uses" value={report.totalUses} hint={RANGE_LABELS[range]} />
+        <StatCard label="Active Users" value={report.activeUsers} hint="Users with any activity in range" />
         <StatCard
-          label="Most used feature"
+          label="Most Used Feature"
           value={top ? top.feature.label : "—"}
           hint={top ? `${top.uses} uses · ${aiUses} AI-powered uses overall` : "No activity in this range yet"}
         />

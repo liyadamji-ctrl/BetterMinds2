@@ -4,7 +4,7 @@ import { bulletList, contactParts, items, standardSections, str } from "./shared
 export const minimalFormat: ResumeFormat = {
   id: "minimal",
   name: "Minimal",
-  description: "Left-aligned, lots of white space and no colour — easy for any applicant tracking system to read.",
+  description: "Left-aligned with plenty of white space and no color, so applicant tracking systems can read it easily.",
   sections: standardSections,
   render(answers) {
     const name = escapeHtml(str(answers, "personal", "fullName") || "Your Name");

@@ -62,9 +62,9 @@ export default async function AdminCompanyDetailPage({ params }: { params: Promi
           <p className="mt-1 text-sm text-ink-muted">{explain(overall)}</p>
         </div>
         <div className="grid grid-cols-2 gap-3 xl:grid-cols-4">
-          <Stat label="Applicants screened" value={`${overall.screened} / ${overall.applicants}`} hint={overall.adoptionRate !== null ? `${overall.adoptionRate}% adoption` : undefined} />
-          <Stat label="Average AI score" value={overall.avgScore ?? "—"} hint={`${overall.strong} strong · ${overall.possible} possible · ${overall.weak} weak`} />
-          <Stat label="Recruiter agreement" value={overall.agreementRate !== null ? `${overall.agreementRate}%` : "—"} hint={`${overall.decided} shortlisted/rejected decisions`} />
+          <Stat label="Applicants Screened" value={`${overall.screened} / ${overall.applicants}`} hint={overall.adoptionRate !== null ? `${overall.adoptionRate}% adoption` : undefined} />
+          <Stat label="Average AI Score" value={overall.avgScore ?? "—"} hint={`${overall.strong} strong · ${overall.possible} possible · ${overall.weak} weak`} />
+          <Stat label="Recruiter Agreement" value={overall.agreementRate !== null ? `${overall.agreementRate}%` : "—"} hint={`${overall.decided} shortlisted/rejected decisions`} />
           <Stat label="Overrides" value={overall.strongRejected + overall.weakShortlisted} hint={`${overall.strongRejected} strong rejected · ${overall.weakShortlisted} weak shortlisted`} />
         </div>
       </section>

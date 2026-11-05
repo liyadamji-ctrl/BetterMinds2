@@ -91,34 +91,34 @@ export function JobForm(props: Props) {
 
   return (
     <div className="flex flex-col gap-6 rounded-ts-lg border border-line bg-surface shadow-card p-6">
-      <TextField label="Job title" value={title} onChange={(e) => setTitle(e.target.value)} required />
+      <TextField label="Job Title" value={title} onChange={(e) => setTitle(e.target.value)} required />
       <TextAreaField
-        label="Role description"
+        label="Job Description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         required
       />
       <TextAreaField
-        label="Requirements / qualifications (optional)"
+        label="Requirements / Qualifications (optional)"
         value={requirements}
         onChange={(e) => setRequirements(e.target.value)}
       />
 
       <div className="grid gap-4 sm:grid-cols-2">
         <SelectField
-          label="Employment type"
+          label="Employment Type"
           value={employmentType}
           onChange={(e) => setEmploymentType(e.target.value as EmploymentType)}
           options={EMPLOYMENT_TYPES.map((type) => ({ value: type, label: EMPLOYMENT_TYPE_LABELS[type] }))}
         />
         <SelectField
-          label="Location type"
+          label="Location Type"
           value={locationType}
           onChange={(e) => setLocationType(e.target.value as LocationType)}
           options={LOCATION_TYPES.map((type) => ({ value: type, label: LOCATION_TYPE_LABELS[type] }))}
         />
         <TextField
-          label="Hours per week (optional)"
+          label="Hours per Week (optional)"
           type="number"
           min={1}
           max={168}
@@ -126,7 +126,7 @@ export function JobForm(props: Props) {
           onChange={(e) => setHoursPerWeek(e.target.value)}
         />
         <TextField
-          label="Weeks per year (optional)"
+          label="Weeks per Year (optional)"
           type="number"
           min={1}
           max={52}

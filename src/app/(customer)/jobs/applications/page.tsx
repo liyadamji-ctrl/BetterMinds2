@@ -23,7 +23,7 @@ export default async function MyApplicationsPage() {
 
   return (
     <div className="flex flex-col gap-6">
-      <PageTitle title="My applications" description="Jobs you have applied to and where each one stands." />
+      <PageTitle title="My Applications" description="Jobs you have applied to, with the latest status on each." />
 
       {applications.length === 0 ? (
         <MwEmpty
