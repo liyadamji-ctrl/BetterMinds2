@@ -33,7 +33,7 @@ export default async function JobDetailPage({ params }: { params: Promise<{ id: 
   const companyData = job.company.profileJson
     ? (JSON.parse(job.company.profileJson) as Record<string, string>)
     : null;
-  const companyName = companyData?.companyName ?? job.company.name ?? "A company on ResumeRiseAI";
+  const companyName = companyData?.companyName ?? job.company.name ?? "A company on Prepped";
 
   return (
     <div className="flex flex-col gap-6">

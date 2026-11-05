@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ResumeRiseAI — Career Platform",
+  title: "Prepped — Career Platform",
   description:
     "Build your resume, find internships, prep for interviews, and connect with employers — all in one place.",
 };

@@ -17,7 +17,7 @@ export function Logo({ variant = "default", suffix }: LogoProps) {
   return (
     <span className={`inline-flex items-center gap-1.5 font-semibold ${textColor}`}>
       <span aria-hidden className="inline-block h-5 w-5 rounded bg-indigo-700" />
-      ResumeRiseAI{suffix ? ` ${suffix}` : ""}
+      Prepped{suffix ? ` ${suffix}` : ""}
     </span>
   );
 }

@@ -36,7 +36,7 @@ const FEATURES = [
   {
     icon: Briefcase,
     title: "Jobs and internships",
-    body: "Apply to roles posted on ResumeRiseAI, and find more openings on the top job boards.",
+    body: "Apply to roles posted on Prepped, and find more openings on the top job boards.",
   },
   {
     icon: Users,
@@ -293,7 +293,7 @@ export default function HomePage() {
       <footer className="border-t border-line">
         <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-8 text-sm text-ink-muted sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <Wordmark className="!text-[20px]" />
-          <p>&copy; {new Date().getFullYear()} ResumeRiseAI</p>
+          <p>&copy; {new Date().getFullYear()} Prepped</p>
           <nav aria-label="Account" className="flex gap-4">
             <Link href="/login" className="hover:text-ink">
               Log in

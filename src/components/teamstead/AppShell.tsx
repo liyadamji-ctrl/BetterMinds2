@@ -100,9 +100,9 @@ export function AppShell({
           className="flex items-center gap-2 font-display text-[22px] font-bold tracking-[-0.01em] text-ocean"
         >
           <span aria-hidden className="grid h-7 w-7 place-items-center rounded-ts-md bg-navy text-sm text-on-navy">
-            R
+            P
           </span>
-          ResumeRise
+          Prepped
         </Link>
         <button
           type="button"

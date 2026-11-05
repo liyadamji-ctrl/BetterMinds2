@@ -13,10 +13,10 @@ export function Wordmark({ href = "/", className = "" }: { href?: string; classN
       className={`inline-flex items-center gap-2 font-serif-mw text-[24px] font-medium leading-none tracking-[-0.01em] text-ocean ${className}`}
     >
       <span aria-hidden className="grid h-7 w-7 place-items-center rounded-mw-sm bg-brand text-[15px] text-on-brand">
-        R
+        P
       </span>
       <span>
-        ResumeRise<span className="text-brand">AI</span>
+        Prepped
       </span>
     </Link>
   );

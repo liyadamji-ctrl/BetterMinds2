@@ -34,7 +34,7 @@ export default async function JobsPage({
     <div className="flex flex-col gap-6">
       <PageTitle
         title="Job opportunities"
-        description="Browse open roles and internships posted by companies on ResumeRiseAI."
+        description="Browse open roles and internships posted by companies on Prepped."
       />
 
       <JobFilters />
@@ -50,7 +50,7 @@ export default async function JobsPage({
             const companyData = job.company.profileJson
               ? (JSON.parse(job.company.profileJson) as Record<string, string>)
               : null;
-            const companyName = companyData?.companyName ?? job.company.name ?? "A company on ResumeRiseAI";
+            const companyName = companyData?.companyName ?? job.company.name ?? "A company on Prepped";
             return (
               <li key={job.id}>
                 <Link

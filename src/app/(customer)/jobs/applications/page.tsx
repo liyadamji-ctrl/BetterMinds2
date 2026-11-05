@@ -41,7 +41,7 @@ export default async function MyApplicationsPage() {
             const companyData = application.job.company.profileJson
               ? (JSON.parse(application.job.company.profileJson) as Record<string, string>)
               : null;
-            const companyName = companyData?.companyName ?? application.job.company.name ?? "A company on ResumeRiseAI";
+            const companyName = companyData?.companyName ?? application.job.company.name ?? "A company on Prepped";
             const status = application.status as ApplicationStatus;
             return (
               <li key={application.id}>

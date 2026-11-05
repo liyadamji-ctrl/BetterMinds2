@@ -40,7 +40,7 @@ export default async function CompanyDashboardPage() {
       {totalJobs === 0 && (
         <EmptyState
           title="No job postings yet"
-          description="Create your first job posting to start receiving applications from candidates on ResumeRiseAI."
+          description="Create your first job posting to start receiving applications from candidates on Prepped."
           action={<LinkButton href="/company/jobs/new" variant="primary">Post a job</LinkButton>}
         />
       )}
