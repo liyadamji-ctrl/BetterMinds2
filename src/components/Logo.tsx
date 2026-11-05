@@ -18,7 +18,7 @@ export function Logo({ variant = "default", suffix }: LogoProps) {
 
   return (
     <span className={`inline-flex items-center gap-1.5 font-semibold ${textColor}`}>
-      <PreppedMark className="h-6 w-auto flex-none" />
+      <PreppedMark className="h-[1.1em] w-auto flex-none" />
       Prepped{suffix ? ` ${suffix}` : ""}
     </span>
   );

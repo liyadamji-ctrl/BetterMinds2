@@ -100,7 +100,7 @@ export function AppShell({
           href={homeHref}
           className="flex items-center gap-2 font-display text-[22px] font-bold tracking-[-0.01em] text-ocean"
         >
-          <PreppedMark className="h-8 w-auto flex-none" />
+          <PreppedMark className="h-[1.1em] w-auto flex-none" />
           Prepped
         </Link>
         <button

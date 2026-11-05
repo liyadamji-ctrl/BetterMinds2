@@ -13,7 +13,7 @@ export function Wordmark({ href = "/", className = "" }: { href?: string; classN
       href={href}
       className={`inline-flex items-center gap-2 font-serif-mw text-[24px] font-bold leading-none tracking-[-0.01em] text-ocean ${className}`}
     >
-      <PreppedMark className="h-8 w-auto flex-none" />
+      <PreppedMark className="h-[1.1em] w-auto flex-none" />
       <span>Prepped</span>
     </Link>
   );
