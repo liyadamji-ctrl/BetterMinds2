@@ -18,6 +18,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
+import { PreppedMark } from "@/components/PreppedMark";
 import { teamsteadFontClasses } from "./fonts";
 
 const ICONS: Record<string, LucideIcon> = {
@@ -99,9 +100,7 @@ export function AppShell({
           href={homeHref}
           className="flex items-center gap-2 font-display text-[22px] font-bold tracking-[-0.01em] text-ocean"
         >
-          <span aria-hidden className="grid h-7 w-7 place-items-center rounded-ts-md bg-navy text-sm text-on-navy">
-            P
-          </span>
+          <PreppedMark className="h-8 w-auto flex-none" />
           Prepped
         </Link>
         <button

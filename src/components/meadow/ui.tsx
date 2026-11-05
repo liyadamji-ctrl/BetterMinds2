@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Moon, Sun } from "lucide-react";
 import type { ButtonHTMLAttributes, ReactNode } from "react";
+import { PreppedMark } from "@/components/PreppedMark";
 import { useMeadowTheme } from "./MeadowScope";
 
 /* ---------- Wordmark ---------- */
@@ -10,14 +11,10 @@ export function Wordmark({ href = "/", className = "" }: { href?: string; classN
   return (
     <Link
       href={href}
-      className={`inline-flex items-center gap-2 font-serif-mw text-[24px] font-medium leading-none tracking-[-0.01em] text-ocean ${className}`}
+      className={`inline-flex items-center gap-2 font-serif-mw text-[24px] font-bold leading-none tracking-[-0.01em] text-ocean ${className}`}
     >
-      <span aria-hidden className="grid h-7 w-7 place-items-center rounded-mw-sm bg-brand text-[15px] text-on-brand">
-        P
-      </span>
-      <span>
-        Prepped
-      </span>
+      <PreppedMark className="h-8 w-auto flex-none" />
+      <span>Prepped</span>
     </Link>
   );
 }

@@ -41,6 +41,8 @@ body {
   --danger: #a4483b;
   --danger-soft: #f6e0db;
   --focus-ring: #2b6a86;
+  --mark-edge: #2f4156;
+  --mark-mid: #8fa9c2;
   --shadow-soft: 0 1px 2px rgba(28, 39, 51, 0.04), 0 8px 24px rgba(28, 39, 51, 0.06);
   --shadow-raised: 0 12px 32px rgba(28, 39, 51, 0.12);
   color-scheme: light;
@@ -72,6 +74,8 @@ body {
   --danger: #e58e80;
   --danger-soft: #3a201b;
   --focus-ring: #8cc3dc;
+  --mark-edge: #9db4cb;
+  --mark-mid: #f5efeb;
   --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3);
   --shadow-raised: 0 12px 32px rgba(0, 0, 0, 0.5);
   color-scheme: dark;
@@ -104,6 +108,8 @@ body {
       --danger: #e58e80;
       --danger-soft: #3a201b;
       --focus-ring: #8cc3dc;
+  --mark-edge: #9db4cb;
+  --mark-mid: #f5efeb;
       --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.3);
       --shadow-raised: 0 12px 32px rgba(0, 0, 0, 0.5);
       color-scheme: dark;

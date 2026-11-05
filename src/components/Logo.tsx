@@ -1,3 +1,5 @@
+import { PreppedMark } from "@/components/PreppedMark";
+
 type LogoProps = {
   /** "dark" renders the wordmark in white, for dark nav backgrounds (e.g. AdminNav). */
   variant?: "default" | "dark";
@@ -16,7 +18,7 @@ export function Logo({ variant = "default", suffix }: LogoProps) {
 
   return (
     <span className={`inline-flex items-center gap-1.5 font-semibold ${textColor}`}>
-      <span aria-hidden className="inline-block h-5 w-5 rounded bg-indigo-700" />
+      <PreppedMark className="h-6 w-auto flex-none" />
       Prepped{suffix ? ` ${suffix}` : ""}
     </span>
   );
