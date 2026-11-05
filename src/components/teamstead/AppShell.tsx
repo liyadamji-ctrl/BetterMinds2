@@ -98,9 +98,9 @@ export function AppShell({
       <div className="flex items-center justify-between">
         <Link
           href={homeHref}
-          className="flex items-center gap-2 font-display text-[22px] font-bold tracking-[-0.01em] text-ocean"
+          className="flex items-baseline gap-2 font-display text-[22px] font-bold leading-none tracking-[-0.01em] text-navy"
         >
-          <PreppedMark className="h-[1.1em] w-auto flex-none" />
+          <PreppedMark className="h-[0.7em] w-auto flex-none" />
           Prepped
         </Link>
         <button

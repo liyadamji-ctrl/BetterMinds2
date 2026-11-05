@@ -17,8 +17,8 @@ export function Logo({ variant = "default", suffix }: LogoProps) {
   const textColor = variant === "dark" ? "text-white" : "text-indigo-700";
 
   return (
-    <span className={`inline-flex items-center gap-1.5 font-semibold ${textColor}`}>
-      <PreppedMark className="h-[1.1em] w-auto flex-none" />
+    <span className={`inline-flex items-baseline gap-1.5 font-semibold leading-none ${textColor}`}>
+      <PreppedMark className="h-[0.7em] w-auto flex-none" />
       Prepped{suffix ? ` ${suffix}` : ""}
     </span>
   );

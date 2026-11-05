@@ -2,18 +2,20 @@ import { useId } from "react";
 
 /**
  * The Prepped logo mark: a "P" whose stem doubles as a check. The gradient
- * reads its colors from --mark-edge / --mark-mid (see globals.css) so the same
- * mark works on the beige light theme and on the dark theme.
+ * runs from the site navy (--navy) at the edges to --mark-mid in the middle
+ * (see globals.css), so it matches the wordmark in both themes. The viewBox
+ * is cropped to the stroke's real edges, so the bottom of the box is the
+ * bottom of the mark; size it to the text's cap height in an `items-baseline` row.
  */
-export function PreppedMark({ className = "h-8 w-auto" }: { className?: string }) {
+export function PreppedMark({ className = "h-[0.7em] w-auto" }: { className?: string }) {
   const gradientId = `prepped-mark-${useId().replace(/:/g, "")}`;
   return (
-    <svg viewBox="10 8 80 90" className={className} aria-hidden focusable="false">
+    <svg viewBox="14.5 11.5 71 81" className={className} aria-hidden focusable="false">
       <defs>
         <linearGradient id={gradientId} gradientUnits="userSpaceOnUse" x1="21" y1="96" x2="75" y2="8">
-          <stop offset="0" style={{ stopColor: "var(--mark-edge, #2f4156)" }} />
+          <stop offset="0" style={{ stopColor: "var(--navy, #2f4156)" }} />
           <stop offset="0.5" style={{ stopColor: "var(--mark-mid, #8fa9c2)" }} />
-          <stop offset="1" style={{ stopColor: "var(--mark-edge, #2f4156)" }} />
+          <stop offset="1" style={{ stopColor: "var(--navy, #2f4156)" }} />
         </linearGradient>
       </defs>
       <g transform="translate(1 2)">
