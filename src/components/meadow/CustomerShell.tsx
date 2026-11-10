@@ -1,5 +1,6 @@
 "use client";
 
+import { FeedbackLink } from "@/components/FeedbackLink";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useRef, useState, type ReactNode } from "react";
@@ -153,6 +154,7 @@ export function CustomerShell({ children }: { children: ReactNode }) {
           </div>
           <div className="flex items-center gap-1">
             <ThemeToggle />
+            <FeedbackLink className="hidden h-10 items-center gap-2 rounded-mw-md px-3 text-sm font-medium text-ink-muted hover:bg-surface-sunken hover:text-ink lg:inline-flex" />
             <button
               type="button"
               onClick={logout}
@@ -217,10 +219,14 @@ export function CustomerShell({ children }: { children: ReactNode }) {
                 );
               })}
             </nav>
+            <FeedbackLink
+              iconSize={18}
+              className="mt-auto flex h-11 items-center gap-2 rounded-mw-md px-3 text-[15px] font-medium text-ink-muted hover:bg-surface-sunken hover:text-ink"
+            />
             <button
               type="button"
               onClick={logout}
-              className="mt-auto flex h-11 items-center gap-2 rounded-mw-md px-3 text-[15px] font-medium text-ink-muted hover:bg-surface-sunken hover:text-ink"
+              className="flex h-11 items-center gap-2 rounded-mw-md px-3 text-[15px] font-medium text-ink-muted hover:bg-surface-sunken hover:text-ink"
             >
               <LogOut size={18} aria-hidden /> Log out
             </button>

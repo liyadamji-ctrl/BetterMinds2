@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FeedbackLink } from "@/components/FeedbackLink";
 import {
   ArrowRight,
   BadgeCheck,
@@ -289,6 +290,7 @@ export default function HomePage() {
           <Wordmark className="!text-[20px]" />
           <p>&copy; {new Date().getFullYear()} Prepped</p>
           <nav aria-label="Account" className="flex gap-4">
+            <FeedbackLink withIcon={false} className="hover:text-ink" />
             <Link href="/login" className="hover:text-ink">
               Log In
             </Link>

@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { createFaceTracker, type FaceTracker } from "../lib/faceTracker";
 import { useSpeech } from "../lib/useSpeech";
 import { InterviewReport } from "./InterviewReport";
+import { perceivedConfidence } from "../lib/scoring";
 import type { CameraMetrics, InterviewQuestion, InterviewReport as Report } from "../types";
 
 type Phase = "idle" | "recording" | "stopping" | "edit" | "analyzing" | "feedback";
@@ -30,6 +31,7 @@ export function InterviewRoom({
   const speech = useSpeech();
   const [typedMode, setTypedMode] = useState(false);
   const [answerText, setAnswerText] = useState("");
+  const [selfConfidence, setSelfConfidence] = useState<number | null>(null);
   const startedAt = useRef(0);
   const pending = useRef<{ durationSec: number; camera: CameraMetrics | null }>({ durationSec: 0, camera: null });
   const [seconds, setSeconds] = useState(0);
@@ -92,6 +94,7 @@ export function InterviewRoom({
     setError(null);
     speech.reset();
     setAnswerText("");
+    setSelfConfidence(null);
     setSeconds(0);
     startedAt.current = Date.now();
     trackerRef.current?.start();
@@ -114,6 +117,7 @@ export function InterviewRoom({
   function startTyping() {
     setError(null);
     setAnswerText("");
+    setSelfConfidence(null);
     pending.current = { durationSec: 0, camera: null };
     setPhase("edit");
   }
@@ -130,6 +134,7 @@ export function InterviewRoom({
           transcript: answerText.trim(),
           durationSec: pending.current.durationSec,
           camera: pending.current.camera,
+          selfConfidence,
         }),
       });
       const data = await res.json().catch(() => ({}));
@@ -279,6 +284,7 @@ export function InterviewRoom({
               className="min-h-40 rounded-mw-md border border-slate-300 px-3 py-2 text-sm text-slate-900 outline-none focus:border-indigo-600 focus:ring-1 focus:ring-indigo-600"
               placeholder="Type your answer here"
             />
+            <ConfidencePicker value={selfConfidence} onChange={setSelfConfidence} disabled={phase === "analyzing"} />
             {error && <p className="text-sm text-red-600">{error}</p>}
             <div className="flex flex-wrap gap-3">
               <Button onClick={submitAnswer} disabled={phase === "analyzing" || answerText.trim().length < 5}>
@@ -300,6 +306,7 @@ export function InterviewRoom({
               <Stat label="Delivery" value={question.analysis.deliveryScore} />
               {question.analysis.cameraScore !== null && <Stat label="Camera" value={question.analysis.cameraScore} />}
             </div>
+            <ConfidenceNote question={question} />
             <p className="text-xs text-slate-500">
               {question.wordsPerMinute !== null ? `${question.wordsPerMinute} words/min · ` : ""}
               {question.fillerCount ?? 0} filler words
@@ -386,5 +393,61 @@ function FeedbackList({ title, items }: { title: string; items: string[] }) {
         ))}
       </ul>
     </div>
+  );
+}
+
+const CONFIDENCE_LABELS = ["Not at all", "A little", "Somewhat", "Confident", "Very confident"];
+
+function ConfidencePicker({
+  value,
+  onChange,
+  disabled,
+}: {
+  value: number | null;
+  onChange: (value: number | null) => void;
+  disabled?: boolean;
+}) {
+  return (
+    <div className="flex flex-col gap-2">
+      <p id="confidence-label" className="text-sm font-medium text-slate-700">
+        How confident did you feel? <span className="font-normal text-slate-500">(optional)</span>
+      </p>
+      <div role="radiogroup" aria-labelledby="confidence-label" className="flex flex-wrap gap-2">
+        {CONFIDENCE_LABELS.map((label, i) => {
+          const n = i + 1;
+          const selected = value === n;
+          return (
+            <button
+              key={n}
+              type="button"
+              role="radio"
+              aria-checked={selected}
+              disabled={disabled}
+              onClick={() => onChange(selected ? null : n)}
+              className={`rounded-full border px-3 py-1.5 text-xs font-medium transition-colors disabled:opacity-60 ${
+                selected
+                  ? "border-indigo-700 bg-indigo-700 text-white"
+                  : "border-slate-300 bg-white text-slate-700 hover:bg-slate-100"
+              }`}
+            >
+              {n} · {label}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function ConfidenceNote({ question }: { question: InterviewQuestion }) {
+  const perceived = perceivedConfidence(question);
+  if (perceived === null) return null;
+  const self = question.selfConfidence;
+  return (
+    <p className="text-sm text-slate-700">
+      <span className="font-medium">Confidence: </span>
+      {typeof self === "number" ? `you felt ${self}/5, ` : ""}
+      you came across at {perceived}/100.
+    </p>
   );
 }

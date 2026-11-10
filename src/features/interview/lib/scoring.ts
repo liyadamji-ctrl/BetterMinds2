@@ -105,3 +105,38 @@ export function scoreLabel(score: number): string {
   if (score >= 55) return "Developing";
   return "Needs work";
 }
+
+/**
+ * How confident an answer came across, 0-100: the average of delivery (pace,
+ * filler words) and camera presence (eye contact, steady head) when the
+ * camera was on, otherwise delivery alone. Null when there is no analysis.
+ */
+export function perceivedConfidence(q: InterviewQuestion): number | null {
+  if (!q.analysis) return null;
+  return clamp(average([q.analysis.deliveryScore, q.analysis.cameraScore]) ?? 0);
+}
+
+export type ConfidenceSummary = {
+  /** Average self-rating on the 1-5 scale; null when no answer was rated. */
+  selfAvg: number | null;
+  /** Average of the self-ratings converted to 0-100. */
+  selfPct: number | null;
+  /** How confident the answers came across, 0-100. */
+  perceived: number | null;
+  /** selfPct minus perceived; positive means felt more confident than came across. */
+  gap: number | null;
+  verdict: "felt-more" | "sounded-more" | "aligned" | null;
+};
+
+export function confidenceSummary(questions: InterviewQuestion[]): ConfidenceSummary {
+  const rated = questions.filter((q) => q.analysis && typeof q.selfConfidence === "number");
+  const selfAvg = rated.length ? rated.reduce((sum, q) => sum + (q.selfConfidence as number), 0) / rated.length : null;
+  const selfPct = selfAvg === null ? null : clamp(selfAvg * 20);
+  const perceivedAvg = average(questions.map(perceivedConfidence));
+  const perceived = perceivedAvg === null ? null : clamp(perceivedAvg);
+  // Compare like with like: only the answers the person rated.
+  const perceivedRated = average(rated.map(perceivedConfidence));
+  const gap = selfPct === null || perceivedRated === null ? null : Math.round(selfPct - perceivedRated);
+  const verdict = gap === null ? null : gap >= 15 ? "felt-more" : gap <= -15 ? "sounded-more" : "aligned";
+  return { selfAvg: selfAvg === null ? null : Math.round(selfAvg * 10) / 10, selfPct, perceived, gap, verdict };
+}

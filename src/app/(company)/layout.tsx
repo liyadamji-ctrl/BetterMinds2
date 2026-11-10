@@ -21,7 +21,7 @@ export default async function CompanyLayout({ children }: { children: React.Reac
   if (profile?.needsOnboarding) redirect("/onboarding");
 
   return (
-    <AppShell nav={NAV} homeHref="/company">
+    <AppShell nav={NAV} homeHref="/company" showFeedback>
       <FeatureViewTracker />
       <AppErrorBoundary scope="company">{children}</AppErrorBoundary>
     </AppShell>

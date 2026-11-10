@@ -1,5 +1,6 @@
 "use client";
 
+import { FeedbackLink } from "@/components/FeedbackLink";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
@@ -39,12 +40,15 @@ export function AppShell({
   nav,
   homeHref,
   badge,
+  showFeedback = false,
   children,
 }: {
   nav: NavEntry[];
   homeHref: string;
   /** Shown beside the wordmark, e.g. "Admin". */
   badge?: string;
+  /** Show the tester feedback link (employers yes, admin no). */
+  showFeedback?: boolean;
   children: ReactNode;
 }) {
   const pathname = usePathname();
@@ -138,10 +142,14 @@ export function AppShell({
           );
         })}
       </nav>
+      {showFeedback && <FeedbackLink
+        iconSize={18}
+        className="mt-auto flex h-10 items-center gap-2.5 rounded-ts-md px-3 text-sm font-medium text-ink-muted hover:bg-surface-sunken hover:text-ink"
+      />}
       <button
         type="button"
         onClick={logout}
-        className="mt-auto flex h-10 items-center gap-2.5 rounded-ts-md px-3 text-sm font-medium text-ink-muted hover:bg-surface-sunken hover:text-ink"
+        className={`${showFeedback ? "" : "mt-auto "}flex h-10 items-center gap-2.5 rounded-ts-md px-3 text-sm font-medium text-ink-muted hover:bg-surface-sunken hover:text-ink`}
       >
         <LogOut size={18} strokeWidth={1.75} aria-hidden />
         Log out

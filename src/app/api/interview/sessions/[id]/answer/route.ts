@@ -13,6 +13,7 @@ const schema = z.object({
   questionId: z.string().min(1),
   transcript: z.string().trim().max(8000),
   durationSec: z.number().min(0).max(1800),
+  selfConfidence: z.number().int().min(1).max(5).nullable().optional(),
   camera: z
     .object({
       facePresentPct: pct,
@@ -67,6 +68,7 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
     question.wordsPerMinute = wordsPerMinute(transcript, input.durationSec);
     question.fillerCount = countFillers(transcript);
     question.camera = input.camera;
+    question.selfConfidence = input.selfConfidence ?? null;
     question.analysis = {
       contentScore: ai.contentScore,
       deliveryScore: deliveryScore(transcript, input.durationSec),

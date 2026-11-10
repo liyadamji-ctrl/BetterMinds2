@@ -19,6 +19,8 @@ const createSchema = z.object({
   remote: z.boolean().optional(),
   jobType: z.enum(["internship", "job"]).optional(),
   useAi: z.boolean().optional(),
+  skills: z.array(z.string().trim().max(40)).max(8).optional(),
+  experience: z.enum(["", "internship", "entry", "associate"]).optional(),
 });
 
 export async function POST(request: Request) {
@@ -36,7 +38,7 @@ export async function POST(request: Request) {
     const { kind, query, useAi, ...filters } = parsed.data;
 
     const { keywords, aiUsed } = useAi
-      ? await suggestKeywords(kind, query, filters.area ?? "")
+      ? await suggestKeywords(kind, query, filters.area ?? "", filters.skills ?? [])
       : { keywords: [query], aiUsed: false };
 
     const saved = await db.discoverySearch.create({

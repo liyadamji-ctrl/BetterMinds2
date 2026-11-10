@@ -1,5 +1,5 @@
 import type { InterviewQuestion, InterviewReport as Report } from "../types";
-import { scoreLabel } from "../lib/scoring";
+import { confidenceSummary, perceivedConfidence, scoreLabel } from "../lib/scoring";
 
 function tone(score: number) {
   if (score >= 70) return "text-emerald-700";
@@ -19,6 +19,49 @@ function ScoreCard({ label, score, hint }: { label: string; score: number | null
           <p className="text-xs text-slate-500">{hint ?? scoreLabel(score)}</p>
         </>
       )}
+    </div>
+  );
+}
+
+const VERDICT_TEXT = {
+  "felt-more":
+    "You felt more confident than you came across. Slow your pace a little, cut filler words and hold eye contact to match how you feel.",
+  "sounded-more":
+    "You came across more confident than you felt. Your delivery is stronger than you think, so trust your preparation.",
+  aligned: "How confident you felt matches how you came across. That is a good sign of self-awareness.",
+} as const;
+
+function ConfidenceCard({ questions }: { questions: InterviewQuestion[] }) {
+  const c = confidenceSummary(questions);
+  if (c.perceived === null) return null;
+  return (
+    <div className="rounded-mw-lg bg-surface-raised shadow-mw-card p-5">
+      <h3 className="font-semibold text-slate-900">Confidence</h3>
+      <div className="mt-3 grid gap-4 sm:grid-cols-2">
+        <div>
+          <p className="text-xs font-medium uppercase text-slate-500">How You Felt</p>
+          {c.selfAvg === null ? (
+            <p className="mt-1 text-sm text-slate-500">You did not rate your confidence.</p>
+          ) : (
+            <>
+              <p className="mt-1 text-3xl font-bold text-slate-900">
+                {c.selfAvg}
+                <span className="text-base font-medium text-slate-400"> / 5</span>
+              </p>
+              <p className="text-xs text-slate-500">Your own rating, averaged</p>
+            </>
+          )}
+        </div>
+        <div>
+          <p className="text-xs font-medium uppercase text-slate-500">How You Came Across</p>
+          <p className={`mt-1 text-3xl font-bold ${tone(c.perceived)}`}>
+            {c.perceived}
+            <span className="text-base font-medium text-slate-400"> / 100</span>
+          </p>
+          <p className="text-xs text-slate-500">From pace, filler words and eye contact</p>
+        </div>
+      </div>
+      {c.verdict && <p className="mt-4 rounded bg-slate-50 p-3 text-sm text-slate-700">{VERDICT_TEXT[c.verdict]}</p>}
     </div>
   );
 }
@@ -56,6 +99,8 @@ export function InterviewReport({ report, questions }: { report: Report; questio
         <ScoreCard label="Camera Presence" score={report.cameraScore} />
       </div>
 
+      <ConfidenceCard questions={questions} />
+
       <div className="grid gap-4 md:grid-cols-2">
         <Bullets title="What Went Well" items={report.strengths} color="border-emerald-200 bg-emerald-50" />
         <Bullets title="Key Things to Improve" items={report.improvements} color="border-amber-200 bg-amber-50" />
@@ -71,6 +116,11 @@ export function InterviewReport({ report, questions }: { report: Report; questio
               {q.analysis && (
                 <span className={`ml-2 text-xs font-semibold ${tone(q.analysis.contentScore)}`}>
                   content {q.analysis.contentScore}
+                </span>
+              )}
+              {q.analysis && typeof q.selfConfidence === "number" && (
+                <span className="ml-2 text-xs text-slate-500">
+                  felt {q.selfConfidence}/5 · sounded {perceivedConfidence(q)}
                 </span>
               )}
             </summary>

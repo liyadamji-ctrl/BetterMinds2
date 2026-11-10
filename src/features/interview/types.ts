@@ -36,6 +36,8 @@ export type InterviewQuestion = {
   fillerCount: number | null;
   camera: CameraMetrics | null;
   analysis: AnswerAnalysis | null;
+  /** How confident the person said they felt, 1-5; null/absent when skipped. */
+  selfConfidence?: number | null;
 };
 
 export type InterviewReport = {

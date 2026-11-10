@@ -26,14 +26,15 @@ const MAX_KEYWORD_CHARS = 60;
 export async function suggestKeywords(
   kind: "PROGRAM" | "INTERNSHIP",
   query: string,
-  area: string
+  area: string,
+  skills: string[] = []
 ): Promise<{ keywords: string[]; aiUsed: boolean }> {
   const fallback = { keywords: [query], aiUsed: false };
   try {
     const goal =
       kind === "PROGRAM"
         ? `Wants courses to learn: ${query}`
-        : `Wants internships/jobs as: ${query}${area ? ` (field: ${area})` : ""}`;
+        : `Wants internships/jobs as: ${query}${area ? ` (field: ${area})` : ""}${skills.length ? `. Relevant skills: ${skills.join(", ")}` : ""}`;
     const raw = await groqChat({ system: SYSTEM_PROMPT, user: goal, temperature: 0.3 });
     const parsed = keywordsSchema.safeParse(JSON.parse(raw));
     if (!parsed.success) return fallback;

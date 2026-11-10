@@ -18,6 +18,8 @@ export async function loadSavedSearches(userId: string, kind: Kind): Promise<Sav
       freeOnly: filters.freeOnly ?? false,
       remote: filters.remote ?? false,
       jobType: filters.jobType ?? "internship",
+      skills: filters.skills ?? [],
+      experience: filters.experience ?? "",
       keywords: JSON.parse(row.keywordsJson) as string[],
       createdAt: row.createdAt.toISOString(),
     };

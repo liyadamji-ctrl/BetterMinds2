@@ -25,3 +25,5 @@ Thumbs.db
 
 # git worktrees (see docs/superpowers)
 .worktrees
+# local backup of rows removed before a demo (contains personal data)
+.demo-backup/
