@@ -1,4 +1,4 @@
-import { type ResumeAnswers, type ResumeFormat, escapeHtml } from "./types";
+import { type ResumeAnswers, type ResumeFormat, escapeHtml, SUMMARY_FIELD } from "./types";
 
 function str(answers: ResumeAnswers, section: string, field: string): string {
   const value = answers[section];
@@ -32,7 +32,7 @@ export const classicFormat: ResumeFormat = {
       id: "summary",
       kind: "simple",
       title: "Summary",
-      fields: [{ id: "summary", label: "2–3 Sentence Summary", type: "textarea" }],
+      fields: [SUMMARY_FIELD],
     },
     {
       id: "experience",

@@ -32,6 +32,53 @@ export type ProviderLink = { id: string; name: string; url: string; note?: strin
 
 const enc = encodeURIComponent;
 
+/**
+ * Wellfound has no free-text search URL. It only serves pages for its own
+ * fixed role names (/role/software-engineer works, /role/marketing-intern is
+ * a 404), so the old "slug the keyword" link failed for most searches. Map the
+ * keyword to the closest real role page, and fall back to a Google search
+ * limited to Wellfound's job listings when nothing matches.
+ * Slugs were checked against wellfound.com and return 200.
+ */
+const WELLFOUND_ROLES: Array<[RegExp, string]> = [
+  [/front.?end|react|ui engineer/, "frontend-engineer"],
+  [/back.?end/, "backend-engineer"],
+  [/full.?stack/, "full-stack-engineer"],
+  [/\bios\b/, "ios-developer"],
+  [/android/, "android-developer"],
+  [/machine learning|\bml\b|\bai\b/, "machine-learning-engineer"],
+  [/data scien/, "data-scientist"],
+  [/data engineer/, "data-engineer"],
+  [/data analy|analytics|business analy/, "data-analyst"],
+  [/devops|cloud|sre/, "devops-engineer"],
+  [/security|cyber/, "cybersecurity-engineer"],
+  [/\bqa\b|test/, "qa-engineer"],
+  [/software|developer|engineer|program|swe|mobile|web/, "software-engineer"],
+  [/product manag|\bpm\b/, "product-manager"],
+  [/product design/, "product-designer"],
+  [/ux/, "ux-designer"],
+  [/ui\b/, "ui-designer"],
+  [/graphic|visual|brand design/, "graphic-designer"],
+  [/design/, "designer"],
+  [/social media/, "social-media-manager"],
+  [/growth/, "growth-marketer"],
+  [/copy|content|writ/, "copywriter"],
+  [/market|seo|brand|communicat|\bpr\b/, "marketing"],
+  [/sales|business develop/, "sales"],
+  [/operation/, "operations-manager"],
+  [/recruit|talent|hr\b|human resources/, "recruiter"],
+  [/project manag/, "project-manager"],
+  [/financ/, "financial-analyst"],
+  [/account/, "accountant"],
+];
+
+function wellfoundUrl(keyword: string): string {
+  const k = keyword.toLowerCase();
+  const hit = WELLFOUND_ROLES.find(([re]) => re.test(k));
+  if (hit) return `https://wellfound.com/role/${hit[1]}`;
+  return `https://www.google.com/search?q=${enc(`site:wellfound.com/jobs ${keyword}`)}`;
+}
+
 function slug(text: string): string {
   return text
     .toLowerCase()
@@ -101,7 +148,7 @@ export function buildInternshipLinks(keyword: string, filters: InternshipFilters
     { id: "indeed", name: "Indeed", url: `https://www.indeed.com/jobs?${indeed}` },
     { id: "glassdoor", name: "Glassdoor", url: `https://www.glassdoor.com/Job/jobs.htm?sc.keyword=${enc(qWithSkills)}` },
     { id: "internshala", name: "Internshala", url: `https://internshala.com/${internshalaKind}/keywords-${slug(keyword)}/` },
-    { id: "wellfound", name: "Wellfound", url: `https://wellfound.com/role/${slug(keyword)}` },
+    { id: "wellfound", name: "Wellfound", url: wellfoundUrl(keyword) },
     { id: "google-jobs", name: "Google Jobs", url: `https://www.google.com/search?q=${enc(qWithSkills)}&ibp=htl;jobs` },
   ];
 }

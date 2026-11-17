@@ -197,7 +197,7 @@ export function AppShell({
             {effective === "dark" ? <Sun size={18} /> : <Moon size={18} />}
           </button>
         </div>
-        <main className="mx-auto min-w-0 max-w-6xl px-4 py-6 sm:px-6 sm:py-8">{children}</main>
+        <main className="mx-auto min-w-0 max-w-6xl px-4 py-6 pb-28 sm:px-6 sm:py-8 sm:pb-28">{children}</main>
       </div>
     </div>
   );

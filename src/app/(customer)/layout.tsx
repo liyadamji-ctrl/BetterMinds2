@@ -26,8 +26,8 @@ export default async function CustomerLayout({ children }: { children: React.Rea
       <FeatureViewTracker />
       <AppErrorBoundary scope="customer">{children}</AppErrorBoundary>
       <AppErrorBoundary scope="session-recording">
-        <RecorderProvider />
-        <ConsentBanner />
+        <RecorderProvider userId={session.userId} />
+        <ConsentBanner userId={session.userId} />
       </AppErrorBoundary>
     </CustomerShell>
   );

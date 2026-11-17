@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { record, type eventWithTime } from "rrweb";
 import { sendBatch } from "../lib/sendBeaconBatch";
-import { CONSENT_EVENT } from "./ConsentBanner";
+import { CONSENT_EVENT, consentKey } from "./ConsentBanner";
 
 const FLUSH_INTERVAL_MS = 10_000;
 
@@ -13,7 +13,7 @@ const FLUSH_INTERVAL_MS = 10_000;
  * events to the server every 10 seconds. Crashes here are caught by the
  * AppErrorBoundary so they can never take the rest of the page down.
  */
-export function RecorderProvider() {
+export function RecorderProvider({ userId }: { userId: string }) {
   const bufferRef = useRef<eventWithTime[]>([]);
   const stopRef = useRef<(() => void) | null>(null);
   const sessionIdRef = useRef<string>("");
@@ -43,7 +43,9 @@ export function RecorderProvider() {
       sendBatch(sessionIdRef.current, events, useBeacon);
     }
 
-    if (localStorage.getItem("sessionRecordingConsent") === "true") start();
+    try {
+      if (localStorage.getItem(consentKey(userId)) === "true") start();
+    } catch {}
 
     function onConsentChange(event: Event) {
       const allowed = (event as CustomEvent<{ allowed: boolean }>).detail?.allowed;
@@ -63,7 +65,7 @@ export function RecorderProvider() {
       flush(true);
       stop();
     };
-  }, []);
+  }, [userId]);
 
   return null;
 }

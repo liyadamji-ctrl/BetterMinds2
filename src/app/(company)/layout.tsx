@@ -3,6 +3,8 @@ import { requireCompany } from "@/features/auth/lib/guard";
 import { db } from "@/lib/db";
 import { AppErrorBoundary } from "@/components/AppErrorBoundary";
 import { AppShell, type NavEntry } from "@/components/teamstead/AppShell";
+import { ConsentBanner } from "@/features/session-recording/components/ConsentBanner";
+import { RecorderProvider } from "@/features/session-recording/components/RecorderProvider";
 import { FeatureViewTracker } from "@/features/analytics/components/FeatureViewTracker";
 
 const NAV: NavEntry[] = [
@@ -24,6 +26,10 @@ export default async function CompanyLayout({ children }: { children: React.Reac
     <AppShell nav={NAV} homeHref="/company" showFeedback>
       <FeatureViewTracker />
       <AppErrorBoundary scope="company">{children}</AppErrorBoundary>
+      <AppErrorBoundary scope="session-recording">
+        <RecorderProvider userId={session.userId} />
+        <ConsentBanner userId={session.userId} />
+      </AppErrorBoundary>
     </AppShell>
   );
 }

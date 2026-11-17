@@ -3,7 +3,22 @@ export type SimpleField = {
   label: string;
   type: "text" | "email" | "tel" | "textarea";
   placeholder?: string;
+  /** Short guidance shown under the label, e.g. what to write here. */
+  hint?: string;
   required?: boolean;
+};
+
+/**
+ * The summary box, shared by every format. People often don't know what to
+ * put here, so it carries a tip and an example.
+ */
+export const SUMMARY_FIELD: SimpleField = {
+  id: "summary",
+  label: "Summary",
+  type: "textarea",
+  hint: "Write 2–3 sentences: who you are, the kind of role you're aiming for, and one strength. Keep it short and specific.",
+  placeholder:
+    "Example: Marketing student at Northeastern with two internships in social media. Looking for a marketing internship where I can grow my content skills. Strong at turning data into clear campaign ideas.",
 };
 
 export type SimpleSection = {

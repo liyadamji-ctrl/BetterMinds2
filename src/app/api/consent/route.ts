@@ -6,6 +6,14 @@ import { getSession } from "@/features/auth/lib/guard";
 
 const schema = z.object({ allowed: z.boolean() });
 
+/** The signed-in user's saved answer, or null if they haven't answered yet. */
+export async function GET() {
+  const session = await getSession();
+  if (!session) return NextResponse.json({ error: "Not signed in" }, { status: 401 });
+  const consent = await db.consent.findUnique({ where: { userId: session.userId } });
+  return NextResponse.json({ allowed: consent ? consent.sessionRecordingAllowed : null });
+}
+
 export async function POST(request: Request) {
   const session = await getSession();
   if (!session) return NextResponse.json({ error: "Not signed in" }, { status: 401 });

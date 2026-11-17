@@ -25,13 +25,21 @@ function Field({
 }) {
   if (field.type === "textarea") {
     return (
-      <TextAreaField
-        label={field.label}
-        placeholder={field.placeholder}
-        required={field.required}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-      />
+      <div className="flex flex-col gap-1.5">
+        {field.hint && (
+          <p className="rounded-mw-md bg-brand-soft px-3 py-2 text-xs text-slate-700">
+            <span className="font-semibold">Tip: </span>
+            {field.hint}
+          </p>
+        )}
+        <TextAreaField
+          label={field.label}
+          placeholder={field.placeholder}
+          required={field.required}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+        />
+      </div>
     );
   }
   return (

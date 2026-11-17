@@ -1,4 +1,4 @@
-import { type ResumeAnswers, type ResumeSection, escapeHtml } from "./types";
+import { type ResumeAnswers, type ResumeSection, escapeHtml, SUMMARY_FIELD } from "./types";
 
 /**
  * The common wizard schema (personal / summary / experience / education /
@@ -23,7 +23,7 @@ export const standardSections: ResumeSection[] = [
     id: "summary",
     kind: "simple",
     title: "Summary",
-    fields: [{ id: "summary", label: "2–3 Sentence Summary", type: "textarea" }],
+    fields: [SUMMARY_FIELD],
   },
   {
     id: "experience",
